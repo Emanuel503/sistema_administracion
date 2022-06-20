@@ -18,7 +18,7 @@ class SoloAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        switch(auth::user()->tipo){
+        switch(auth::user()->id_rol){
             case ('1'):
                 return $next($request);//si es administrador continua al HOME
             break;
