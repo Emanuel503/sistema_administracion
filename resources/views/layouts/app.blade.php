@@ -9,9 +9,9 @@
 </head>
 <body>
     
-    <main class="py-4">
+    <div class="container my-4">
         @yield('content')
-    </main>
+    </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="http://localhost/sistema_disam/resources/js/menu.js"></script>

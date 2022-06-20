@@ -23,7 +23,7 @@ class SoloAdmin
                 return $next($request);//si es administrador continua al HOME
             break;
 			case('2'):
-                return redirect('users');// si es un usuario normal redirige a la ruta USER
+                return redirect('home-user');// si es un usuario normal redirige a la ruta USER
 			break;
         }
     }

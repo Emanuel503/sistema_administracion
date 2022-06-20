@@ -12,6 +12,18 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function rol(){
+        return $this->belongsTo(Roles::class, 'id_rol');
+    }
+
+    public function dependencia(){
+        return $this->belongsTo(Lugares::class, 'id_dependencia');
+    }
+
+    public function estadoUsuario(){
+        return $this->belongsTo(EstadosUsuarios::class, 'id_estado');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,8 +34,10 @@ class User extends Authenticatable
         'id_dependencia',
         'id_estado',
         'email',
+        'usuario',
         'password',
-        'name',
+        'nombres',
+        'apellidos',
         'cargo',
         'ubicacion',
         'telefono',

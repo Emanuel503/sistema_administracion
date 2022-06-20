@@ -18,7 +18,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Catalogos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{url('/home/users')}}">Usuarios</a></li>
+                            <li><a class="dropdown-item" href="{{url('/users')}}">Usuarios</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown dropdown-dark">
@@ -39,7 +39,7 @@
                 <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->nombres }} ({{Auth::user()->rol->rol}})
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdown">

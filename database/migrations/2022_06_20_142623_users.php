@@ -19,9 +19,11 @@ return new class extends Migration
             $table->foreignId('id_dependencia')->constrained('lugares','id');
             $table->foreignId('id_estado')->constrained('estados_usuarios','id');
             $table->string('email')->unique();
+            $table->string('usuario')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('name');
+            $table->string('nombres');
+            $table->string('apellidos');
             $table->string('cargo');
             $table->string('ubicacion');
             $table->string('telefono');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class UserController extends Controller
+class LoginUserController extends Controller
 {
     public function __construct()
     {
@@ -12,6 +12,6 @@ class UserController extends Controller
     
     public function index()
     {
-        return view('usuario.user');
+        return view('usuario.home');
     }
 }

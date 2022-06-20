@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('administrador.menu')
+@extends('usuario.menu')
 
 @section('content')
 
