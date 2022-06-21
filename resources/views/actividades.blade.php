@@ -7,7 +7,7 @@
 
 @include('layouts.mensajesUsers')
 
-@if (sizeof($usuarios) > 0)
+@if (sizeof($actividades) > 0)
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr class="table-dark">

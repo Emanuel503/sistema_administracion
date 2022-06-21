@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Actividad;
+use App\Models\Actividades;
+use Illuminate\Http\Request;
 use App\Models\Lugares;
 use App\Models\User;
-use Illuminate\Http\Request;
+
 
 class ActividadesController extends Controller
 {
     public function index()
     {
-        $actividades = Actividad::all();
+        $actividades = Actividades::all();
         $usuarios = User::all();
         $lugares = Lugares::all();
         $organizador = Lugares::all();
@@ -35,7 +36,7 @@ class ActividadesController extends Controller
             'estado' => 'required'
         ]);
 
-        $actividad = new Actividad();
+        $actividad = new Actividades();
 
         $actividad->id_organizador = $request->id_organizador;
         $actividad->id_lugar = $request->id_lugar;
