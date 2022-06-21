@@ -5,7 +5,7 @@
 
 <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Registrar nueva actividad</button>
 
-@include('layouts.mensajesUsers')
+@include('layouts.mensajesActividades')
 
 @if (sizeof($actividades) > 0)
 <table class="table table-striped table-hover table-bordered">
