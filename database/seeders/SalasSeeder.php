@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Salas;
 
 class SalasSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class SalasSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $sala1=Salas::create([
+            'sala' => 'Sala DISAM',
+        ]);
     }
 }
