@@ -15,3 +15,4 @@ Route::get('/home', [LoginUserController::class, 'index'])->name('home');
 Route::resource('/users', UsersController::class);
 Route::resource('/solicitudes-sala', SalasController::class);
 Route::resource('/actividades', ActividadesController::class);
+//Route::get('/actividades/calendario', ActividadesController::class, 'show');

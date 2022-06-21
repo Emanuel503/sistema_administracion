@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\Lugares;
 use App\Models\User;
 
-
 class ActividadesController extends Controller
 {
     public function index()
@@ -31,6 +30,13 @@ class ActividadesController extends Controller
         $estados = EstadosActividades::all();
 
         return view('show-actividad', ['actividades' => $actividades, 'coordinadores' => $coordinadores, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
+    }
+
+    public function showCalendar()
+    {
+        $actividad = Actividades::all();
+
+        return response()->json($actividad);
     }
 
     public function store(Request $request)

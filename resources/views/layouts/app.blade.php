@@ -6,8 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema administracion</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
     <link href="http://localhost/sistema_disam/resources/css/menu.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/locales-all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.css">
 </head>
+
 
 <body>
 
@@ -77,7 +83,8 @@
         @yield('content')
     </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/agenda.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>    
     <script src="http://localhost/sistema_disam/resources/js/menu.js"></script>
     <script src="http://localhost/sistema_disam/resources/js/alert.js"></script>
     <script src="http://localhost/sistema_disam/resources/js/jquery-3.6.0.min.js"></script>
