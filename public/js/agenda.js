@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             right: 'dayGridMonth,timeGridWeek,listWeek'
         },
 
-        events: "http://localhost/agenda/public/actividades/calendario"
+        events: "http://127.0.0.1:8000/actividades.showCalendar"
     });
     calendar.render();
 });
