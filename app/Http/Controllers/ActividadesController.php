@@ -11,11 +11,12 @@ class ActividadesController extends Controller
 {
     public function index()
     {
+        $actividades = Actividad::all();
         $usuarios = User::all();
         $lugares = Lugares::all();
         $organizador = Lugares::all();
 
-        return view('actividades', ['usuarios' => $usuarios, 'lugares' => $lugares, 'organizador' => $organizador]);
+        return view('actividades', ['actividades' => $actividades, 'usuarios' => $usuarios, 'lugares' => $lugares, 'organizador' => $organizador]);
     }
 
     public function store(Request $request)

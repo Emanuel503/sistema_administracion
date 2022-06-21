@@ -39,7 +39,7 @@
                     <li class="nav-item dropdown dropdown-dark">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ingreso de datos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#">Actividades</a></li>
+                            <li><a class="dropdown-item" href="{{url('/actividades')}}">Actividades</a></li>
                             <li><a class="dropdown-item" href="#"> Transporte &raquo; </a>
                                 <ul class="submenu dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="#">Solicitud de transporte</a></li>

@@ -27,26 +27,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($actividades as $actividad )
+        @foreach ($actividades as $actividad)
         <tr>
             <td>{{$actividad->id}}</td>
             <td>{{$actividad->id_organizador}}</td>
             <td>{{$actividad->id_coordinador}}</td>
             <td>{{$actividad->id_lugar}}</td>
-            <td>{{$actividad->dependencia->nombre}}</td>
-            <td>{{$actividad->email}}</td>
-
-            <td>{{$actividad->id}}</td>
-            <td>{{$actividad->nombres}}</td>
-            <td>{{$actividad->apellidos}}</td>
-            <td>{{$actividad->rol->rol}}</td>
-            <td>{{$actividad->dependencia->nombre}}</td>
-            <td>{{$actividad->email}}</td>
+            <td>{{$actividad->nombre_actividad}}</td>
+            <td>{{$actividad->fecha_inicio}}</td>
+            <td>{{$actividad->fecha_finalizacion}}</td>
+            <td>{{$actividad->hora_inicio}}</td>
+            <td>{{$actividad->hora_finalizacion}}</td>
+            <td>{{$actividad->objetivo}}</td>
+            <td>{{$actividad->observaciones}}</td>
+            <td>{{$actividad->estado}}</td>
             <td>
-                <form action="{{ route('users.destroy' , ['user' => $usuario->id]) }}" method="POST">
+                <form action="{{ route('actividades.destroy' , ['actividades' => $actividad->id]) }}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <a class="btn btn-success" href="{{ route('users.show' , ['user' => $usuario->id])}}">Modificar</a>
+                    <a class="btn btn-success" href="{{ route('actividades.show' , ['actividades' => $actividad->id])}}">Modificar</a>
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
             </td>
