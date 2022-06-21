@@ -27,16 +27,17 @@
                 <tr>
                     <td>{{$solicitud->id}}</td>
                     <td>{{$solicitud->fecha}}</td>
+                    <td>{{$solicitud->sala->sala}}</td>
                     <td>{{$solicitud->actividad}}</td>
                     <td>{{$solicitud->hora_inicio}}</td>
                     <td>{{$solicitud->hora_finalizacion}}</td>
-                    <td>{{$solicitud->usuario->nombre}}</td>
+                    <td>{{$solicitud->usuario->usuario}}</td>
                     <td>{{$solicitud->autorizacion->autorizacion}}</td>
                     <td>
-                        <form action="{{ route('solicitudes-sala.destroy' , ['sala' => $solicitud->id]) }}" method="POST">
+                        <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <a class="btn btn-success" href="{{ route('solicitudes-sala.show' , ['sala' => $solicitud->id])}}">Modificar</a>
+                            <a class="btn btn-success" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>
@@ -58,7 +59,6 @@
             <div class="modal-body">
                 <form action="{{ route('solicitudes-sala.store') }}" method="POST">
                     @csrf
-
                     <div class="mb-3">
                         <label for="id_sala" class="col-form-label">Sala:</label>
                         <select id="id_sala" class="form-select" name="id_sala">
@@ -92,8 +92,6 @@
                         <label for="observaciones" class="col-form-label">Observaciones:</label>
                         <input type="text" class="form-control" name="observaciones" id="observaciones">
                     </div>
-
-                    <input type="text" value="{{Auth::user()->rol->id}}" hidden>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

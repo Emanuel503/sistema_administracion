@@ -6,6 +6,7 @@ use App\Models\Autorizaciones;
 use App\Models\Salas;
 use App\Models\SolicitudesSalas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SalasController extends Controller
 {
@@ -25,80 +26,54 @@ class SalasController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'id_rol' => 'required',
-            'id_dependencia' => 'required',
-            'id_estado' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'usuario' => 'required|unique:users,usuario',
-            'password' => 'required|min:8|confirmed',
-            'nombres' => 'required|min:5|max:50',
-            'apellidos' => 'required|min:5|max:50',
-            'cargo' => 'required|min:5|max:50',
-            'ubicacion' => 'required|min:5|max:50',
-            'telefono' => 'required|min:5|max:50|',
-            'motorista' => 'required'
+            'id_sala' => 'required',
+            'fecha' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_finalizacion' => 'required',
+            'actividad' => 'required|min:5|max:50',
+            'observaciones' => 'required|min:5|max:50'
         ]);
 
-        $usuario = new SolicitudesSalas();
-        $usuario->id_rol = $request->id_rol;
-        $usuario->id_dependencia = $request->id_dependencia;
-        $usuario->id_estado = $request->id_estado;
-        $usuario->email = $request->email;
-        $usuario->usuario = $request->usuario;
-        $usuario->password = Hash::make($request->password);
-        $usuario->nombres = $request->nombres;
-        $usuario->apellidos = $request->apellidos;
-        $usuario->cargo = $request->cargo;
-        $usuario->ubicacion = $request->ubicacion;
-        $usuario->telefono = $request->telefono;
-        $usuario->motorista = $request->motorista;
+        $solicitudesSalas = new SolicitudesSalas();
+        $solicitudesSalas->id_autorizacion = 3;
+        $solicitudesSalas->id_usuario =  Auth::user()->rol->id;
+        $solicitudesSalas->id_sala = $request->id_sala;
+        $solicitudesSalas->fecha = $request->fecha;
+        $solicitudesSalas->hora_inicio = $request->hora_inicio;
+        $solicitudesSalas->hora_finalizacion = $request->hora_finalizacion;
+        $solicitudesSalas->actividad = $request->actividad;
+        $solicitudesSalas->observaciones = $request->observaciones;
 
-        $usuario->save();
-        return redirect()->route('users.index')->with('success','Usuario registrado correctamente');
+        $solicitudesSalas->save();
+        return redirect()->route('solicitudes-sala.index')->with('success','Solicitud de sala registrada correctamente');
     }
 
     public function update($id,Request $request){
         $request->validate([
-            'id_rol' => 'required',
-            'id_dependencia' => 'required',
-            'id_estado' => 'required',
-            'email' => 'required|email|unique:users,email, '.$id,
-            'usuario' => 'required|unique:users,usuario, '.$id,
-            'nombres' => 'required|min:5|max:50',
-            'apellidos' => 'required|min:5|max:50',
-            'cargo' => 'required|min:5|max:50',
-            'ubicacion' => 'required|min:5|max:50',
-            'telefono' => 'required|min:5|max:50|',
-            'motorista' => 'required'
+            'id_sala' => 'required',
+            'fecha' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_finalizacion' => 'required',
+            'actividad' => 'required|min:5|max:50',
+            'observaciones' => 'required|min:5|max:50'
         ]);
 
-        $usuario = User::find($id);
-        $usuario->id_rol = $request->id_rol;
-        $usuario->id_dependencia = $request->id_dependencia;
-        $usuario->id_estado = $request->id_estado;
-        $usuario->email = $request->email;
-        $usuario->usuario = $request->usuario;
-        $usuario->nombres = $request->nombres;
-        $usuario->apellidos = $request->apellidos;
-        $usuario->cargo = $request->cargo;
-        $usuario->ubicacion = $request->ubicacion;
-        $usuario->telefono = $request->telefono;
-        $usuario->motorista = $request->motorista;
-
-        if($request->password != null){
-            $request->validate([
-                'password'=> 'min:8|confirmed'
-            ]);
-            $usuario->password = Hash::make($request->password); 
-        }
+        $solicitudesSalas = SolicitudesSalas::find($id);
+        $solicitudesSalas->id_autorizacion = $request->id_autorizacion;
+        $solicitudesSalas->id_sala = $request->id_sala;
+        $solicitudesSalas->fecha = $request->fecha;
+        $solicitudesSalas->hora_inicio = $request->hora_inicio;
+        $solicitudesSalas->hora_finalizacion = $request->hora_finalizacion;
+        $solicitudesSalas->actividad = $request->actividad;
+        $solicitudesSalas->observaciones = $request->observaciones;
         
-        $usuario->save();
+        $solicitudesSalas->save();
 
-        return redirect()->route('users.index')->with('success','Usuario actualizado correctamente');
+        return redirect()->route('solicitudes-sala.index')->with('success','Solicitud de sala actualizada correctamente');
     }
 
     public function destroy($id){
-        User::destroy($id);
-        return redirect()->route('users.index')->with('success','Usuario eliminado correctamente');
+        SolicitudesSalas::destroy($id);
+        return redirect()->route('solicitudes-sala.index')->with('success','Solicitud de sala eliminada correctamente');
     } 
 }
