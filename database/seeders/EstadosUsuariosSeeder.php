@@ -20,7 +20,7 @@ class EstadosUsuariosSeeder extends Seeder
             ]);
 
         $estado2=EstadosUsuarios::create([
-            'estado' => 'Incativo',
+            'estado' => 'Inactivo',
             ]);
     }
 }

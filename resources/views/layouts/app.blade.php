@@ -47,7 +47,7 @@
                                     <li><a class="dropdown-item" href="#">Combustible</a></li>
                                 </ul>
                             </li>
-                            <li><a class="dropdown-item" href="">Solicitudes de sala</a></li>
+                            <li><a class="dropdown-item" href="{{url('/solicitudes-sala')}}">Solicitudes de sala</a></li>
                         </ul>
                     </li>
                 </ul>
