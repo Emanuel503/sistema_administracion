@@ -8,6 +8,11 @@ use App\Http\Controllers\SalasController;
 Route::get('/', function () { 
     return view('auth.login'); 
 });
+Route::get('/home', [LoginUserController::class, 'index'])->name('home');
+Route::resource('/users', UsersController::class);
+Route::resource('/solicitudes-sala', SalasController::class);
+Route::resource('/actividades', ActividadesController::class);
+//Route::get('/actividades/calendario', ActividadesController::class, 'show');
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/users', UsersController::class)->middleware('auth');
