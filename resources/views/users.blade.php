@@ -53,7 +53,7 @@
     @endif
 
     <div class="modal fade" id="modalRegistrar" tabindex="-1" aria-labelledby="modalRegistrar" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="modalTitulo">Registra nuevo usuario</h5>

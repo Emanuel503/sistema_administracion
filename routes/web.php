@@ -13,5 +13,5 @@ Route::get('/', function () {
 });
 Route::get('/home', [LoginUserController::class, 'index'])->name('home');
 Route::resource('/users', UsersController::class);
-Route::resource('/salas', SalasController::class);
+Route::resource('/solicitudes-sala', SalasController::class);
 Route::resource('/actividades', ActividadesController::class);
