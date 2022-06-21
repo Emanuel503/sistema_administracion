@@ -79,6 +79,7 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="http://localhost/sistema_disam/resources/js/menu.js"></script>
+    <script src="http://localhost/sistema_disam/resources/js/alert.js"></script>
     <script src="http://localhost/sistema_disam/resources/js/jquery-3.6.0.min.js"></script>
 </body>
 
