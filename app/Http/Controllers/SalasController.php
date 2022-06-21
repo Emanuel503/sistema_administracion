@@ -20,11 +20,11 @@ class SalasController extends Controller
     }
 
     public function show($id){
-        $solicitudesSalas = SolicitudesSalas::find($id);
+        $solicitudesSala = SolicitudesSalas::find($id);
         $salas = Salas::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('show-solicitud-sala', ['solicitudesSalas' => $solicitudesSalas, 'salas' => $salas, 'autorizaciones' => $autorizaciones,'usuarios' => $usuarios]);
+        return view('show-solicitud-sala', ['solicitudesSala' => $solicitudesSala, 'salas' => $salas, 'autorizaciones' => $autorizaciones,'usuarios' => $usuarios]);
     }
 
     public function store(Request $request){
