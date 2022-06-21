@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@extends('administrador.menu')
 
 @section('content')
     <h3 class="my-4">Modificar usuario</h3>
