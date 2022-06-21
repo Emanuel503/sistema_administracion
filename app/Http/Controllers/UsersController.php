@@ -82,13 +82,19 @@ class UsersController extends Controller
         $usuario->id_estado = $request->id_estado;
         $usuario->email = $request->email;
         $usuario->usuario = $request->usuario;
-        $usuario->password = Hash::make($request->password);
         $usuario->nombres = $request->nombres;
         $usuario->apellidos = $request->apellidos;
         $usuario->cargo = $request->cargo;
         $usuario->ubicacion = $request->ubicacion;
         $usuario->telefono = $request->telefono;
         $usuario->motorista = $request->motorista;
+
+        if($request->password != null){
+            $request->validate([
+                'password'=> 'min:8|confirmed'
+            ]);
+            $usuario->password = Hash::make($request->password); 
+        }
         
         $usuario->save();
 
