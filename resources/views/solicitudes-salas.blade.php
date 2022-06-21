@@ -31,7 +31,7 @@
                     <td>{{$solicitud->actividad}}</td>
                     <td>{{$solicitud->hora_inicio}}</td>
                     <td>{{$solicitud->hora_finalizacion}}</td>
-                    <td>{{$solicitud->usuario->usuario}}</td>
+                    <td>{{$solicitud->usuario->nombres}}</td>
                     <td>{{$solicitud->autorizacion->autorizacion}}</td>
                     <td>
                         <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">

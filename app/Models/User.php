@@ -24,6 +24,10 @@ class User extends Authenticatable
         return $this->belongsTo(EstadosUsuarios::class, 'id_estado');
     }
 
+    public function SolicitudesSalas(){
+        return $this->hasMany(SolicitudesSalas::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

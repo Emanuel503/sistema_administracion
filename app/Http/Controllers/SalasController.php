@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Autorizaciones;
 use App\Models\Salas;
 use App\Models\SolicitudesSalas;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,14 +15,16 @@ class SalasController extends Controller
         $solicitudesSalas = SolicitudesSalas::all();
         $salas = Salas::all();
         $autorizaciones = Autorizaciones::all();
-        return view('solicitudes-salas',['solicitudesSalas' => $solicitudesSalas, 'salas' => $salas, 'autorizaciones' => $autorizaciones]);
+        $usuarios = User::all();
+        return view('solicitudes-salas',['solicitudesSalas' => $solicitudesSalas, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
     public function show($id){
         $solicitudesSalas = SolicitudesSalas::find($id);
         $salas = Salas::all();
         $autorizaciones = Autorizaciones::all();
-        return view('show-solicitud-sala', ['solicitudesSalas' => $solicitudesSalas, 'salas' => $salas, 'autorizaciones' => $autorizaciones]);
+        $usuarios = User::all();
+        return view('show-solicitud-sala', ['solicitudesSalas' => $solicitudesSalas, 'salas' => $salas, 'autorizaciones' => $autorizaciones,'usuarios' => $usuarios]);
     }
 
     public function store(Request $request){

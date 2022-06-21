@@ -16,4 +16,8 @@ class SolicitudesSalas extends Model
     public function autorizacion(){
         return $this->belongsTo(Autorizaciones::class, 'id_autorizacion');
     }
+
+    public function usuario(){
+        return $this->belongsTo(User::class, 'id_usuario');
+    }
 }
