@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actividades;
+use App\Models\EstadosActividades;
 use Illuminate\Http\Request;
 use App\Models\Lugares;
 use App\Models\User;
@@ -15,25 +16,37 @@ class ActividadesController extends Controller
         $actividades = Actividades::all();
         $usuarios = User::all();
         $lugares = Lugares::all();
-        $organizador = Lugares::all();
+        $organizadores = Lugares::all();
+        $estados = EstadosActividades::all();
 
-        return view('actividades', ['actividades' => $actividades, 'usuarios' => $usuarios, 'lugares' => $lugares, 'organizador' => $organizador]);
+        return view('actividades', ['actividades' => $actividades, 'usuarios' => $usuarios, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
+    }
+
+    public function show($id)
+    {
+        $actividades = Actividades::find($id);
+        $usuarios = User::all();
+        $lugares = Lugares::all();
+        $organizadores = Lugares::all();
+        $estados = EstadosActividades::all();
+
+        return view('show-actividad', ['actividades' => $actividades, 'usuarios' => $usuarios, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'id_organizador' => 'required',
-            'id_lugar' => 'required',
             'id_coordinador' => 'required',
+            'id_lugar' => 'required',
+            'id_estado' => 'required',
             'nombre_actividad' => 'required',
             'fecha_inicio' => 'required',
             'fecha_finalizacion' => 'required',
             'hora_inicio' => 'required',
             'hora_finalizacion' => 'required',
             'objetivo' => 'required',
-            'observaciones' => 'required',
-            'estado' => 'required'
+            'observaciones' => 'required'
         ]);
 
         $actividad = new Actividades();
@@ -48,10 +61,23 @@ class ActividadesController extends Controller
         $actividad->hora_finalizacion = $request->hora_finalizacion;
         $actividad->objetivo = $request->objetivo;
         $actividad->observaciones = $request->observaciones;
-        $actividad->estado = $request->estado;
+        $actividad->id_estado = $request->id_estado;
 
         $actividad->save();
 
-        return redirect()->route('actividades')->with('success', 'Actividad guardada correctamente.');
+        return redirect()->route('actividades.index')->with(
+            'success',
+            'Actividad guardada correctamente.'
+        );
+    }
+
+    public function update($id, Request $request)
+    {
+    }
+
+    public function destroy($id)
+    {
+        Actividades::destroy($id);
+        return redirect()->route('actividades.index')->with('success', 'Actividad eliminada correctamente');
     }
 }
