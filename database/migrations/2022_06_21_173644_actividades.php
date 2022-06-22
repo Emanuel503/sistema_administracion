@@ -26,7 +26,6 @@ return new class extends Migration
             $table->time('hora_finalizacion');
             $table->string('objetivo');
             $table->string('observaciones');
-
             $table->timestamps();
         });
     }

@@ -40,12 +40,12 @@
 
         <div class="mb-3">
             <label for="actividad" class="col-form-label">Descripcion de la actividad:</label>
-            <input type="text" class="form-control" name="actividad" id="actividad" value="{{ $solicitudesSala->actividad }}" @if(Auth::user()->rol->id == "1") readonly @endif>
+            <textarea class="form-control" name="actividad" id="actividad" @if(Auth::user()->rol->id == "1") readonly @endif>{{$solicitudesSala->actividad}}</textarea>
         </div>
 
         <div class="mb-3">
             <label for="observaciones" class="col-form-label">Observaciones:</label>
-            <input type="text" class="form-control" name="observaciones" id="observaciones" value="{{ $solicitudesSala->observaciones }}" @if(Auth::user()->rol->id == "1") readonly @endif>
+            <textarea class="form-control" name="observaciones" id="observaciones" @if(Auth::user()->rol->id == "1") readonly @endif>{{$solicitudesSala->observaciones}}</textarea>
         </div>
 
         <div class="mb-3">

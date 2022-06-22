@@ -40,8 +40,8 @@
                     <form action="{{ route('users.destroy' , ['user' => $usuario->id]) }}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <a class="btn btn-success" href="{{ route('users.show' , ['user' => $usuario->id])}}">Modificar</a>
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <a class="btn btn-success btn-sm" href="{{ route('users.show' , ['user' => $usuario->id])}}">Modificar</a>
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
                 </td>
             </tr>

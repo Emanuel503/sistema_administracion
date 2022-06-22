@@ -45,21 +45,20 @@ class ActividadesController extends Controller
             'id_organizador' => 'required',
             'id_coordinador' => 'required',
             'id_lugar' => 'required',
-            'id_estado' => 'required',
-            'nombre_actividad' => 'required',
-            'fecha_inicio' => 'required',
-            'fecha_finalizacion' => 'required',
+            'nombre_actividad' => 'required|min:5',
+            'fecha_inicio' => 'required|date',
+            'fecha_finalizacion' => 'required|date',
             'hora_inicio' => 'required',
             'hora_finalizacion' => 'required',
-            'objetivo' => 'required',
-            'observaciones' => 'required'
+            'objetivo' => 'required|min:5',
+            'observaciones' => 'required|min:5'
         ]);
 
         $actividad = new Actividades();
-
         $actividad->id_organizador = $request->id_organizador;
         $actividad->id_lugar = $request->id_lugar;
         $actividad->id_coordinador = $request->id_coordinador;
+        $actividad->id_estado = 5;
         $actividad->nombre_actividad = $request->nombre_actividad;
         $actividad->fecha_inicio = $request->fecha_inicio;
         $actividad->fecha_finalizacion = $request->fecha_finalizacion;
@@ -67,14 +66,9 @@ class ActividadesController extends Controller
         $actividad->hora_finalizacion = $request->hora_finalizacion;
         $actividad->objetivo = $request->objetivo;
         $actividad->observaciones = $request->observaciones;
-        $actividad->id_estado = $request->id_estado;
-
         $actividad->save();
 
-        return redirect()->route('actividades.index')->with(
-            'success',
-            'Actividad guardada correctamente.'
-        );
+        return redirect()->route('actividades.index')->with('success', 'Actividad guardada correctamente.');
     }
 
     public function update($id, Request $request)
@@ -84,13 +78,13 @@ class ActividadesController extends Controller
             'id_coordinador' => 'required',
             'id_lugar' => 'required',
             'id_estado' => 'required',
-            'nombre_actividad' => 'required',
-            'fecha_inicio' => 'required',
-            'fecha_finalizacion' => 'required',
+            'nombre_actividad' => 'required|min:5',
+            'fecha_inicio' => 'required|date',
+            'fecha_finalizacion' => 'required|date',
             'hora_inicio' => 'required',
             'hora_finalizacion' => 'required',
-            'objetivo' => 'required',
-            'observaciones' => 'required'
+            'objetivo' => 'required|min:5',
+            'observaciones' => 'required|min:5'
         ]);
 
         $actividad = Actividades::find($id);

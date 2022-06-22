@@ -31,24 +31,26 @@
                     <td>{{$solicitud->actividad}}</td>
                     <td>{{$solicitud->hora_inicio}}</td>
                     <td>{{$solicitud->hora_finalizacion}}</td>
-                    <td>{{$solicitud->usuario->nombres}}</td>
+                    <td>{{$solicitud->usuario->nombres}} {{$solicitud->usuario->apellidos}}</td>
                     <td>{{$solicitud->autorizacion->autorizacion}}</td>
                     <td>
                         @if (Auth::user()->rol->id == "1")
                             <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <a class="btn btn-success" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                             </form>
                         @else
                             @if ($solicitud->id_autorizacion == 3)
-                                <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <a class="btn btn-success" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
+                                @if (Auth::user()->id == $solicitud->usuario->id)
+                                    <form action="{{ route('solicitudes-sala.destroy', ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                @endif
                             @endif   
                         @endif
                     </td>
@@ -96,12 +98,12 @@
 
                     <div class="mb-3">
                         <label for="actividad" class="col-form-label">Descripcion de la actividad:</label>
-                        <input type="text" class="form-control" name="actividad" id="actividad">
+                        <textarea class="form-control" name="actividad" id="actividad"></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="observaciones" class="col-form-label">Observaciones:</label>
-                        <input type="text" class="form-control" name="observaciones" id="observaciones">
+                        <textarea class="form-control" name="observaciones" id="observaciones"></textarea>
                     </div>
             </div>
             <div class="modal-footer">

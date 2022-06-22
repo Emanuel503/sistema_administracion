@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class SalasController extends Controller
 {
+    public function comprobarDisponibilidad($fecha, $hora_inicio, $hora_finalizacion){
+        $solicitudesSalas = SolicitudesSalas::where('fecha', $fecha)->get();
+
+        if(sizeof($solicitudesSalas) > 0){
+            return true;
+        }else{
+            return false;
+        }   
+    }
+
     public function index(){
         $solicitudesSalas = SolicitudesSalas::all();
         $salas = Salas::all();
@@ -33,13 +43,18 @@ class SalasController extends Controller
             'fecha' => 'required|date',
             'hora_inicio' => 'required',
             'hora_finalizacion' => 'required',
-            'actividad' => 'required|min:5|max:50',
-            'observaciones' => 'required|min:5|max:50'
+            'actividad' => 'required|min:5',
+            'observaciones' => 'required|min:5'
         ]);
+
+        $comprobar = $this->comprobarDisponibilidad($request->fecha, $request->hora_inicio, $request->hora_finalizacion);
+        if($comprobar){
+            return redirect()->route('solicitudes-sala.index')->with('ocupada','Ya hay una solicitud de sala registrada');
+        }
 
         $solicitudesSalas = new SolicitudesSalas();
         $solicitudesSalas->id_autorizacion = 3;
-        $solicitudesSalas->id_usuario =  Auth::user()->rol->id;
+        $solicitudesSalas->id_usuario =  Auth::user()->id;
         $solicitudesSalas->id_sala = $request->id_sala;
         $solicitudesSalas->fecha = $request->fecha;
         $solicitudesSalas->hora_inicio = $request->hora_inicio;
@@ -58,8 +73,8 @@ class SalasController extends Controller
             'fecha' => 'required|date',
             'hora_inicio' => 'required',
             'hora_finalizacion' => 'required',
-            'actividad' => 'required|min:5|max:50',
-            'observaciones' => 'required|min:5|max:50'
+            'actividad' => 'required|min:5',
+            'observaciones' => 'required|min:5'
         ]);
 
         $solicitudesSalas = SolicitudesSalas::find($id);
