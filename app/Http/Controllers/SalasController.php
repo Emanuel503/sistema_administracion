@@ -51,9 +51,10 @@ class SalasController extends Controller
         return redirect()->route('solicitudes-sala.index')->with('success','Solicitud de sala registrada correctamente');
     }
 
-    public function update($id,Request $request){
+    public function update($id, Request $request){
         $request->validate([
             'id_sala' => 'required',
+            'id_autorizacion' => 'required',
             'fecha' => 'required|date',
             'hora_inicio' => 'required',
             'hora_finalizacion' => 'required',

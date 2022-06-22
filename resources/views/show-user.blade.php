@@ -1,3 +1,10 @@
+@php
+    if (Auth::user()->rol->rol != "Administrador"){
+        header("Location: home");
+        die();
+    }
+@endphp
+
 @extends('layouts.app')
 
 @section('content')

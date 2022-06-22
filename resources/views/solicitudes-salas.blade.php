@@ -25,7 +25,7 @@
             <tbody>
                 @foreach ($solicitudesSalas as $solicitud)
                 <tr>
-                    <td>{{$solicitud->id}}</td>
+                    <td>{{$loop->iteration}}</td>
                     <td>{{$solicitud->fecha}}</td>
                     <td>{{$solicitud->sala->sala}}</td>
                     <td>{{$solicitud->actividad}}</td>
