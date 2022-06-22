@@ -34,12 +34,23 @@
                     <td>{{$solicitud->usuario->nombres}}</td>
                     <td>{{$solicitud->autorizacion->autorizacion}}</td>
                     <td>
-                        <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <a class="btn btn-success" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        @if (Auth::user()->rol->id == "1")
+                            <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <a class="btn btn-success" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        @else
+                            @if ($solicitud->id_autorizacion == 3)
+                                <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <a class="btn btn-success" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            @endif   
+                        @endif
                     </td>
                 </tr>
                 @endforeach
