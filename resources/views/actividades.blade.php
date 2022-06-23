@@ -42,8 +42,11 @@
                 <form action="{{ route('actividades.destroy' , ['actividade' => $actividad->id]) }}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <a class="btn btn-success btn-sm" href="{{ route('actividades.show' , ['actividade' => $actividad->id])}}">Modificar</a>
-                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    <div class="d-grid gap-1 d-md-flex">
+                        <a class="btn btn-info btn-sm" href="{{ route('actividades.show' , ['actividade' => $actividad->id])}}">Ver</a>
+                        <a class="btn btn-success btn-sm" href="{{ route('actividades.edit' , ['actividade' => $actividad->id])}}">Modificar</a>
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </div>
                 </form>
             </td>
         </tr>
