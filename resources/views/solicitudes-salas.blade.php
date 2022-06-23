@@ -47,8 +47,11 @@
                 <form action="{{ route('solicitudes-sala.destroy', ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
-                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    <div class="d-grid gap-1 d-md-flex">
+                        <a class="btn btn-info btn-sm" href="{{ route('solicitudes.show' , ['solicitudes_sala' => $solicitud->id])}}">Ver</a>
+                        <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.edit' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </div>
                 </form>
                 @endif
                 @endif

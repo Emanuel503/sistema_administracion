@@ -52,6 +52,15 @@ class SalasController extends Controller
         return view('show-solicitud-sala', ['solicitudesSala' => $solicitudesSala, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
+    public function edit($id)
+    {
+        $solicitudesSala = SolicitudesSalas::find($id);
+        $salas = Salas::all();
+        $autorizaciones = Autorizaciones::all();
+        $usuarios = User::all();
+        return view('edit-solicitud-sala', ['solicitudesSala' => $solicitudesSala, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([

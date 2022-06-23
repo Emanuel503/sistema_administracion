@@ -27,6 +27,14 @@ class UsersController extends Controller
         return view('show-user', ['usuario' => $usuario, 'roles' => $roles,'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias ]);
     }
 
+    public function edit($id){
+        $usuario = User::find($id);
+        $roles = Roles::all();
+        $estadosUsuarios = EstadosUsuarios::all();
+        $dependencias = Lugares::all();
+        return view('edit-user', ['usuario' => $usuario, 'roles' => $roles,'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias ]);
+    }
+
     public function store(Request $request){
         $request->validate([
             'id_rol' => 'required',

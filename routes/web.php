@@ -8,7 +8,6 @@ use App\Http\Controllers\ActividadesController;
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/actividades/calendario', [App\Http\Controllers\ActividadesController::class, 'calendar']);
 
 Route::resource('/users', UsersController::class)->middleware('auth');
