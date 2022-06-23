@@ -113,4 +113,10 @@ class ActividadesController extends Controller
         Actividades::destroy($id);
         return redirect()->route('actividades.index')->with('success', 'Actividad eliminada correctamente');
     }
+
+    public function calendar()
+    {
+        $actividades = Actividades::all();
+        return response()->json($actividades);
+    }
 }

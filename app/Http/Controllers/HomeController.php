@@ -22,10 +22,4 @@ class HomeController extends Controller
     {
         return view('users');
     }
-
-    public function calendar()
-    {
-        $actividades = Actividades::all();
-        return response()->json($actividades);
-    }
 }
