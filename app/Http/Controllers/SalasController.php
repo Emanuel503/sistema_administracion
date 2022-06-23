@@ -9,16 +9,25 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class SalasController extends Controller
 {
-    public function comprobarDisponibilidad($fecha, $hora_inicio, $hora_finalizacion){
-        $solicitudesSalas = SolicitudesSalas::where('fecha', $fecha)->get();
+    public function comprobarHorario($id_sala, $fecha, $hora_inicio, $hora_finalizacion){
 
-        if(sizeof($solicitudesSalas) > 0){
-            return true;
-        }else{
-            return false;
-        }   
+        //Comprueba que la hora de incio sea menor a la hora de finalizacion
+        if(strtotime($hora_inicio) >= strtotime($hora_finalizacion)){
+            return "errorHora";
+        }
+
+        //Comprueba la disponibildiad de la sala
+        $solicitudesSalas = SolicitudesSalas::all();
+        foreach($solicitudesSalas as $solicitudesSala){
+            if($solicitudesSala->id_sala == $id_sala && $solicitudesSala->fecha == $fecha){
+                if(strtotime($hora_inicio) >= strtotime($solicitudesSala->hora_inicio) && strtotime($hora_inicio) <= strtotime($solicitudesSala->hora_finalizacion)){
+                    return "noDsiponible";
+                }
+            }
+        }
     }
 
     public function index(){
@@ -47,9 +56,14 @@ class SalasController extends Controller
             'observaciones' => 'required|min:5'
         ]);
 
-        $comprobar = $this->comprobarDisponibilidad($request->fecha, $request->hora_inicio, $request->hora_finalizacion);
-        if($comprobar){
-            return redirect()->route('solicitudes-sala.index')->with('ocupada','Ya hay una solicitud de sala registrada');
+        $comprobar = $this->comprobarHorario($request->id_sala, $request->fecha, $request->hora_inicio, $request->hora_finalizacion);
+
+        if($comprobar == "noDisponible"){
+            return redirect()->route('solicitudes-sala.index')->with('noDisponible','Ya hay una solicitud de sala registrada');
+        }
+
+        if($comprobar == "errorHora"){
+            return redirect()->route('solicitudes-sala.index')->with('errorHora','La hora de incio no puede ser mayor o igual a la hora de finalizacion');
         }
 
         $solicitudesSalas = new SolicitudesSalas();
