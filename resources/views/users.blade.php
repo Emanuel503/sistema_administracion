@@ -15,42 +15,44 @@
     @include('layouts.mensajesUsers')
 
     @if (sizeof($usuarios) > 0)
-    <table class="table table-striped table-hover table-bordered">
-        <thead>
-            <tr class="table-dark">
-                <th>#</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Rol</th>
-                <th>Dependencia</th>
-                <th>Email</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($usuarios as $usuario )
-            <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{$usuario->nombres}}</td>
-                <td>{{$usuario->apellidos}}</td>
-                <td>{{$usuario->rol->rol}}</td>
-                <td>{{$usuario->dependencia->nombre}}</td>
-                <td>{{$usuario->email}}</td>
-                <td>
-                    <form action="{{ route('users.destroy' , ['user' => $usuario->id]) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <div class="d-grid gap-1 d-md-flex">
-                            <a class="btn btn-info btn-sm" href="{{ route('users.show' , ['user' => $usuario->id])}}">Ver</a>
-                            <a class="btn btn-success btn-sm" href="{{ route('users.edit' , ['user' => $usuario->id])}}">Modificar</a>
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr class="table-dark">
+                    <th>#</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Rol</th>
+                    <th>Dependencia</th>
+                    <th>Email</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($usuarios as $usuario )
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$usuario->nombres}}</td>
+                    <td>{{$usuario->apellidos}}</td>
+                    <td>{{$usuario->rol->rol}}</td>
+                    <td>{{$usuario->dependencia->nombre}}</td>
+                    <td>{{$usuario->email}}</td>
+                    <td>
+                        <form action="{{ route('users.destroy' , ['user' => $usuario->id]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <div class="d-grid gap-1 d-md-flex">
+                                <a class="btn btn-info btn-sm" href="{{ route('users.show' , ['user' => $usuario->id])}}">Ver</a>
+                                <a class="btn btn-success btn-sm" href="{{ route('users.edit' , ['user' => $usuario->id])}}">Modificar</a>
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     @else
         <br><span class="badge bg-secondary">No hay usuarios registrados</span>
     @endif
