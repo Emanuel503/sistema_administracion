@@ -34,28 +34,28 @@
             <td>{{$solicitud->usuario->nombres}} {{$solicitud->usuario->apellidos}}</td>
             <td>{{$solicitud->autorizacion->autorizacion}}</td>
             <td>
-                @if (Auth::user()->rol->id == "1")
-                <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
-                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                </form>
-                @else
-                @if ($solicitud->id_autorizacion == 3)
-                @if (Auth::user()->id == $solicitud->usuario->id)
-                <form action="{{ route('solicitudes-sala.destroy', ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <div class="d-grid gap-1 d-md-flex">
-                        <a class="btn btn-info btn-sm" href="{{ route('solicitudes.show' , ['solicitudes_sala' => $solicitud->id])}}">Ver</a>
-                        <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.edit' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
-                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                    </div>
-                </form>
-                @endif
-                @endif
-                @endif
+                <div class="d-grid gap-1 d-md-flex">
+                    <a class="btn btn-info btn-sm" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Ver</a>
+                    @if (Auth::user()->rol->id == "1")
+                        <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.edit' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                        @else
+                            @if ($solicitud->id_autorizacion == 3)
+                                @if (Auth::user()->id == $solicitud->usuario->id)
+                                    <form action="{{ route('solicitudes-sala.destroy', ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.edit' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                @endif
+                            @endif
+                    @endif
+                </div>
             </td>
         </tr>
         @endforeach
