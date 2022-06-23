@@ -14,19 +14,24 @@ class SalasController extends Controller
 {
     public function comprobarHorario($id_sala, $fecha, $hora_inicio, $hora_finalizacion)
     {
-
         //Comprueba que la hora de incio sea menor a la hora de finalizacion
         if (strtotime($hora_inicio) >= strtotime($hora_finalizacion)) {
             return "errorHora";
         }
+    }
 
+    public function comprobarHorarioBd($id_sala, $fecha, $hora_inicio, $hora_finalizacion)
+    {
         //Comprueba la disponibildiad de la sala
         $solicitudesSalas = SolicitudesSalas::all();
 
-        $fechaBd = $solicitudesSalas->fecha;
-        $horaBdI = $solicitudesSalas->hora_inicio;
-        $horaBdF = $solicitudesSalas->hora_finalizacion;
-
+        foreach ($solicitudesSalas as $soli) {
+            if (strtotime($fecha) == strtotime($soli->fecha)) {
+                if (strtotime($hora_inicio) > strtotime($soli->hora_inicial) && strtotime($hora_inicio) <= strtotime($soli->hora_finalizacion)) {
+                    return "noDisponible";
+                }
+            }
+        }
     }
 
     public function index()
@@ -59,12 +64,14 @@ class SalasController extends Controller
         ]);
 
         $comprobar = $this->comprobarHorario($request->id_sala, $request->fecha, $request->hora_inicio, $request->hora_finalizacion);
+        $comprobarBd = $this->comprobarHorarioBd($request->id_sala, $request->fecha, $request->hora_inicio, $request->hora_finalizacion);
 
-        if ($comprobar == "noDisponible") {
-            return redirect()->route('solicitudes-sala.index')->with('noDisponible', 'Ya hay una solicitud de sala registrada');
-        }
         if ($comprobar == "errorHora") {
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion');
+        }
+
+        if ($comprobarBd == "noDisponible") {
+            return redirect()->route('solicitudes-sala.index')->with('noDisponible', 'La sala ya se encuentra reservada en ese horario');
         }
 
         $solicitudesSalas = new SolicitudesSalas();
@@ -77,8 +84,8 @@ class SalasController extends Controller
         $solicitudesSalas->actividad = $request->actividad;
         $solicitudesSalas->observaciones = $request->observaciones;
 
-        $solicitudesSalas->save();
-        return redirect()->route('solicitudes-sala.index')->with('success', 'Solicitud de sala registrada correctamente');
+        //$solicitudesSalas->save();
+        //return redirect()->route('solicitudes-sala.index')->with('success', 'Solicitud de sala registrada correctamente');
     }
 
     public function update($id, Request $request)

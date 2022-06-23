@@ -1,10 +1,11 @@
 //Funcion para ocultar los alert
+/*
 window.setTimeout(function () {
     $(".alert").fadeTo(1500, 0).slideDown(2000, function () {
         $(this).remove();
     })
 }, 1500);
-
+*/
 //Funciones para el menu
 document.addEventListener("DOMContentLoaded", function(){
     document.querySelectorAll('.dropdown-menu').forEach(function(element){
