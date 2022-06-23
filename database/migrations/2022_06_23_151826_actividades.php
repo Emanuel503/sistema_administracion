@@ -19,11 +19,13 @@ return new class extends Migration
             $table->foreignId('id_lugar')->constrained('lugares', 'id');
             $table->foreignId('id_coordinador')->constrained('users', 'id');
             $table->foreignId('id_estado')->constrained('estados_actividades', 'id');
-            $table->string('nombre_actividad');
+            $table->string('title');
             $table->date('fecha_inicio');
             $table->date('fecha_finalizacion');
             $table->time('hora_inicio');
             $table->time('hora_finalizacion');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->string('objetivo');
             $table->string('observaciones');
             $table->timestamps();

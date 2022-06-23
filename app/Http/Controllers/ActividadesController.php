@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividades;
 use App\Models\EstadosActividades;
-use Illuminate\Http\Request;
 use App\Models\Lugares;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class ActividadesController extends Controller
 {
@@ -32,20 +32,13 @@ class ActividadesController extends Controller
         return view('show-actividad', ['actividades' => $actividades, 'coordinadores' => $coordinadores, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
     }
 
-    public function showCalendar()
-    {
-        $actividad = Actividades::all();
-
-        return response()->json($actividad);
-    }
-
     public function store(Request $request)
     {
         $request->validate([
             'id_organizador' => 'required',
             'id_coordinador' => 'required',
             'id_lugar' => 'required',
-            'nombre_actividad' => 'required|min:5',
+            'title' => 'required|min:5',
             'fecha_inicio' => 'required|date',
             'fecha_finalizacion' => 'required|date',
             'hora_inicio' => 'required',
@@ -55,17 +48,26 @@ class ActividadesController extends Controller
         ]);
 
         $actividad = new Actividades();
+
         $actividad->id_organizador = $request->id_organizador;
         $actividad->id_lugar = $request->id_lugar;
         $actividad->id_coordinador = $request->id_coordinador;
         $actividad->id_estado = 5;
-        $actividad->nombre_actividad = $request->nombre_actividad;
+        $actividad->title = $request->title;
         $actividad->fecha_inicio = $request->fecha_inicio;
         $actividad->fecha_finalizacion = $request->fecha_finalizacion;
         $actividad->hora_inicio = $request->hora_inicio;
         $actividad->hora_finalizacion = $request->hora_finalizacion;
         $actividad->objetivo = $request->objetivo;
         $actividad->observaciones = $request->observaciones;
+
+        $start = $request->fecha_inicio . ' ' . $request->hora_inicio;
+        $end = $request->fecha_finalizacion . ' ' . $request->hora_finalizacion;
+
+        $actividad->start = $start;
+        $actividad->end = $end;
+
+
         $actividad->save();
 
         return redirect()->route('actividades.index')->with('success', 'Actividad guardada correctamente.');
