@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h3 class="my-4">Detalles Actividad</h3>
+    <h3 class="my-4">Detalles de la actividad</h3>
 
     <a class="btn btn-outline-secondary mb-4" href="{{ route('actividades.index')}}">Regresar</a>
     
@@ -61,11 +61,12 @@
         <input type="text" class="form-control" name="id_estado" id="id_estado" value="{{$actividades->estado->tipo_estado}}" readonly>
     </div>
 
-    <form action="{{ route('actividades.destroy' , ['actividade' => $actividades->id]) }}" method="POST">
-        @method('DELETE')
-        @csrf
-        <a class="btn btn-success" href="{{ route('actividades.edit' , ['actividade' => $actividades->id])}}">Modificar</a>
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-    </form>
-
+    @if ($actividades->id_estado == 5)
+        <form action="{{ route('actividades.destroy' , ['actividade' => $actividades->id]) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <a class="btn btn-success" href="{{ route('actividades.edit' , ['actividade' => $actividades->id])}}">Modificar</a>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form> 
+    @endif
 @endsection

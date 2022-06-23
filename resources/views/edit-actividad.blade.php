@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <h3 class="my-4">Modificar de la actividad</h3>
 
     <a class="btn btn-outline-secondary mb-4" href="{{ route('actividades.index')}}">Regresar</a>
@@ -76,14 +75,18 @@
         <div class="mb-3">
             <label for="id_estado" class="col-form-label">Estado:</label>
             <select id="id_estado" class="form-select" name="id_estado">
-                @foreach ($estados as $estado )
-                    <option @selected($actividades->id_estado == $estado->id ) value="{{$estado->id}}">{{$estado->tipo_estado}}</option>
-                @endforeach
+
+                @if(Auth::user()->rol->id != "1")
+                    <option value="{{$actividades->id_estado}}">{{$actividades->estado->tipo_estado}}</option>
+                @else
+                    @foreach ($estados as $estado )
+                        <option @selected($actividades->id_estado == $estado->id ) value="{{$estado->id}}">{{$estado->tipo_estado}}</option>
+                    @endforeach
+                @endif
             </select>
         </div>
-
+        
         <button type="submit" class="btn btn-success mt-4">Modificar</button>
         <a href="{{route('actividades.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
     </form>
-
 @endsection
