@@ -8,6 +8,8 @@ use App\Models\SolicitudesSalas;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class SolicitudesSalasController extends Controller
 {
@@ -18,16 +20,10 @@ class SolicitudesSalasController extends Controller
             return "errorHora";
         }
 
-        $solicitudesSalas = SolicitudesSalas::all();
+        $solicitudesSalas = DB::select("SELECT * FROM solicitudes_salas WHERE (hora_inicio BETWEEN ? AND ? OR hora_finalizacion BETWEEN ? AND ?) and id_sala= ? and fecha = ?",[$hora_inicio, $hora_fin, $hora_inicio, $hora_fin, $id_sala, $fecha]);
 
-        //Comprueba si hay reservas de la sala para el dia ingresado
-        foreach($solicitudesSalas as $solicitud){
-            if($solicitud->id_sala == $id_sala && $solicitud->fecha == $fecha){
-                //Comprueba que la hora de incio no este dentro del lapso de una reserva
-                if(strtotime($hora_inicio) >= strtotime($solicitud->hora_inicio) && strtotime($hora_inicio) <= strtotime($solicitud->hora_finalizacion) || strtotime($hora_fin) >= strtotime($solicitud->hora_inicio) ){
-                    return "noDisponible";
-                }
-            }
+        if(sizeof($solicitudesSalas) > 0){
+            return "noDisponible";
         }
     }
 
