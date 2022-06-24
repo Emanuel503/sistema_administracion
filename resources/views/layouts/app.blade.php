@@ -32,8 +32,6 @@
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Catalogos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{url('/users')}}">Usuarios</a></li>
-                        </ul>
-                        <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{url('/salas ')}}">Salas</a></li>
                         </ul>
                     </li>
