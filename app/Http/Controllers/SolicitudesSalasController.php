@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class SolicitudesSalasController extends Controller
 {
     public function comprobarHorario($id_sala, $fecha, $hora_inicio, $hora_finalizacion)
