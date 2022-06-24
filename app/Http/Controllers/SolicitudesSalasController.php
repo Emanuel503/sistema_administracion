@@ -11,11 +11,23 @@ use Illuminate\Support\Facades\Auth;
 
 class SolicitudesSalasController extends Controller
 {
-    public function comprobarHorario($id_sala, $fecha, $hora_inicio, $hora_finalizacion)
+    public function comprobarHorario($id_sala, $fecha, $hora_inicio, $hora_fin)
     {
         //Comprueba que la hora de incio sea menor a la hora de finalizacion
-        if (strtotime($hora_inicio) >= strtotime($hora_finalizacion)) {
+        if (strtotime($hora_inicio) >= strtotime($hora_fin)) {
             return "errorHora";
+        }
+
+        $solicitudesSalas = SolicitudesSalas::all();
+
+        //Comprueba si hay reservas de la sala para el dia ingresado
+        foreach($solicitudesSalas as $solicitud){
+            if($solicitud->id_sala == $id_sala && $solicitud->fecha == $fecha){
+                //Comprueba que la hora de incio no este dentro del lapso de una reserva
+                if(strtotime($hora_inicio) >= strtotime($solicitud->hora_inicio) && strtotime($hora_inicio) <= strtotime($solicitud->hora_finalizacion) || strtotime($hora_fin) >= strtotime($solicitud->hora_inicio) ){
+                    return "noDisponible";
+                }
+            }
         }
     }
 
@@ -61,6 +73,10 @@ class SolicitudesSalasController extends Controller
 
         if ($comprobar == "errorHora") {
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion');
+        }
+
+        if ($comprobar == "noDisponible") {
+            return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La sala selecciona ya se encuentra reservada para ese horario');
         }
 
         $solicitudesSalas = new SolicitudesSalas();
