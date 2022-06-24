@@ -5,7 +5,7 @@
 
     <a href="{{route('solicitudes-sala.index')}}" class="btn btn-outline-secondary mb-4">Regresar</a>
 
-    @include('layouts.mensajesSalas')
+    @include('layouts.mensajesSolicitarSalas')
 
     <form action="{{ route('solicitudes-sala.update', ['solicitudes_sala' => $solicitudesSala->id]) }}" method="POST">
         @csrf

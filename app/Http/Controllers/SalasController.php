@@ -2,30 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sala;
+use App\Models\Salas;
 use Illuminate\Http\Request;
 
 class SalasController extends Controller
 {
-    //
     public function index()
     {
-        $salas = Sala::all();
-
+        $salas = Salas::all();
         return view('sala', ['salas' => $salas]);
     }
 
     public function show($id)
     {
-        $salas = Sala::find($id);
-
+        $salas = Salas::find($id);
         return view('show-sala', ['salas' => $salas]);
     }
 
     public function edit($id)
     {
-        $salas = Sala::find($id);
-
+        $salas = Salas::find($id);
         return view('edit-sala', ['salas' => $salas]);
     }
 
@@ -35,8 +31,7 @@ class SalasController extends Controller
             'sala' => 'required'
         ]);
 
-
-        $sala = new Sala();
+        $sala = new Salas();
         $sala->sala = $request->sala;
 
         $sala->save();
@@ -50,9 +45,8 @@ class SalasController extends Controller
             'sala' => 'required'
         ]);
 
-        $sala = Sala::find($id);
+        $sala = Salas::find($id);
         $sala->sala = $request->sala;
-
         $sala->save();
 
         return redirect()->route('salas.index')->with('success', 'Sala actualizada correctamente');
@@ -60,7 +54,7 @@ class SalasController extends Controller
 
     public function destroy($id)
     {
-        Sala::destroy($id);
+        Salas::destroy($id);
         return redirect()->route('salas.index')->with('success', 'Sala eliminada correctamente');
     }
 }

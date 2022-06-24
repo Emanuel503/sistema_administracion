@@ -5,7 +5,7 @@
 
     <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Solicitar sala</button>
 
-    @include('layouts.mensajesSalas')
+    @include('layouts.mensajesSolicitarSalas')
 
     @if (sizeof($solicitudesSalas) > 0)
         <div class="table-responsive">
