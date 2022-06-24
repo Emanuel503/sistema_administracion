@@ -13,20 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class SolicitudesSalasController extends Controller
 {
-    public function comprobarHorario($id_sala, $fecha, $hora_inicio, $hora_fin)
-    {
-        //Comprueba que la hora de incio sea menor a la hora de finalizacion
-        if (strtotime($hora_inicio) >= strtotime($hora_fin)) {
-            return "errorHora";
-        }
-
-        $solicitudesSalas = DB::select("SELECT * FROM solicitudes_salas WHERE (hora_inicio BETWEEN ? AND ? OR hora_finalizacion BETWEEN ? AND ?) and id_sala= ? and fecha = ?",[$hora_inicio, $hora_fin, $hora_inicio, $hora_fin, $id_sala, $fecha]);
-
-        if(sizeof($solicitudesSalas) > 0){
-            return "noDisponible";
-        }
-    }
-
     public function index()
     {
         $solicitudesSalas = SolicitudesSalas::all();
@@ -65,13 +51,15 @@ class SolicitudesSalasController extends Controller
             'observaciones' => 'required|min:5'
         ]);
 
-        $comprobar = $this->comprobarHorario($request->id_sala, $request->fecha, $request->hora_inicio, $request->hora_finalizacion);
-
-        if ($comprobar == "errorHora") {
+        //Comprueba que la hora de incio sea menor a la hora de finalizacion
+        if (strtotime($request->hora_inicio) >= strtotime($request->hora_finalizacion)) {
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion');
         }
 
-        if ($comprobar == "noDisponible") {
+        $solicitudesSalas = DB::select("SELECT * FROM solicitudes_salas WHERE (hora_inicio BETWEEN ? AND ? OR hora_finalizacion BETWEEN ? AND ?) and id_sala= ? and fecha = ?",
+        [$request->hora_inicio, $request->hora_finalizacion, $request->hora_inicio, $request->hora_finalizacion, $request->id_sala, $request->fecha]);
+
+        if(sizeof($solicitudesSalas) > 0){
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La sala selecciona ya se encuentra reservada para ese horario');
         }
 
@@ -105,6 +93,10 @@ class SolicitudesSalasController extends Controller
 
         if ($comprobar == "errorHora") {
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion');
+        }
+
+        if ($comprobar == "noDisponible") {
+            return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La sala selecciona ya se encuentra reservada para ese horario');
         }
 
         $solicitudesSalas = SolicitudesSalas::find($id);
