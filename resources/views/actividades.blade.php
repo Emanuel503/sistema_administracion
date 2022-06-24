@@ -14,7 +14,7 @@
 
     @if (sizeof($actividades) > 0)
     <div class="table-responsive">
-        <table id="actividades" class="table table-striped table-hover table-bordered table-sm">
+        <table id="actividades" class="table table-striped table-hover table-bordered table-sm shadow">
             <thead>
                 <tr class="table-dark">
                     <th>Fecha de incio y finalizacion</th>

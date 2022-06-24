@@ -20,7 +20,7 @@
 
     @if (sizeof($salas) > 0)
         <div class="table-responsive">
-        <table id="salas" class="table table-striped table-hover table-bordered table-sm">
+        <table id="salas" class="table table-striped table-hover table-bordered table-sm shadow">
             <thead>
                 <tr class="table-dark">
                     <th>#</th>

@@ -13,7 +13,7 @@
 
     @if (sizeof($solicitudesSalas) > 0)
         <div class="table-responsive">
-        <table id="solicitudes-salas" class="table table-striped table-hover table-bordered table-sm">
+        <table id="solicitudes-salas" class="table table-striped table-hover table-bordered table-sm shadow">
             <thead>
                 <tr class="table-dark">
                     <th>#</th>
