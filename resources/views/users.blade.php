@@ -5,6 +5,10 @@
     }
 @endphp
 
+@section('css-fullcalendar')
+    <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
+@endsection
+
 @extends('layouts.app')
 
 @section('content')
@@ -16,7 +20,7 @@
 
     @if (sizeof($usuarios) > 0)
     <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered">
+        <table id="usuarios" class="table table-striped table-hover table-bordered table-sm">
             <thead>
                 <tr class="table-dark">
                     <th>#</th>
@@ -156,4 +160,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js-data-table')
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#usuarios').DataTable( {
+                language: {
+                    url: 'data-table-spanish.json'
+                }
+            } );
+        });
+    </script>
 @endsection

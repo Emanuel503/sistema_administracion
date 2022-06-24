@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css-fullcalendar')
+    <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <h3 class="mb-4">Solicitudes de salas</h3>
 
@@ -9,7 +13,7 @@
 
     @if (sizeof($solicitudesSalas) > 0)
         <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered">
+        <table id="solicitudes-salas" class="table table-striped table-hover table-bordered table-sm">
             <thead>
                 <tr class="table-dark">
                     <th>#</th>
@@ -119,4 +123,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js-data-table')
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#solicitudes-salas').DataTable( {
+                language: {
+                    url: 'data-table-spanish.json'
+                }
+            } );
+        });
+    </script>
 @endsection

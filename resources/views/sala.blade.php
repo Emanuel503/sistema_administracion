@@ -5,6 +5,10 @@
     }
 @endphp
 
+@section('css-fullcalendar')
+    <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
+@endsection
+
 @extends('layouts.app')
 
 @section('content')
@@ -15,7 +19,8 @@
     @include('layouts.mensajesSala')
 
     @if (sizeof($salas) > 0)
-        <table class="table table-striped table-hover table-bordered">
+        <div class="table-responsive">
+        <table id="salas" class="table table-striped table-hover table-bordered table-sm">
             <thead>
                 <tr class="table-dark">
                     <th>#</th>
@@ -43,8 +48,9 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     @else
-    <br><span class="badge bg-secondary">No hay salas registradas</span>
+        <br><span class="badge bg-secondary">No hay salas registradas</span>
     @endif
 
     <div class="modal fade" id="modalRegistrar" tabindex="-1" aria-labelledby="modalRegistrar" aria-hidden="true">
@@ -70,4 +76,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js-data-table')
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#salas').DataTable( {
+                language: {
+                    url: 'data-table-spanish.json'
+                }
+            } );
+        });
+    </script>
 @endsection

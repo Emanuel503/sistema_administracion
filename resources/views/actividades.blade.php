@@ -1,3 +1,7 @@
+@section('css-fullcalendar')
+    <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
+@endsection
+
 @extends('layouts.app')
 
 @section('content')
@@ -10,7 +14,7 @@
 
     @if (sizeof($actividades) > 0)
     <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered">
+        <table id="actividades" class="table table-striped table-hover table-bordered table-sm">
             <thead>
                 <tr class="table-dark">
                     <th>Fecha de incio y finalizacion</th>
@@ -18,7 +22,7 @@
                     <th>Objetivo</th>
                     <th>Hora inicio y finalizacion</th>
                     <th>Coordinador / Asistente</th>
-                    <th>Lugar</th>
+                    <th>Nombre del lugar</th>
                     <th>Estado actividad</th>
                     <th>Opciones</th>
                 </tr>
@@ -150,4 +154,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js-data-table')
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#actividades').DataTable( {
+                language: {
+                    url: 'data-table-spanish.json'
+                }
+            } );
+        });
+    </script>
 @endsection

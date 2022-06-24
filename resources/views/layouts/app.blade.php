@@ -1,18 +1,14 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema administracion</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/locales-all.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.css">
+    @yield('css-data-table')
+    @yield('css-fullcalendar')
 </head>
-
 <body>
 
     @yield('menu')
@@ -72,13 +68,16 @@
             @endauth
         </div>
     </nav>
+    
     <div class="container my-4">
         @yield('content')
     </div>
-    <script src="{{ asset('js/agenda.js') }}" defer></script>
+
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/funciones.js') }}"></script>
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    @yield('js-fullcalendar')
+    @yield('js-data-table')
 </body>
 
 </html>
