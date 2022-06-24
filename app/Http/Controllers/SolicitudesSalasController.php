@@ -56,6 +56,7 @@ class SolicitudesSalasController extends Controller
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion');
         }
 
+        //Obtiene todos lo registro de cocidan con la hora ingresada, la sala y el dia
         $solicitudesSalas = DB::select("SELECT * FROM solicitudes_salas WHERE (hora_inicio BETWEEN ? AND ? OR hora_finalizacion BETWEEN ? AND ?) and id_sala= ? and fecha = ?",
         [$request->hora_inicio, $request->hora_finalizacion, $request->hora_inicio, $request->hora_finalizacion, $request->id_sala, $request->fecha]);
 
@@ -89,13 +90,16 @@ class SolicitudesSalasController extends Controller
             'observaciones' => 'required|min:5'
         ]);
 
-        $comprobar = $this->comprobarHorario($request->id_sala, $request->fecha, $request->hora_inicio, $request->hora_finalizacion);
-
-        if ($comprobar == "errorHora") {
+        //Comprueba que la hora de incio sea menor a la hora de finalizacion
+        if (strtotime($request->hora_inicio) >= strtotime($request->hora_finalizacion)) {
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion');
         }
 
-        if ($comprobar == "noDisponible") {
+        //Obtiene todos lo registro de cocidan con la hora ingresada, la sala y el dia
+        $solicitudesSalas = DB::select("SELECT * FROM solicitudes_salas WHERE (hora_inicio BETWEEN ? AND ? OR hora_finalizacion BETWEEN ? AND ?) and id_sala= ? and fecha = ? and id != ?",
+        [$request->hora_inicio, $request->hora_finalizacion, $request->hora_inicio, $request->hora_finalizacion, $request->id_sala, $request->fecha, $id]);
+
+        if(sizeof($solicitudesSalas) > 0){
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La sala selecciona ya se encuentra reservada para ese horario');
         }
 
