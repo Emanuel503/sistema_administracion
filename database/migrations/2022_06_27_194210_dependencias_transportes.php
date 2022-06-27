@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dependencias_transporte', function (Blueprint $table) {
+        Schema::create('dependencias_transportes', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dependencias_transporte');
+        Schema::dropIfExists('dependencias_transportes');
     }
 };
