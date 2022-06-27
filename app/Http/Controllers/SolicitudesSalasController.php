@@ -56,12 +56,21 @@ class SolicitudesSalasController extends Controller
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion');
         }
 
-        //Obtiene todos lo registro de cocidan con la hora ingresada, la sala y el dia
+        //Obtiene todos lo registro de coicidan con la hora ingresada, la sala y el dia
         $solicitudesSalas = DB::select("SELECT * FROM solicitudes_salas WHERE (hora_inicio BETWEEN ? AND ? OR hora_finalizacion BETWEEN ? AND ?) and id_sala= ? and fecha = ?",
         [$request->hora_inicio, $request->hora_finalizacion, $request->hora_inicio, $request->hora_finalizacion, $request->id_sala, $request->fecha]);
 
         if(sizeof($solicitudesSalas) > 0){
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La sala selecciona ya se encuentra reservada para ese horario');
+        }
+
+        $solicitudesSalas = DB::select("SELECT * FROM solicitudes_salas WHERE id_sala= ? and fecha = ?", [$request->id_sala, $request->fecha]);
+        foreach($solicitudesSalas as $solicitud){
+
+            if(strtotime($request->hora_inicio) >= strtotime($solicitud->hora_inicio) && 
+                strtotime($request->hora_inicio) <= strtotime($solicitud->hora_finalizacion)){
+                return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La sala selecciona ya se encuentra reservada para ese horario');
+            }
         }
 
         $solicitudesSalas = new SolicitudesSalas();
@@ -101,6 +110,15 @@ class SolicitudesSalasController extends Controller
 
         if(sizeof($solicitudesSalas) > 0){
             return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La sala selecciona ya se encuentra reservada para ese horario');
+        }
+
+        $solicitudesSalas = DB::select("SELECT * FROM solicitudes_salas WHERE id_sala= ? and fecha = ? and id != ?", [$request->id_sala, $request->fecha, $id]);
+        foreach($solicitudesSalas as $solicitud){
+
+            if(strtotime($request->hora_inicio) >= strtotime($solicitud->hora_inicio) && 
+                strtotime($request->hora_inicio) <= strtotime($solicitud->hora_finalizacion)){
+                return redirect()->route('solicitudes-sala.index')->with('errorHora', 'La sala selecciona ya se encuentra reservada para ese horario');
+            }
         }
 
         $solicitudesSalas = SolicitudesSalas::find($id);

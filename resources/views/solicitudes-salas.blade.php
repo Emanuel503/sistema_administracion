@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($solicitudesSalas as $solicitud)
+                @foreach ($solicitudesSalas->reverse() as $solicitud)
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$solicitud->fecha}}</td>
@@ -128,14 +128,15 @@
 @section('js-data-table')
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
-    
     <script>
-        $(document).ready(function () {
-            $('#solicitudes-salas').DataTable( {
-                language: {
-                    url: 'data-table-spanish.json'
-                }
-            } );
+        $(document).ready(function() {
+            $('#solicitudes-salas tbody').on('click', 'tr', function () {
+                $(this).toggleClass('selected');
+            });
+
+            $('#solicitudes-salas').DataTable({
+                language: { "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}
+            });
         });
     </script>
 @endsection

@@ -5,7 +5,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <h3 class="mb-4">Actividades</h3>
 
     <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Registrar nueva actividad</button>
@@ -28,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($actividades as $actividad)
+                @foreach ($actividades->reverse() as $actividad)
                 <tr>
                     <td>
                         {{$actividad->fecha_inicio}}<br>
@@ -159,14 +158,16 @@
 @section('js-data-table')
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
-    
     <script>
-        $(document).ready(function () {
-            $('#actividades').DataTable( {
-                language: {
-                    url: 'data-table-spanish.json'
-                }
-            } );
+        $(document).ready(function() {  
+            $('#actividades tbody').on('click', 'tr', function () {
+                $(this).toggleClass('selected');
+            });
+
+            $('#actividades').DataTable({
+                language: { "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"},
+                order: [[0, 'desc']],
+            });
         });
     </script>
 @endsection
