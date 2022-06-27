@@ -6,6 +6,7 @@ use App\Models\EstadosUsuarios;
 use App\Models\Lugares;
 use App\Models\Roles;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -110,7 +111,11 @@ class UsersController extends Controller
     }
 
     public function destroy($id){
-        User::destroy($id);
-        return redirect()->route('users.index')->with('success','Usuario eliminado correctamente');
+        try{
+            User::destroy($id);
+            return redirect()->route('users.index')->with('success','Usuario eliminado correctamente');
+        }catch(Exception $e){
+            return redirect()->route('users.index')->with('errorEliminar', 'No se puede eliminar el usuario, ya contiene registros');
+        }
     } 
 }

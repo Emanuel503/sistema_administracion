@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Salas;
+use Exception;
 use Illuminate\Http\Request;
 
 class SalasController extends Controller
@@ -54,7 +55,11 @@ class SalasController extends Controller
 
     public function destroy($id)
     {
-        Salas::destroy($id);
-        return redirect()->route('salas.index')->with('success', 'Sala eliminada correctamente');
+        try{
+            Salas::destroy($id);
+            return redirect()->route('salas.index')->with('success', 'Sala eliminada correctamente');
+        }catch(Exception $e){
+            return redirect()->route('salas.index')->with('errorEliminar', 'No se puede eliminar la sala, ya contiene registros');
+        }
     }
 }
