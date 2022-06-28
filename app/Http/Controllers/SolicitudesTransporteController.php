@@ -24,11 +24,11 @@ class SolicitudesTransporteController extends Controller
 
     }
 
-    public function store(Request $request){
+    public function edit($id){
 
     }
 
-    public function edit($id){
+    public function store(Request $request){
 
     }
 
@@ -36,7 +36,7 @@ class SolicitudesTransporteController extends Controller
 
     }
 
-    public function destoy($id){
+    public function destroy($id){
 
     }
 }

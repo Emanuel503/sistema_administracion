@@ -16,8 +16,8 @@ class LugaresSeeder extends Seeder
     public function run()
     {
         $useradmin=Lugares::create([
-            'codigo' => '30',
-            'nombre' => 'HOSPITAL SAN JUAN DE DIOS, SANTA ANA',
+            'codigo' => '1',
+            'nombre' => 'Laboratorio Central',
             ]);
     }
 }

@@ -12,36 +12,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="mb-4">Lugares</h3>
+    <h3 class="mb-4">Dependencias</h3>
 
-    <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Registrar nuevo lugar</button>
+    <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Registrar nueva dependencia</button>
 
-    @include('layouts.mensajesLugares')
+    @include('layouts.mensajesDependenciasTransporte')
 
-    @if (sizeof($lugares) > 0)
+    @if (sizeof($dependencias) > 0)
         <div class="table-responsive">
-        <table id="lugares" class="table table-striped table-hover table-bordered table-sm shadow">
+        <table id="dependencia" class="table table-striped table-hover table-bordered table-sm shadow">
             <thead>
                 <tr class="table-dark">
                     <th>#</th>
-                    <th>Nombre del lugar</th>
-                    <th>Codigo</th>
+                    <th>Nombre de la dependencia</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($lugares as $lugar)
+                @foreach ($dependencias as $dependencia)
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$lugar->nombre}}</td>
-                    <td>{{$lugar->codigo}}</td>
+                    <td>{{$dependencia->nombre}}</td>
                     <td>
-                        <form action="{{ route('lugares.destroy' , ['lugare' => $lugar->id]) }}" method="POST">
+                        <form action="{{ route('dependencias-transporte.destroy' , ['dependencias_transporte' => $dependencia->id]) }}" method="POST">
                             @method('DELETE')
                             @csrf
                             <div class="d-grid gap-1 d-md-flex">
-                                <a class="btn btn-info btn-sm" href="{{ route('lugares.show' , ['lugare' => $lugar->id])}}">Ver</a>
-                                <a class="btn btn-success btn-sm" href="{{ route('lugares.edit' , ['lugare' => $lugar->id])}}">Modificar</a>
+                                <a class="btn btn-info btn-sm" href="{{ route('dependencias-transporte.show' , ['dependencias_transporte' => $dependencia->id])}}">Ver</a>
+                                <a class="btn btn-success btn-sm" href="{{ route('dependencias-transporte.edit' , ['dependencias_transporte' => $dependencia->id])}}">Modificar</a>
                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                             </div>
                         </form>
@@ -52,26 +50,22 @@
         </table>
         </div>
     @else
-        <br><span class="badge bg-secondary">No hay lugares registrados</span>
+        <br><span class="badge bg-secondary">No hay dependencias registradas</span>
     @endif
 
     <div class="modal fade" id="modalRegistrar" tabindex="-1" aria-labelledby="modalRegistrar" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitulo">Registra nuevo lugar</h5>
+                    <h5 class="modal-title" id="modalTitulo">Registra nueva dependencia</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('lugares.store') }}" method="POST">
+                    <form action="{{ route('dependencias-transporte.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="nombre" class="col-form-label">Nombre del lugar:</label>
+                            <label for="nombre" class="col-form-label">Nombre de la dependencia:</label>
                             <input type="text" class="form-control" name="nombre" id="nombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="codigo" class="col-form-label">Codigo:</label>
-                            <input type="text" class="form-control" name="codigo" id="codigo">
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -89,11 +83,11 @@
     <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#lugares tbody').on('click', 'tr', function () {
+            $('#dependencia tbody').on('click', 'tr', function () {
                 $(this).toggleClass('selected');
             });
 
-            $('#lugares').DataTable({
+            $('#dependencia').DataTable({
                 "language": { "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}
             });
         });

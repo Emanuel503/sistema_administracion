@@ -37,7 +37,7 @@ class PlacasVehiculosController extends Controller
 
         $placas->save();
 
-        return redirect()->route('placas-vehiculos.index')->with('success', 'Nímero de placa
+        return redirect()->route('placas-vehiculos.index')->with('success', 'Número de placa
         guardada correctamente.');
     }
 
