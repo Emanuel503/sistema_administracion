@@ -18,28 +18,30 @@ die();
 
 @include('layouts.mensajesSala')
 
-@if (sizeof($placas) > 0)
+@if (sizeof($vehiculos) > 0)
 <div class="table-responsive">
     <table id="salas" class="table table-striped table-hover table-bordered table-sm shadow">
         <thead>
             <tr class="table-dark">
                 <th>#</th>
                 <th>Número de placa</th>
+                <th>Kilometraje</th>
                 <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($placas as $placa)
+            @foreach ($vehiculos as $vehiculo)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$placa->placa}}</td>
+                <td>{{$vehiculo->placa}}</td>
+                <td>{{$vehiculo->kilometraje}}</td>
                 <td>
-                    <form action="{{ route('placas-vehiculos.destroy' , ['placas_vehiculo' => $placa->id]) }}" method="POST">
+                    <form action="{{ route('vehiculos.destroy' , ['vehiculo' => $vehiculo->id]) }}" method="POST">
                         @method('DELETE')
                         @csrf
                         <div class="d-grid gap-1 d-md-flex">
-                            <a class="btn btn-info btn-sm" href="{{ route('placas-vehiculos.show' , ['placas_vehiculo' => $placa->id])}}">Ver</a>
-                            <a class="btn btn-success btn-sm" href="{{ route('placas-vehiculos.edit' , ['placas_vehiculo' => $placa->id])}}">Modificar</a>
+                            <a class="btn btn-info btn-sm" href="{{ route('vehiculos.show' , ['vehiculo' => $vehiculo->id])}}">Ver</a>
+                            <a class="btn btn-success btn-sm" href="{{ route('vehiculos.edit' , ['vehiculo' => $vehiculo->id])}}">Modificar</a>
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </div>
                     </form>
@@ -50,7 +52,7 @@ die();
     </table>
 </div>
 @else
-<br><span class="badge bg-secondary">No hay placas registradas</span>
+<br><span class="badge bg-secondary">No hay vehiculos registradas</span>
 @endif
 
 <div class="modal fade" id="modalRegistrar" tabindex="-1" aria-labelledby="modalRegistrar" aria-hidden="true">
@@ -61,11 +63,15 @@ die();
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('placas-vehiculos.store') }}" method="POST">
+                <form action="{{ route('vehiculos.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="placa" class="col-form-label">Número de placa:</label>
                         <input type="text" class="form-control" name="placa" id="placa">
+                    </div>
+                    <div class="mb-3">
+                        <label for="km" class="col-form-label">Kilometraje:</label>
+                        <input type="text" class="form-control" name="km" id="km">
                     </div>
             </div>
             <div class="modal-footer">

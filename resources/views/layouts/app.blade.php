@@ -44,7 +44,7 @@
                             <li><a class="dropdown-item" href="#"> Transporte &raquo; </a>
                                 <ul class="submenu dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="{{route('solicitudes-transporte.index')}}">Solicitud de transporte</a></li>
-                                    <li><a class="dropdown-item" href="#">Transporte</a></li>
+                                    <li><a class="dropdown-item" href="{{route('transporte.index')}}">Transporte</a></li>
                                     <li><a class="dropdown-item" href="#">Combustible</a></li>
                                 </ul>
                             </li>
