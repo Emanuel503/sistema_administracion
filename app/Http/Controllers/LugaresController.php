@@ -28,11 +28,13 @@ class LugaresController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required'
+            'nombre' => 'required',
+            'codigo' => 'required|unique:lugares,codigo,'
         ]);
 
         $lugar = new Lugares();
         $lugar->nombre = $request->nombre;
+        $lugar->codigo = $request->codigo;
 
         $lugar->save();
 
@@ -42,11 +44,13 @@ class LugaresController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'nombre' => 'required'
+            'nombre' => 'required',
+            'codigo' => 'required|unique:lugares,codigo, '.$id,
         ]);
 
         $lugar = Lugares::find($id);
         $lugar->nombre = $request->nombre;
+        $lugar->codigo = $request->codigo;
         $lugar->save();
 
         return redirect()->route('lugares.index')->with('success', 'Lugar actualizado correctamente');
