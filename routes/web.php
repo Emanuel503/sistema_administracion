@@ -9,11 +9,8 @@ use App\Http\Controllers\LugaresController;
 use App\Http\Controllers\PlacasVehiculosController;
 use App\Http\Controllers\SalasController;
 use App\Http\Controllers\SolicitudesTransporteController;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\TransporteController;
 use App\Models\Lugares;
->>>>>>> Stashed changes
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -25,11 +22,8 @@ Route::resource('/actividades', ActividadesController::class)->middleware('auth'
 Route::resource('/solicitudes-transporte', SolicitudesTransporteController::class)->middleware('auth');
 Route::resource('/dependencias-transporte', DependenciasTransporteController::class)->middleware('auth');
 Route::resource('/placas-vehiculos', PlacasVehiculosController::class)->middleware('auth');
-<<<<<<< Updated upstream
 Route::resource('/lugares', LugaresController::class)->middleware('auth');
-=======
 Route::resource('/lugares', Lugares::class)->middleware('auth');
 Route::resource('/transporte', TransporteController::class)->middleware('auth');
->>>>>>> Stashed changes
 Route::get('/calendario', [App\Http\Controllers\CalendarioController::class, 'calendar']);
 Route::post('/calendario/edit/{id}', [App\Http\Controllers\CalendarioController::class, 'edit']);
