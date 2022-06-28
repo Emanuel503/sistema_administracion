@@ -33,6 +33,7 @@
                             <li><a class="dropdown-item" href="{{url('/salas ')}}">Salas</a></li>
                             <li><a class="dropdown-item" href="{{url('/lugares ')}}">Lugares</a></li>
                             <li><a class="dropdown-item" href="{{url('/depenencias-transporte ')}}">Dependencias transporte</a></li>
+                            <li><a class="dropdown-item" href="{{url('/placas-vehiculos ')}}">Placas vehiculos</a></li>
                         </ul>
                     </li>
                     @endif
@@ -43,7 +44,7 @@
                             <li><a class="dropdown-item" href="#"> Transporte &raquo; </a>
                                 <ul class="submenu dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="{{route('solicitudes-transporte.index')}}">Solicitud de transporte</a></li>
-                                    <li><a class="dropdown-item" href="{{route('placas-vehiculos.index')}}">Transporte</a></li>
+                                    <li><a class="dropdown-item" href="#">Transporte</a></li>
                                     <li><a class="dropdown-item" href="#">Combustible</a></li>
                                 </ul>
                             </li>

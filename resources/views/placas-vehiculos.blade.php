@@ -31,14 +31,17 @@ die();
         <tbody>
             @foreach ($placas as $placa)
             <tr>
-                <td>{{$placa->id}}</td>
+                <td>{{$loop->iteration}}</td>
                 <td>{{$placa->placa}}</td>
                 <td>
-                    <form action="{{ route('placas-vehiculos.destroy' , 
-                        ['placas_vehiculo' => $placa->id]) }}" method="POST">
+                    <form action="{{ route('placas-vehiculos.destroy' , ['placas_vehiculo' => $placa->id]) }}" method="POST">
                         @method('DELETE')
                         @csrf
-
+                        <div class="d-grid gap-1 d-md-flex">
+                            <a class="btn btn-info btn-sm" href="{{ route('placas-vehiculos.show' , ['placas_vehiculo' => $placa->id])}}">Ver</a>
+                            <a class="btn btn-success btn-sm" href="{{ route('placas-vehiculos.edit' , ['placas_vehiculo' => $placa->id])}}">Modificar</a>
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </div>
                     </form>
                 </td>
             </tr>

@@ -17,7 +17,7 @@ class PlacasVehiculosController extends Controller
     public function show($id)
     {
         $placas = PlacasVehiculos::find($id);
-        return view('placas-vehiculos', ['placas' => $placas]);
+        return view('show-placas-vehiculos', ['placas' => $placas]);
     }
 
     public function edit($id)
