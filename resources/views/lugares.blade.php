@@ -14,9 +14,9 @@
 @section('content')
     <h3 class="mb-4">Lugares</h3>
 
-    <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Registrar nueva lugar</button>
+    <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Registrar nuevo lugar</button>
 
-    @include('layouts.mensajesSala')
+    @include('layouts.mensajesLugares')
 
     @if (sizeof($salas) > 0)
         <div class="table-responsive">
@@ -30,9 +30,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($lugares as $sala)
+                @foreach ($lugares as $lugar)
                 <tr>
-                    <td>{{$sala->id}}</td>
+                    <td>{{$loop->iteration}}</td>
                     <td>{{$sala->sala}}</td>
                     <td>
                         <form action="{{ route('salas.destroy' , ['sala' => $sala->id]) }}" method="POST">
