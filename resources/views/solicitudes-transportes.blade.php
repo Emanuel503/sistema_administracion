@@ -5,7 +5,7 @@
 
     <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Solicitar transporte</button>
 
-    @include('layouts.mensajesSolicitarSalas')
+    @include('layouts.mensajesSolicitarTransporte')
 
     @if (sizeof($solicitudesTransportes) > 0)
         <div class="table-responsive">
@@ -79,14 +79,14 @@
                 <div class="modal-body">
                     <form action="{{ route('solicitudes-transporte.store') }}" method="POST">
                         @csrf
-                        {{-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="id_dependencia" class="col-form-label">Dependencia:</label>
                             <select id="id_dependencia" class="form-select" name="id_dependencia">
                                 @foreach ($dependencias as $dependencia )
                                     <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
                                 @endforeach
                             </select>
-                        </div> --}}
+                        </div>
 
                         <div class="mb-3">
                             <label for="fecha" class="col-form-label">Fecha de utilizacion:</label>
