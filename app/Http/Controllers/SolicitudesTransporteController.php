@@ -17,7 +17,7 @@ class SolicitudesTransporteController extends Controller
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, , 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        //return view('solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, , 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
     public function show($id){

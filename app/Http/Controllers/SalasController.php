@@ -55,10 +55,10 @@ class SalasController extends Controller
 
     public function destroy($id)
     {
-        try{
+        try {
             Salas::destroy($id);
             return redirect()->route('salas.index')->with('success', 'Sala eliminada correctamente');
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->route('salas.index')->with('errorEliminar', 'No se puede eliminar la sala, ya contiene registros');
         }
     }

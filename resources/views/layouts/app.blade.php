@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +10,7 @@
     @yield('css-data-table')
     @yield('css-fullcalendar')
 </head>
+
 <body>
 
     @yield('menu')
@@ -41,7 +43,7 @@
                             <li><a class="dropdown-item" href="#"> Transporte &raquo; </a>
                                 <ul class="submenu dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="{{route('solicitudes-transporte.index')}}">Solicitud de transporte</a></li>
-                                    <li><a class="dropdown-item" href="#">Transporte</a></li>
+                                    <li><a class="dropdown-item" href="{{route('placas-vehiculos.index')}}">Transporte</a></li>
                                     <li><a class="dropdown-item" href="#">Combustible</a></li>
                                 </ul>
                             </li>
@@ -70,7 +72,7 @@
             @endauth
         </div>
     </nav>
-    
+
     <div class="container my-4">
         @yield('content')
     </div>
