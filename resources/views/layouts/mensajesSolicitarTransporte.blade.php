@@ -26,6 +26,13 @@
     </div>
 @enderror
 
+@error('id_lugar')
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ $message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@enderror
+
 @error('fecha')
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{ $message}}
@@ -33,21 +40,21 @@
     </div>
 @enderror
 
-@error('hora_inicio')
+@error('hora_salida')
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{ $message}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @enderror
 
-@error('hora_finalizacion')
+@error('hora_regreso')
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{ $message}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @enderror
 
-@error('actividad')
+@error('objetivo')
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{ $message}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
