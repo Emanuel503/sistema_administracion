@@ -7,6 +7,7 @@ use App\Models\DependenciasTransporte;
 use App\Models\Lugares;
 use App\Models\SolicitudesTransportes;
 use App\Models\User;
+use App\Models\Vehiculos;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,8 @@ class SolicitudesTransporteController extends Controller
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        $vehiculos = Vehiculos::all();
+        return view('solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function show($id)
@@ -31,7 +33,8 @@ class SolicitudesTransporteController extends Controller
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('show-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        $vehiculos = Vehiculos::all();
+        return view('show-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function edit($id)
@@ -41,7 +44,8 @@ class SolicitudesTransporteController extends Controller
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('edit-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        $vehiculos = Vehiculos::all();
+        return view('edit-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function store(Request $request)
@@ -83,6 +87,7 @@ class SolicitudesTransporteController extends Controller
         $request->validate([
             'id_dependencia' => 'required',
             'id_lugar' => 'required',
+            'id_autorizacion' => 'required',
             'fecha' => 'required|date',
             'hora_salida' => 'required',
             'hora_regreso' => 'required',
@@ -92,10 +97,56 @@ class SolicitudesTransporteController extends Controller
 
         //Comprueba que la hora de incio sea menor a la hora de finalizacion
         if (strtotime($request->hora_salida) >= strtotime($request->hora_regreso)) {
-            return redirect()->route('solicitudes-transporte.index')->with('errorHora', 'La hora de salida no puede ser mayor o igual a la hora de regreso')->withInput();
+            return redirect()->route('solicitudes-transporte.edit' , ['solicitudes_transporte' => $id])->with('errorHora', 'La hora de salida no puede ser mayor o igual a la hora de regreso')->withInput();
         }
 
         $solicitudesTransporte = SolicitudesTransportes::find($id);
+
+        if($request->id_autorizacion == 1){
+            $request->validate([
+                'id_motorista' => 'required',
+                'id_vehiculo' => 'required'
+            ]);
+
+            //Obtiene todos lo registro de coicidan con la hora ingresada, el vehiculo y el dia
+            $solicitudes = DB::select("SELECT * FROM solicitudes_transportes WHERE (hora_salida BETWEEN ? AND ? OR hora_regreso BETWEEN ? AND  ?) and id_vehiculo= ? and fecha = ?",
+            [$request->hora_salida, $request->hora_regreso, $request->hora_salida, $request->hora_regreso, $request->id_vehiculo, $request->fecha]);
+
+            if(sizeof($solicitudes) > 0){
+                return redirect()->route('solicitudes-transporte.edit' , ['solicitudes_transporte' => $id])->with('errorVehiculo', 'El vehiculo seleccionado ya se encuentra reservado para ese horario');
+            }
+
+            $solicitudes = DB::select("SELECT * FROM solicitudes_transportes WHERE id_vehiculo= ? and fecha = ?", [$request->id_vehiculo, $request->fecha]);
+            foreach($solicitudes as $solicitud){
+                if(strtotime($request->hora_salida) >= strtotime($solicitud->hora_salida) && 
+                    strtotime($request->hora_salida) <= strtotime($solicitud->hora_regreso)){
+                    return redirect()->route('solicitudes-transporte.edit' , ['solicitudes_transporte' => $id])->with('errorVehiculo', 'El vehiculo seleccionado ya se encuentra reservado para ese horario');
+                }
+            }
+
+            //Obtiene todos lo registro de coicidan con la hora ingresada, el motorista y el dia
+            $solicitudes = DB::select("SELECT * FROM solicitudes_transportes WHERE (hora_salida BETWEEN ? AND ? OR hora_regreso BETWEEN ? AND  ?) and id_motorista= ? and fecha = ?",
+            [$request->hora_salida, $request->hora_regreso, $request->hora_salida, $request->hora_regreso, $request->id_motorista, $request->fecha]);
+
+            if(sizeof($solicitudes) > 0){
+                return redirect()->route('solicitudes-transporte.edit' , ['solicitudes_transporte' => $id])->with('errorMotorista', 'El motorista seleccionado ya se encuentra reservado para ese horario');
+            }
+
+            $solicitudes = DB::select("SELECT * FROM solicitudes_transportes WHERE id_motorista= ? and fecha = ?", [$request->id_motorista, $request->fecha]);
+            foreach($solicitudes as $solicitud){
+                if(strtotime($request->hora_salida) >= strtotime($solicitud->hora_salida) && 
+                    strtotime($request->hora_salida) <= strtotime($solicitud->hora_regreso)){
+                    return redirect()->route('solicitudes-transporte.edit' , ['solicitudes_transporte' => $id])->with('errorMotorista', 'El motorista seleccionado ya se encuentra reservado para ese horario');
+                }
+            }
+
+            $solicitudesTransporte->id_motorista = $request->id_motorista;
+            $solicitudesTransporte->id_vehiculo = $request->id_vehiculo;
+        }else{
+            $solicitudesTransporte->id_motorista = null;
+            $solicitudesTransporte->id_vehiculo = null;
+        }
+        
         $solicitudesTransporte->id_dependencia = $request->id_dependencia;
         $solicitudesTransporte->id_lugar = $request->id_lugar;
         $solicitudesTransporte->id_autorizacion = $request->id_autorizacion;

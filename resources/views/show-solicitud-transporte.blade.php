@@ -6,6 +6,11 @@
     <a href="{{route('solicitudes-transporte.index')}}" class="btn btn-outline-secondary mb-4">Regresar</a>
 
     <div class="mb-3">
+        <label for="id_usuario" class="col-form-label">Usuarios solicitante:</label>
+        <input class="form-control" name="id_usuario" value="{{$solicitudesTransportes->usuario->nombres}} {{$solicitudesTransportes->usuario->apellidos}}" readonly>
+    </div>
+
+    <div class="mb-3">
         <label for="id_dependencia" class="col-form-label">Dependencia:</label>
         <input class="form-control" name="id_dependencia" value="{{$solicitudesTransportes->dependencias->nombre}}" readonly>
     </div>
@@ -17,7 +22,7 @@
 
     <div class="mb-3">
         <label for="fecha" class="col-form-label">Fecha del transporte:</label>
-        <input type="date" class="form-control" name="fecha" id="fecha" vvalue="{{$solicitudesTransportes->fecha}}" readonly>
+        <input type="date" class="form-control" name="fecha" id="fecha" value="{{$solicitudesTransportes->fecha}}" readonly>
     </div>
 
     <div class="mb-3">
@@ -41,13 +46,18 @@
     </div>
 
     <div class="mb-3">
+        <label for="id_autorizacion" class="col-form-label">Autorizacion:</label>
+        <input class="form-control" name="id_autorizacion" value="{{$solicitudesTransportes->autorizacion->autorizacion}}" readonly>
+    </div>
+
+    <div class="mb-3">
         <label for="id_vehiculo" class="col-form-label">Vehiculo:</label>
-        <input class="form-control" name="id_vehiculo" id="id_vehiculo" value="@if ($solicitudesTransportes->id_vehiculo == null) Sin asignar @else {{$solicitudesTransportes->id_vehiculo}} @endif" readonly>
+        <input class="form-control" name="id_vehiculo" id="id_vehiculo" value="@if ($solicitudesTransportes->id_vehiculo == null) Sin asignar @else {{$solicitudesTransportes->vehiculo->placa}} @endif" readonly>
     </div>
 
     <div class="mb-3">
         <label for="id_motorista" class="col-form-label">Motorista:</label>
-        <input class="form-control" name="id_motorista" id="id_motorista" value="@if ($solicitudesTransportes->id_motorista == null) Sin asignar @else {{$solicitudesTransportes->id_motorista}} @endif" readonly>
+        <input class="form-control" name="id_motorista" id="id_motorista" value="@if ($solicitudesTransportes->id_motorista == null) Sin asignar @else {{$solicitudesTransportes->motorista->nombres}} {{$solicitudesTransportes->motorista->apellidos}} @endif" readonly>
     </div>
 
     <div class="mb-3">

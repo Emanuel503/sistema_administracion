@@ -21,9 +21,9 @@ return new class extends Migration
             $table->foreignId('id_motorista')->nullable()->constrained('users', 'id');
             $table->foreignId('id_vehiculo')->nullable()->constrained('vehiculos', 'id');
             $table->foreignId('id_autorizacion')->constrained('autorizaciones', 'id');
-            $table->string('fecha');
-            $table->string('hora_salida');
-            $table->string('hora_regreso');
+            $table->date('fecha');
+            $table->time('hora_salida');
+            $table->time('hora_regreso');
             $table->string('objetivo');
             $table->string('observaciones');
             $table->string('lugar_solicitud');

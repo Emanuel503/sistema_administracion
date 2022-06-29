@@ -5,7 +5,9 @@
 
     <a href="{{route('solicitudes-transporte.index')}}" class="btn btn-outline-secondary mb-4">Regresar</a>
 
-    <form action="{{ route('solicitudes-transporte.edit', ['solicitudes_transporte'=> $solicitudesTransportes->id]) }}" method="POST">
+    @include('layouts.mensajesSolicitarTransporte')
+
+    <form action="{{ route('solicitudes-transporte.update', ['solicitudes_transporte'=> $solicitudesTransportes->id]) }}" method="POST">
         @csrf
         @method('PATCH')
         <div class="mb-3">
@@ -60,8 +62,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="id_autorizacion" class="col-form-label">Autorizacion:</label>
-            <select id="id_autorizacion" class="form-select" name="id_autorizacion">
+            <label for="id_autorizacion_vehiculo" class="col-form-label">Autorizacion:</label>
+            <select id="id_autorizacion_vehiculo" class="form-select" name="id_autorizacion">
                 @if(Auth::user()->rol->id != "1")
                     <option value="{{$solicitudesTransportes->autorizacion->id}}">{{$solicitudesTransportes->autorizacion->autorizacion}}</option>
                 @else
@@ -72,7 +74,7 @@
             </select>
         </div>
 
-        <div class="mb-3">
+        <div id="divVehiculo" class="mb-3" @if ($solicitudesTransportes->autorizacion->id != 1) hidden @endif>
             <label for="id_vehiculo" class="col-form-label">Vehiculo:</label>
             <select id="id_vehiculo" class="form-select" name="id_vehiculo">
                 @if(Auth::user()->rol->id != "1")
@@ -80,6 +82,21 @@
                 @else
                     @foreach ($vehiculos as $vehiculo )
                         <option @selected($solicitudesTransportes->id_vehiculo == $vehiculo->id) value="{{$vehiculo->id}}">{{$vehiculo->placa}}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+
+        <div id="divMotorista" class="mb-3" @if ($solicitudesTransportes->autorizacion->id != 1) hidden @endif >
+            <label for="id_motorista" class="col-form-label">Motorista:</label>
+            <select id="id_motorista" class="form-select" name="id_motorista">
+                @if(Auth::user()->rol->id != "1")
+                    <option value="{{$solicitudesTransportes->id_motorista}}">{{$solicitudesTransportes->motorista}}</option>
+                @else
+                    @foreach ($usuarios as $usuario)
+                        @if ($usuario->motorista == "si")
+                            <option @selected($solicitudesTransportes->id_motorista == $usuario->id) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
+                        @endif
                     @endforeach
                 @endif
             </select>
