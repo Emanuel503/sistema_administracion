@@ -10,6 +10,7 @@ use App\Http\Controllers\VehiculosController;
 use App\Http\Controllers\SalasController;
 use App\Http\Controllers\SolicitudesTransporteController;
 use App\Http\Controllers\TransporteController;
+use App\Http\Controllers\SolicitudCombustibleController;
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -23,5 +24,6 @@ Route::resource('/dependencias-transporte', DependenciasTransporteController::cl
 Route::resource('/vehiculos', VehiculosController::class)->middleware('auth');
 Route::resource('/lugares', LugaresController::class)->middleware('auth');
 Route::resource('/transporte', TransporteController::class)->middleware('auth');
+Route::resource('/solicitud-combustible', SolicitudCombustibleController::class)->middleware('auth');
 Route::get('/calendario', [App\Http\Controllers\CalendarioController::class, 'calendar']);
 Route::post('/calendario/edit/{id}', [App\Http\Controllers\CalendarioController::class, 'edit']);

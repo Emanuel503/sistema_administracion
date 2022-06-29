@@ -45,7 +45,7 @@
                                 <ul class="submenu dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="{{route('solicitudes-transporte.index')}}">Solicitud de transporte</a></li>
                                     <li><a class="dropdown-item" href="{{route('transporte.index')}}">Control de transporte</a></li>
-                                    <li><a class="dropdown-item" href="#">Combustible</a></li>
+                                    <li><a class="dropdown-item" href="{{route('solicitud-combustible.index')}}">Solicitud combustible</a></li>
                                 </ul>
                             </li>
                             <li><a class="dropdown-item" href="{{url('/solicitudes-sala')}}">Solicitudes de sala</a></li>
