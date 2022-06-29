@@ -5,7 +5,7 @@
 
 <a class="btn btn-outline-secondary mb-4" href="{{ route('transporte.index')}}">Regresar</a>
 
-@include('layouts.mensajesActividades')
+@include('layouts.mensajesTransporte')
 
 <form action="{{ route('transporte.update', ['transporte' => $transportes->id]) }}" method="POST">
     @csrf
@@ -35,8 +35,8 @@
     <div class="mb-3">
         <label for="id_placa" class="col-form-label">Placa:</label>
         <select id="id_placa" class="form-select" name="id_placa">
-            @foreach ($placas as $placa )
-            <option @selected($transportes->id_placa == $placa->id ) value="{{$placa->id}}">{{$placa->placa}}</option>
+            @foreach ($vehiculos as $vehiculo)
+            <option @selected($transportes->id_placa == $vehiculo->id ) value="{{$vehiculo->id}}">{{$vehiculo->placa}}</option>
             @endforeach
         </select>
     </div>
@@ -99,13 +99,6 @@
 
     <div class="mb-3">
         <label for="combustible" class="col-form-label">Combustible GLS de</label>
-
-        <select id="pasajero" class="form-select" name="pasajero">
-
-            <option @selected($transportes->pasajero == $usuario->id ) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
-
-        </select>
-
         <select name="tipo_combustible" id="tipo_combustible" class="form-select">
             <option value="Salud">Salud</option>
             <option value="Otros">Otros</option>
@@ -122,6 +115,6 @@
         </select>
     </div>
     <button type="submit" class="btn btn-success mt-4">Modificar</button>
-    <a href="{{route('actividades.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
+    <a href="{{route('transporte.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
 </form>
 @endsection

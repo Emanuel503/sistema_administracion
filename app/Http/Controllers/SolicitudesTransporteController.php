@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\DB;
 
 class SolicitudesTransporteController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $solicitudesTransportes = SolicitudesTransportes::all();
         $dependencias = DependenciasTransporte::all();
         $lugares = Lugares::all();
@@ -23,7 +24,8 @@ class SolicitudesTransporteController extends Controller
         return view('solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $solicitudesTransportes = SolicitudesTransportes::find($id);
         $dependencias = DependenciasTransporte::all();
         $lugares = Lugares::all();
@@ -32,7 +34,8 @@ class SolicitudesTransporteController extends Controller
         return view('show-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $solicitudesTransportes = SolicitudesTransportes::find($id);
         $dependencias = DependenciasTransporte::all();
         $lugares = Lugares::all();
@@ -41,7 +44,8 @@ class SolicitudesTransporteController extends Controller
         return view('edit-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'id_dependencia' => 'required',
             'id_lugar' => 'required',
@@ -74,7 +78,8 @@ class SolicitudesTransporteController extends Controller
         return redirect()->route('solicitudes-transporte.index')->with('success', 'Solicitud de transporte registrada correctamente');
     }
 
-    public function update($id, Request $request){
+    public function update($id, Request $request)
+    {
         $request->validate([
             'id_dependencia' => 'required',
             'id_lugar' => 'required',
@@ -104,7 +109,8 @@ class SolicitudesTransporteController extends Controller
         return redirect()->route('solicitudes-transporte.index')->with('success', 'Solicitud de transporte actualizada correctamente');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         SolicitudesTransportes::destroy($id);
         return redirect()->route('solicitudes-transporte.index')->with('success', 'Solicitud de transporte eliminada correctamente');
     }

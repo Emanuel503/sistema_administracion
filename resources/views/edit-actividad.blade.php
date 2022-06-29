@@ -80,7 +80,7 @@
                     <option value="{{$actividades->id_estado}}">{{$actividades->estado->tipo_estado}}</option>
                 @else
                     @foreach ($estados as $estado )
-                        <option @selected($actividades->id_estado == $estado->id ) value="{{$estado->id}}">{{$estado->tipo_estado}}</option>
+                        <option @selected($actividades->id_estado == $estado->id) value="{{$estado->id}}">{{$estado->tipo_estado}}</option>
                     @endforeach
                 @endif
             </select>

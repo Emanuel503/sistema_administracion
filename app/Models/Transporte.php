@@ -23,7 +23,7 @@ class Transporte extends Model
     {
         return $this->belongsTo(Lugares::class, 'lugar_salida');
     }
-    
+
     public function lugar_d()
     {
         return $this->belongsTo(Lugares::class, 'lugar_destino');
@@ -31,7 +31,7 @@ class Transporte extends Model
 
     public function vehiculo()
     {
-        return $this->belongsTo(PlacasVehiculos::class, 'id_placa');
+        return $this->belongsTo(Vehiculos::class, 'id_placa');
     }
     public function dependencias()
     {

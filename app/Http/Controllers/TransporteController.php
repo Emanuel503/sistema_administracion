@@ -4,24 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\DependenciasTransporte;
 use App\Models\Lugares;
-use App\Models\PlacasVehiculos;
 use App\Models\Transporte;
 use App\Models\User;
+use App\Models\Vehiculos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use function GuzzleHttp\Promise\all;
 
 class TransporteController extends Controller
 {
+    public function comprobarHoras($hora_salida, $hora_destino)
+    {
+        if (strtotime($hora_destino) <= strtotime($hora_salida)) {
+            return "errorHora";
+        }
+    }
+
     public function index()
     {
         $transportes = Transporte::all();
         $dependencias = DependenciasTransporte::all();
         $usuarios = User::all();
-        $placas = PlacasVehiculos::all();
+        $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
 
-        return view('transporte', ['dependencias' => $dependencias, 'usuarios' => $usuarios, 'placas' => $placas, 'transportes' => $transportes, 'lugares' => $lugares]);
+        return view('transporte', ['dependencias' => $dependencias, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'transportes' => $transportes, 'lugares' => $lugares]);
     }
 
     public function show($id)
@@ -29,9 +37,9 @@ class TransporteController extends Controller
         $transportes = Transporte::find($id);
         $dependencia = DependenciasTransporte::all();
         $conductor = User::all();
-        $placa = PlacasVehiculos::all();
+        $vehiculos = Vehiculos::all();
 
-        return view('show-transporte', ['dependencia' => $dependencia, 'conductor' => $conductor, 'placa' => $placa, 'transportes' => $transportes]);
+        return view('show-transporte', ['dependencia' => $dependencia, 'conductor' => $conductor, 'vehiculos' => $vehiculos, 'transportes' => $transportes]);
     }
 
     public function edit($id)
@@ -39,10 +47,10 @@ class TransporteController extends Controller
         $transportes = Transporte::find($id);
         $dependencias = DependenciasTransporte::all();
         $usuarios = User::all();
-        $placas = PlacasVehiculos::all();
+        $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
 
-        return view('edit-transporte', ['transportes' => $transportes, 'dependencias' => $dependencias, 'usuarios' => $usuarios, 'placas' => $placas, 'lugares' => $lugares]);
+        return view('edit-transporte', ['transportes' => $transportes, 'dependencias' => $dependencias, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
     }
 
     public function store(Request $request)
@@ -60,34 +68,56 @@ class TransporteController extends Controller
             'hora_destino' => 'required',
             'km_destino' => 'required',
             'lugar_destino' => 'required',
-            //Otros
-            'distancia_recorrida' => 'required',
+            //Otros            
             'combustible' => 'required',
             'tipo_combustible' => 'required',
             'pasajero' => 'required'
         ]);
 
+        $validacionKm = DB::select(
+            "SELECT * FROM vehiculos WHERE id = ?",
+            [$request->id_placa]
+        );
+
+        foreach ($validacionKm as $val) {
+            if ($request->km_salida < $val->kilometraje) {
+                return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje ingresado es menor al ultimo registrado.');
+            }
+        }
+
+        if ($request->km_destino < $request->km_salida) {
+            return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje de destino no puede ser menor al kilometraje de salida.');
+        }
+
+        $comprobar = $this->comprobarHoras($request->hora_salida, $request->hora_destino);
+
+        if ($comprobar == "errorHora") {
+            return redirect()->route('transporte.index')->with('errorHora', 'La hora de destino no puede ser menor que la hora de salida.');
+        }
+
         $transporte = new Transporte();
+        $distancia = $request->km_destino - $request->km_salida;
 
         $transporte->id_dependencia = $request->id_dependencia;
         $transporte->id_conductor = $request->id_conductor;
         $transporte->id_placa = $request->id_placa;
         $transporte->fecha = $request->fecha;
-
+        //Salida
         $transporte->hora_salida = $request->hora_salida;
         $transporte->km_salida = $request->km_salida;
         $transporte->lugar_salida = $request->lugar_salida;
-
+        //Destino
         $transporte->hora_destino = $request->hora_destino;
         $transporte->km_destino = $request->km_destino;
         $transporte->lugar_destino = $request->lugar_destino;
-
-        $transporte->distancia_recorrida = $request->distancia_recorrida;
+        //Otros
+        $transporte->distancia_recorrida = $distancia;
         $transporte->combustible = $request->combustible;
         $transporte->tipo_combustible = $request->tipo_combustible;
         $transporte->pasajero = $request->pasajero;
 
         $transporte->save();
+        DB::update("UPDATE vehiculos SET kilometraje= ? WHERE id = ?", [$request->km_destino, $request->id_placa]);
 
         return redirect()->route('transporte.index')->with('success', 'Transporte guardado correctamente.');
     }
@@ -98,53 +128,68 @@ class TransporteController extends Controller
             'id_dependencia' => 'required',
             'id_conductor' => 'required',
             'id_placa' => 'required',
-            'fecha' => 'required|date',
+            'fecha' => 'required',
             //Salida
-            'hora_salida' => 'required|time',
+            'hora_salida' => 'required',
             'km_salida' => 'required',
             'lugar_salida' => 'required',
             //Destino
-            'hora_destino' => 'required|time',
+            'hora_destino' => 'required',
             'km_destino' => 'required',
             'lugar_destino' => 'required',
             //Otros
-            'distancia_recorrida' => 'required',
             'combustible' => 'required',
             'tipo_combustible' => 'required',
             'pasajero' => 'required'
         ]);
 
-        $comprobar = $this->comprobarHorario($request->fecha_inicio, $request->fecha_finalizacion, $request->hora_inicio, $request->hora_finalizacion);
+        DB::update("UPDATE vehiculos SET kilometraje= ? WHERE id = ?", [$request->km_salida, $request->id_placa]);
 
-        if ($comprobar == "errorHora") {
-            return redirect()->route('actividades.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion');
+        $validacionKm = DB::select(
+            "SELECT * FROM vehiculos WHERE id = ?",
+            [$request->id_placa]
+        );
+
+        foreach ($validacionKm as $val) {
+            if ($request->km_salida < $val->kilometraje) {
+                return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje ingresado es menor al ultimo registrado.');
+            }
         }
 
-        if ($comprobar == "errorFecha") {
-            return redirect()->route('actividades.index')->with('errorFecha', 'La fecha de incio no puede ser mayor a la fecha de finalizacion');
+        if ($request->km_destino < $request->km_salida) {
+            return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje de destino no puede ser menor al kilometraje de salida.');
+        }
+
+        $comprobar = $this->comprobarHoras($request->hora_salida, $request->hora_destino);
+
+        if ($comprobar == "errorHora") {
+            return redirect()->route('transporte.index')->with('errorHora', 'La hora de destino no puede ser menor que la hora de salida.');
         }
 
         $transporte = Transporte::find($id);
+
+        $distancia = $request->km_destino - $request->km_salida;
 
         $transporte->id_dependencia = $request->id_dependencia;
         $transporte->id_conductor = $request->id_conductor;
         $transporte->id_placa = $request->id_placa;
         $transporte->fecha = $request->fecha;
-
+        //Salida
         $transporte->hora_salida = $request->hora_salida;
         $transporte->km_salida = $request->km_salida;
         $transporte->lugar_salida = $request->lugar_salida;
-
+        //Destino
         $transporte->hora_destino = $request->hora_destino;
         $transporte->km_destino = $request->km_destino;
         $transporte->lugar_destino = $request->lugar_destino;
-
-        $transporte->distancia_recorrida = $request->distancia_recorrida;
+        //Otros
+        $transporte->distancia_recorrida = $distancia;
         $transporte->combustible = $request->combustible;
         $transporte->tipo_combustible = $request->tipo_combustible;
         $transporte->pasajero = $request->pasajero;
 
         $transporte->save();
+        DB::update("UPDATE vehiculos SET kilometraje= ? WHERE id = ?", [$request->km_destino, $request->id_placa]);
 
         return redirect()->route('transporte.index')->with('success', 'Transporte actualizado correctamente');
     }

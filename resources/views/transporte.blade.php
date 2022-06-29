@@ -5,11 +5,11 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="mb-4">Hoja de control de transporte</h3>
+<h3 class="mb-4">Control de transporte</h3>
 
 <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Registrar nuevo transporte</button>
 
-@include('layouts.mensajesActividades')
+@include('layouts.mensajesTransporte')
 
 @if (sizeof($transportes) > 0)
 <div class="table-responsive">
@@ -25,7 +25,7 @@
                 <th>Km llegada</th>
                 <th>Distancia</th>
                 <th>Combustible</th>
-                <th>Opciones</th>
+                <th colspan="3">Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -38,9 +38,8 @@
                 <td>{{$transporte->vehiculo->placa}}</td>
                 <td>{{$transporte->km_salida}}</td>
                 <td>{{$transporte->km_destino}}</td>
-                <td>{{$transporte->distancia_recorrida}}</td>
-                <td>{{$transporte->combustible}}</td>
-
+                <td>{{$transporte->distancia_recorrida}} km</td>
+                <td>{{$transporte->combustible}} gal.</td>
                 <td>
                     <div class="d-grid gap-1 d-md-flex">
                         <a class="btn btn-info btn-sm" href="{{ route('transporte.show' , ['transporte' => $transporte->id])}}">Ver</a>
@@ -78,17 +77,17 @@
                         <label for="id_dependencia" class="col-form-label">Dependencia de transporte:</label>
                         <select id="id_dependencia" class="form-select" name="id_dependencia">
                             @foreach ($dependencias as $dependencia)
-                            <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
+                            <option @selected( old('id_dependencia')==$dependencia->id) value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="id_coductor" class="col-form-label">Conductor:</label>
-                        <select id="id_coductor" class="form-select" name="id_coductor">
+                        <label for="id_conductor" class="col-form-label">Conductor:</label>
+                        <select id="id_conductor" class="form-select" name="id_conductor">
                             @foreach ($usuarios as $usuario )
                             @if ($usuario->motorista == 'si')
-                            <option value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
+                            <option @selected( old('id_coductor')==$usuario->id) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
                             @endif
                             @endforeach
                         </select>
@@ -97,27 +96,27 @@
                     <div class="mb-3">
                         <label for="id_placa" class="col-form-label">Placa:</label>
                         <select id="id_placa" class="form-select" name="id_placa">
-                            @foreach ($placas as $placa )
-                            <option value="{{$placa->id}}">{{$placa->placa}}</option>
+                            @foreach ($vehiculos as $vehiculo )
+                            <option @selected( old('id_placa')==$vehiculo->id) value="{{$vehiculo->id}}">{{$vehiculo->placa}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="fecha" class="col-form-label">Fecha:</label>
-                        <input type="date" class="form-control" name="fecha" id="fecha">
+                        <input type="date" class="form-control" name="fecha" id="fecha" value="{{ old('fecha') }}">
                     </div>
 
                     <h5>Datos de salida</h5>
 
                     <div class="mb-3">
                         <label for="hora_salida" class="col-form-label">Hora salida:</label>
-                        <input type="time" class="form-control" name="hora_salida" id="hora_salida">
+                        <input type="time" class="form-control" name="hora_salida" id="hora_salida" value="{{ old('hora_salida') }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="km_salida" class="col-form-label">Kilometraje salida:</label>
-                        <input type="text" class="form-control" name="km_salida" id="km_salida">
+                        <input type="text" class="form-control" name="km_salida" id="km_salida" value="{{ old('km_salida') }}">
                     </div>
 
                     <div class="mb-3">
@@ -125,7 +124,7 @@
                         <select id="lugar_salida" class="form-select" name="lugar_salida">
                             @foreach ($lugares as $lugar )
                             @if ($lugar->id == 3)
-                            <option value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+                            <option @selected( old('lugar_salida')==$lugar->id) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
                             @endif
                             @endforeach
                         </select>
@@ -135,36 +134,39 @@
 
                     <div class="mb-3">
                         <label for="hora_destino" class="col-form-label">Hora destino:</label>
-                        <input type="time" class="form-control" name="hora_destino" id="hora_destino">
+                        <input type="time" class="form-control" name="hora_destino" id="hora_destino" value="{{ old('hora_destino') }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="km_destino" class="col-form-label">Kilometraje destino:</label>
-                        <input type="text" class="form-control" name="km_destino" id="km_destino">
+                        <input type="text" class="form-control" name="km_destino" id="km_destino" value="{{ old('km_destino') }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="lugar_destino" class="col-form-label">Lugar destino:</label>
                         <select id="lugar_destino" class="form-select" name="lugar_destino">
                             @foreach ($lugares as $lugar )
-                            <option value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+                            <option @selected( old('lugar_destino')==$lugar->id) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <h5>Otros datos</h5>
 
+                    <!--
                     <div class="mb-3">
                         <label for="distancia_recorrida" class="col-form-label">Distancia recorrida:</label>
                         <input type="text" class="form-control" name="distancia_recorrida" id="distancia_recorrida">
                     </div>
+                    -->
 
                     <div class="mb-3">
-                        <label for="combustible" class="col-form-label">Combustible GLS de</label>
-                        <select name="tipo_combustible" id="tipo_combustible" class="form-select">
-                            <option value="Salud">Salud</option>
-                            <option value="Otros">Otros</option>
-                        </select>
+                        <label for="combustible" class="col-form-label">Combustible GLS de
+                            <select name="tipo_combustible" id="tipo_combustible">
+                                <option @selected( old('tipo_combustible')=='Salud' ) value="Salud">Salud</option>
+                                <option @selected( old('tipo_combustible')=='Otros' ) value="Otros">Otros</option>
+                            </select>
+                        </label>
                         <input type="text" class="form-control" name="combustible" id="combustible">
                     </div>
 
@@ -172,7 +174,7 @@
                         <label for="pasajero" class="col-form-label">Pasajero:</label>
                         <select id="pasajero" class="form-select" name="pasajero">
                             @foreach ($usuarios as $usuario )
-                            <option value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
+                            <option @selected( old('pasajero')==$usuario->id) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
                             @endforeach
                         </select>
                     </div>
