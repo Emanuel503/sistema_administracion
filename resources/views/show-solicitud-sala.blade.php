@@ -6,6 +6,11 @@
     <a href="{{route('solicitudes-sala.index')}}" class="btn btn-outline-secondary mb-4">Regresar</a>
 
     <div class="mb-3">
+        <label for="id_usuario" class="col-form-label">Usuarios solicitante:</label>
+        <input class="form-control" name="id_usuario" value="{{$solicitudesSala->usuario->nombres}} {{$solicitudesSala->usuario->apellidos}}" readonly>
+    </div>
+
+    <div class="mb-3">
         <label for="id_sala" class="col-form-label">Sala:</label>
         <input type="text" class="form-control" name="id_sala" id="id_sala" value="{{ $solicitudesSala->sala->sala}}" readonly>
     </div>
