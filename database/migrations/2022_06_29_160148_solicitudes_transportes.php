@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('hora_regreso');
             $table->string('objetivo');
             $table->string('observaciones');
-            $table->string('fecha_solicitud');
             $table->string('lugar_solicitud');
             $table->timestamps();
         });

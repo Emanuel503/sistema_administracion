@@ -21,6 +21,14 @@ class SolicitudesTransportes extends Model
         return $this->belongsTo(User::class, 'id_usuario');
     }
 
+    public function motorista(){
+        return $this->belongsTo(User::class, 'id_motorista');
+    }
+
+    public function vehiculo(){
+        return $this->belongsTo(Vehiculos::class, 'id_vehiculo');
+    }
+
     public function lugar(){
         return $this->belongsTo(Lugares::class, 'id_lugar');
     }

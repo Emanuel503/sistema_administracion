@@ -40,8 +40,8 @@
                     <td>{{$solicitud->lugar->nombre}}</td>
                     <td>{{$solicitud->usuario->nombres}} {{$solicitud->usuario->apellidos}}</td>
                     <td>{{$solicitud->autorizacion->autorizacion}}</td>
-                    <td>{{$solicitud->id_vehiculo}}</td>
-                    <td>{{$solicitud->id_motorista}}</td>
+                    <td>@if ($solicitud->id_vehiculo == null) Sin asignar @else {{$solicitud->vehiculo}} @endif </td>
+                    <td>@if ($solicitud->id_motorista == null) Sin asignar @else {{$solicitud->motorista}} @endif </td>
                     <td>
                         <div class="d-grid gap-1 d-md-flex">
                             <a class="btn btn-info btn-sm" href="{{ route('solicitudes-transporte.show' ,['solicitudes_transporte' => $solicitud->id])}}">Ver</a>

@@ -37,7 +37,27 @@
 
     <div class="mb-3">
         <label for="observaciones" class="col-form-label">Observaciones:</label>
-        <textarea readonly class="form-control" name="observaciones" id="observaciones"{{$solicitudesTransportes->observaciones}}></textarea>
+        <textarea readonly class="form-control" name="observaciones" id="observaciones">{{$solicitudesTransportes->observaciones}}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="id_vehiculo" class="col-form-label">Vehiculo:</label>
+        <input class="form-control" name="id_vehiculo" id="id_vehiculo" value="@if ($solicitudesTransportes->id_vehiculo == null) Sin asignar @else {{$solicitudesTransportes->id_vehiculo}} @endif" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="id_motorista" class="col-form-label">Motorista:</label>
+        <input class="form-control" name="id_motorista" id="id_motorista" value="@if ($solicitudesTransportes->id_motorista == null) Sin asignar @else {{$solicitudesTransportes->id_motorista}} @endif" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="fecha_solicitud" class="col-form-label">Fecha de la solicitud:</label>
+        <input class="form-control" name="fecha_solicitud" id="fecha_solicitud" value="{{$solicitudesTransportes->created_at}}" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="lugar_solicitud" class="col-form-label">Lugar de la solicitud:</label>
+        <input class="form-control" name="lugar_solicitud" id="lugar_solicitud" value="{{$solicitudesTransportes->lugar_solicitud}}" readonly>
     </div>
 
     @if(Auth::user()->rol->id == $solicitudesTransportes->usuario->id)
