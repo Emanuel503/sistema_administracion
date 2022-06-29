@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('id_dependencia')->constrained('dependencias_transportes', 'id');
             $table->foreignId('id_lugar')->constrained('lugares', 'id');
             $table->foreignId('id_usuario')->constrained('users', 'id');
-            $table->foreignId('id_motorista')->constrained('users', 'id');
+            $table->foreignId('id_motorista')->nullable()->constrained('users', 'id');
+            $table->foreignId('id_vehiculo')->nullable()->constrained('vehiculos', 'id');
             $table->foreignId('id_autorizacion')->constrained('autorizaciones', 'id');
             $table->string('fecha');
             $table->string('hora_salida');

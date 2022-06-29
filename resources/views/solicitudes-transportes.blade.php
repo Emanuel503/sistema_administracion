@@ -25,6 +25,7 @@
                     <th>Tecnico</th>
                     <th>Autorizacion</th>
                     <th>Vehiculo</th>
+                    <th>Motorista</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -39,7 +40,8 @@
                     <td>{{$solicitud->lugar->nombre}}</td>
                     <td>{{$solicitud->usuario->nombres}} {{$solicitud->usuario->apellidos}}</td>
                     <td>{{$solicitud->autorizacion->autorizacion}}</td>
-                    <td></td>
+                    <td>{{$solicitud->id_vehiculo}}</td>
+                    <td>{{$solicitud->id_motorista}}</td>
                     <td>
                         <div class="d-grid gap-1 d-md-flex">
                             <a class="btn btn-info btn-sm" href="{{ route('solicitudes-transporte.show' ,['solicitudes_transporte' => $solicitud->id])}}">Ver</a>
