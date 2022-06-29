@@ -5,9 +5,16 @@
     </div>
 @endif
 
-@if (session('noDisponible'))
+@if (session('errorVehiculo'))
     <div id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
-        {{session('noDisponible')}}
+        {{session('errorVehiculo')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+@if (session('errorMotorista'))
+    <div id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{session('errorMotorista')}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif

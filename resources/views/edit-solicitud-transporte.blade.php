@@ -5,6 +5,8 @@
 
     <a href="{{route('solicitudes-transporte.index')}}" class="btn btn-outline-secondary mb-4">Regresar</a>
 
+    @include('layouts.mensajesSolicitarTransporte')
+
     <form action="{{ route('solicitudes-transporte.update', ['solicitudes_transporte'=> $solicitudesTransportes->id]) }}" method="POST">
         @csrf
         @method('PATCH')
