@@ -12,7 +12,7 @@ class ActividadesController extends Controller
 {
     public function comprobarHorario($fecha_inicio, $fecha_finalizacion, $hora_inicio, $hora_finalizacion)
     {
-        if (strtotime($hora_inicio) >= strtotime($hora_finalizacion)) {
+        if (strtotime($hora_inicio) >= strtotime($hora_finalizacion) && strtotime($fecha_inicio) == strtotime($hora_finalizacion)) {
             return "errorHora";
         }
 
@@ -118,11 +118,11 @@ class ActividadesController extends Controller
         $comprobar = $this->comprobarHorario($request->fecha_inicio, $request->fecha_finalizacion, $request->hora_inicio, $request->hora_finalizacion);
 
         if ($comprobar == "errorHora") {
-            return redirect()->route('actividades.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion')->withInput();
+            return redirect()->route('actividades.edit' , ['actividade' => $id])->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion')->withInput();
         }
 
         if ($comprobar == "errorFecha") {
-            return redirect()->route('actividades.index')->with('errorFecha', 'La fecha de incio no puede ser mayor a la fecha de finalizacion')->withInput();
+            return redirect()->route('actividades.edit' , ['actividade' => $id])->with('errorFecha', 'La fecha de incio no puede ser mayor a la fecha de finalizacion')->withInput();
         }
 
         $actividad = Actividades::find($id);

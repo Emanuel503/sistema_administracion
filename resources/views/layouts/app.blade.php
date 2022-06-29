@@ -32,8 +32,8 @@
                             <li><a class="dropdown-item" href="{{url('/users')}}">Usuarios</a></li>
                             <li><a class="dropdown-item" href="{{url('/salas ')}}">Salas</a></li>
                             <li><a class="dropdown-item" href="{{url('/lugares ')}}">Lugares</a></li>
+                            <li><a class="dropdown-item" href="{{url('/vehiculos ')}}">Vehiculos</a></li>
                             <li><a class="dropdown-item" href="{{url('/dependencias-transporte ')}}">Dependencias transporte</a></li>
-                            <li><a class="dropdown-item" href="{{url('/vehiculos ')}}">Placas vehiculos</a></li>
                         </ul>
                     </li>
                     @endif

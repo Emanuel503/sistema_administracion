@@ -30,8 +30,8 @@ class VehiculosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'placa' => 'required',
-            'km' => 'required'
+            'placa' => 'required|unique:vehiculos,placa',
+            'km' => 'required|numeric'
         ]);
 
         $vehiculos = new Vehiculos();
@@ -40,15 +40,14 @@ class VehiculosController extends Controller
 
         $vehiculos->save();
 
-        return redirect()->route('vehiculos.index')->with('success', 'Número de placa
-        guardada correctamente.');
+        return redirect()->route('vehiculos.index')->with('success', 'Vehiculo guardado correctamente.');
     }
 
     public function update($id, Request $request)
     {
         $request->validate([
-            'placa' => 'required',
-            'km' => 'required'
+            'placa' => 'required|unique:vehiculos,placa,'.$id,
+            'km' => 'required|numeric'
         ]);
 
         $placas = Vehiculos::find($id);
@@ -56,16 +55,16 @@ class VehiculosController extends Controller
         $placas->kilometraje = $request->km;
         $placas->save();
 
-        return redirect()->route('vehiculos.index')->with('success', 'Número de placa actualizada correctamente');
+        return redirect()->route('vehiculos.index')->with('success', 'Vehiculo actualizado correctamente');
     }
 
     public function destroy($id)
     {
         try {
             Vehiculos::destroy($id);
-            return redirect()->route('vehiculos.index')->with('success', 'Número de placa eliminada correctamente');
+            return redirect()->route('vehiculos.index')->with('success', 'Vehiculo eliminado correctamente');
         } catch (Exception $e) {
-            return redirect()->route('vehiculos.index')->with('errorEliminar', 'No se puede eliminar el número de placa, ya contiene registros');
+            return redirect()->route('vehiculos.index')->with('errorEliminar', 'No se puede eliminar el vehiculo, ya contiene registros');
         }
     }
 }
