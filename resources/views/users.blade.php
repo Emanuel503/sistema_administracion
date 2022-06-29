@@ -75,7 +75,7 @@
                             <label for="id_rol" class="col-form-label">Rol de usuario:</label>
                             <select id="id_rol" class="form-select" name="id_rol">
                                 @foreach ($roles as $rol )
-                                <option value="{{$rol->id}}">{{$rol->rol}}</option>
+                                    <option @selected(old('id_rol') == $rol->id) value="{{$rol->id}}">{{$rol->rol}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -84,62 +84,62 @@
                             <label for="id_dependencia" class="col-form-label">Dependencia:</label>
                             <select id="id_dependencia" class="form-select" name="id_dependencia">
                                 @foreach ($dependencias as $dependencia )
-                                <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
+                                    <option @selected(old('id_dependencia') == $dependencia->id) value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="usuario" class="col-form-label">Nombre de usuario:</label>
-                            <input type="text" class="form-control" name="usuario" id="usuario">
+                            <input type="text" class="form-control" name="usuario" id="usuario" value="{{ old('usuario') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="col-form-label">Correo electronico:</label>
-                            <input type="email" class="form-control" name="email" id="email">
+                            <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="col-form-label">Contraseña:</label>
-                            <input type="text" class="form-control" name="password" id="password">
+                            <input type="text" class="form-control" name="password" id="password" value="{{ old('password') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="password_confirmation" class="col-form-label">Confirmar contraseña:</label>
-                            <input type="text" class="form-control" name="password_confirmation" id="password_confirmation">
+                            <input type="text" class="form-control" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="nombres" class="col-form-label">Nombres:</label>
-                            <input type="text" class="form-control" name="nombres" id="nombres">
+                            <input type="text" class="form-control" name="nombres" id="nombres" value="{{ old('nombres') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="apellidos" class="col-form-label">Apellidos:</label>
-                            <input type="text" class="form-control" name="apellidos" id="apellidos">
+                            <input type="text" class="form-control" name="apellidos" id="apellidos" value="{{ old('apellidos') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="cargo" class="col-form-label">Cargo:</label>
-                            <input type="text" class="form-control" name="cargo" id="cargo">
+                            <input type="text" class="form-control" name="cargo" id="cargo" value="{{ old('cargo') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="ubicacion" class="col-form-label">Ubicacion:</label>
-                            <input type="text" class="form-control" name="ubicacion" id="ubicacion">
+                            <input type="text" class="form-control" name="ubicacion" id="ubicacion" value="{{ old('ubicacion') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="telefono" class="col-form-label">Telefono:</label>
-                            <input type="text" class="form-control" name="telefono" id="telefono">
+                            <input type="text" class="form-control" name="telefono" id="telefono" value="{{ old('telefono') }}">
                         </div>
 
                         <label class="col-form-label">Habilitar para motorista:</label>
                         <div class="mb-3">
-                            <input class="form-check-input" type="radio" name="motorista" id="si" value="si">
+                            <input class="form-check-input" type="radio" name="motorista" id="si" value="si" @checked(old('motorista') == 'si')>
                             <label class="form-check-label" for="si">Si</label>
 
-                            <input class="form-check-input" type="radio" name="motorista" id="no" value="no" checked>
+                            <input class="form-check-input" type="radio" name="motorista" id="no" value="no" @checked(old('motorista') == null) @checked(old('motorista') == 'no')>
                             <label class="form-check-label" for="no">No</label>
                         </div>
 
@@ -147,7 +147,7 @@
                             <label for="id_estado" class="col-form-label">Estado:</label>
                             <select id="id_estado" class="form-select" name="id_estado">
                                 @foreach ($estadosUsuarios as $estado )
-                                <option value="{{$estado->id}}">{{$estado->estado}}</option>
+                                    <option @selected(old('id_estado') == $estado->id) value="{{$estado->id}}">{{$estado->estado}}</option>
                                 @endforeach
                             </select>
                         </div>

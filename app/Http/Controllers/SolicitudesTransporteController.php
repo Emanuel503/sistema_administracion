@@ -54,7 +54,7 @@ class SolicitudesTransporteController extends Controller
 
         //Comprueba que la hora de incio sea menor a la hora de finalizacion
         if (strtotime($request->hora_salida) >= strtotime($request->hora_regreso)) {
-            return redirect()->route('solicitudes-transporte.index')->with('errorHora', 'La hora de salida no puede ser mayor o igual a la hora de regreso');
+            return redirect()->route('solicitudes-transporte.index')->with('errorHora', 'La hora de salida no puede ser mayor o igual a la hora de regreso')->withInput();
         }
 
         $solicitudesTransporte = new SolicitudesTransportes();
@@ -87,7 +87,7 @@ class SolicitudesTransporteController extends Controller
 
         //Comprueba que la hora de incio sea menor a la hora de finalizacion
         if (strtotime($request->hora_salida) >= strtotime($request->hora_regreso)) {
-            return redirect()->route('solicitudes-transporte.index')->with('errorHora', 'La hora de salida no puede ser mayor o igual a la hora de regreso');
+            return redirect()->route('solicitudes-transporte.index')->with('errorHora', 'La hora de salida no puede ser mayor o igual a la hora de regreso')->withInput();
         }
 
         $solicitudesTransporte = SolicitudesTransportes::find($id);
