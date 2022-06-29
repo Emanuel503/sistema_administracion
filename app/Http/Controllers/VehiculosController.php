@@ -46,11 +46,13 @@ class VehiculosController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'placa' => 'required'
+            'placa' => 'required',
+            'km' => 'required'
         ]);
 
         $placas = Vehiculos::find($id);
         $placas->placa = $request->placa;
+        $placas->kilometraje = $request->km;
         $placas->save();
 
         return redirect()->route('vehiculos.index')->with('success', 'Número de placa actualizada correctamente');
