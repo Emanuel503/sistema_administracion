@@ -67,11 +67,11 @@ die();
                     @csrf
                     <div class="mb-3">
                         <label for="placa" class="col-form-label">Número de placa:</label>
-                        <input type="text" class="form-control" name="placa" id="placa">
+                        <input type="text" class="form-control" name="placa" id="placa" value="{{ old('placa') }}">
                     </div>
                     <div class="mb-3">
                         <label for="km" class="col-form-label">Kilometraje:</label>
-                        <input type="text" class="form-control" name="km" id="km">
+                        <input type="text" class="form-control" name="km" id="km" value="{{ old('km') }}">
                     </div>
             </div>
             <div class="modal-footer">

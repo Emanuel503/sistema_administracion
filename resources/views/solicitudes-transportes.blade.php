@@ -87,7 +87,7 @@
                             <label for="id_dependencia" class="col-form-label">Dependencia:</label>
                             <select id="id_dependencia" class="form-select" name="id_dependencia">
                                 @foreach ($dependencias as $dependencia )
-                                    <option value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
+                                    <option @selected( old('id_dependencia') == $dependencia->id ) value="{{$dependencia->id}}">{{$dependencia->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -96,7 +96,7 @@
                             <label for="id_lugar" class="col-form-label">Lugar:</label>
                             <select id="id_lugar" class="form-select" name="id_lugar">
                                 @foreach ($lugares as $lugar )
-                                <option value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+                                    <option @selected( old('id_dependencia') == $dependencia->id ) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -1,6 +1,6 @@
 //Funcion para ocultar los alert
 window.setTimeout(function () {
-    $(".alert").fadeTo(2500, 0).slideDown(2000, function () {
+    $(".alert").fadeTo(6500, 10).slideDown(1000, function () {
         $(this).remove();
     })
 }, 1500);

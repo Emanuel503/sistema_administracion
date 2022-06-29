@@ -10,7 +10,6 @@ use App\Http\Controllers\VehiculosController;
 use App\Http\Controllers\SalasController;
 use App\Http\Controllers\SolicitudesTransporteController;
 use App\Http\Controllers\TransporteController;
-use App\Models\Lugares;
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -23,7 +22,6 @@ Route::resource('/solicitudes-transporte', SolicitudesTransporteController::clas
 Route::resource('/dependencias-transporte', DependenciasTransporteController::class)->middleware('auth');
 Route::resource('/vehiculos', VehiculosController::class)->middleware('auth');
 Route::resource('/lugares', LugaresController::class)->middleware('auth');
-Route::resource('/lugares', Lugares::class)->middleware('auth');
 Route::resource('/transporte', TransporteController::class)->middleware('auth');
 Route::get('/calendario', [App\Http\Controllers\CalendarioController::class, 'calendar']);
 Route::post('/calendario/edit/{id}', [App\Http\Controllers\CalendarioController::class, 'edit']);

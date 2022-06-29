@@ -29,7 +29,7 @@ class SalasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'sala' => 'required'
+            'sala' => 'required|min:3'
         ]);
 
         $sala = new Salas();
@@ -43,7 +43,7 @@ class SalasController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'sala' => 'required'
+            'sala' => 'required|min:3'
         ]);
 
         $sala = Salas::find($id);

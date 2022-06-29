@@ -85,34 +85,34 @@
                             <label for="id_sala" class="col-form-label">Sala:</label>
                             <select id="id_sala" class="form-select" name="id_sala">
                                 @foreach ($salas as $sala )
-                                <option value="{{$sala->id}}">{{$sala->sala}}</option>
+                                    <option @selected(old('id_sala') == $sala->id) value="{{$sala->id}}">{{$sala->sala}}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="fecha" class="col-form-label">Fecha de utilizacion:</label>
-                            <input type="date" class="form-control" name="fecha" id="fecha">
+                            <input type="date" class="form-control" name="fecha" id="fecha" value="{{ old('fecha') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="hora_inicio" class="col-form-label">Hora de inicio:</label>
-                            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio">
+                            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{ old('hora_inicio') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="hora_finalizacion" class="col-form-label">Hora de finalizacion:</label>
-                            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion">
+                            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{ old('hora_finalizacion') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="actividad" class="col-form-label">Descripcion de la actividad:</label>
-                            <textarea class="form-control" name="actividad" id="actividad"></textarea>
+                            <textarea class="form-control" name="actividad" id="actividad">{{old('actividad')}}</textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="observaciones" class="col-form-label">Observaciones:</label>
-                            <textarea class="form-control" name="observaciones" id="observaciones"></textarea>
+                            <textarea class="form-control" name="observaciones" id="observaciones">{{old('observaciones')}}</textarea>
                         </div>
                 </div>
                 <div class="modal-footer">

@@ -87,7 +87,7 @@
                             <label for="id_organizador" class="col-form-label">Organizador del evento:</label>
                             <select id="id_organizador" class="form-select" name="id_organizador">
                                 @foreach ($organizadores as $organizador )
-                                <option value="{{$organizador->id}}">{{$organizador->nombre}}</option>
+                                    <option @selected(old('id_organizador') == $organizador->id) value="{{$organizador->id}}">{{$organizador->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -96,7 +96,7 @@
                             <label for="id_coordinador" class="col-form-label">Coordinador / Asistente:</label>
                             <select id="id_coordinador" class="form-select" name="id_coordinador">
                                 @foreach ($usuarios as $usuario )
-                                <option value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
+                                    <option @selected(old('id_coordinador') == $usuario->id) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -105,44 +105,44 @@
                             <label for="id_lugar" class="col-form-label">Lugar:</label>
                             <select id="id_lugar" class="form-select" name="id_lugar">
                                 @foreach ($lugares as $lugar )
-                                <option value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+                                    <option @selected(old('id_lugar') == $lugar->id) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="title" class="col-form-label">Nombre de actividad:</label>
-                            <input type="text" class="form-control" name="title" id="title">
+                            <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="fecha_inicio" class="col-form-label">Fecha inicio:</label>
-                            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
+                            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="{{ old('fecha_inicio') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="fecha_finalizacion" class="col-form-label">Fecha finalizacion:</label>
-                            <input type="date" class="form-control" name="fecha_finalizacion" id="fecha_finalizacion">
+                            <input type="date" class="form-control" name="fecha_finalizacion" id="fecha_finalizacion" value="{{ old('fecha_finalizacion') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="hora_inicio" class="col-form-label">Hora inicio:</label>
-                            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio">
+                            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{ old('hora_inicio') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="hora_finalizacion" class="col-form-label">Hora finalizacion:</label>
-                            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion">
+                            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{ old('hora_finalizacion') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="objetivo" class="col-form-label">Objetivo:</label>
-                            <textarea class="form-control" name="objetivo" id="objetivo"></textarea>
+                            <textarea class="form-control" name="objetivo" id="objetivo">{{ old('objetivo') }}</textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="observaciones" class="col-form-label">Observaciones:</label>
-                            <textarea class="form-control" name="observaciones" id="observaciones"></textarea>
+                            <textarea class="form-control" name="observaciones" id="observaciones">{{ old('observaciones') }}</textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
