@@ -28,8 +28,8 @@ class LugaresController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required|unique:lugares,codigo,'
+            'nombre' => 'required|min:3',
+            'codigo' => 'required|numeric|unique:lugares,codigo,'
         ]);
 
         $lugar = new Lugares();
@@ -44,8 +44,8 @@ class LugaresController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'codigo' => 'required|unique:lugares,codigo, '.$id,
+            'nombre' => 'required|min:3',
+            'codigo' => 'required|numeric|unique:lugares,codigo, '.$id,
         ]);
 
         $lugar = Lugares::find($id);

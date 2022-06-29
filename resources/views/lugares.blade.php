@@ -67,11 +67,11 @@
                         @csrf
                         <div class="mb-3">
                             <label for="nombre" class="col-form-label">Nombre del lugar:</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre">
+                            <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre') }}">
                         </div>
                         <div class="mb-3">
                             <label for="codigo" class="col-form-label">Codigo:</label>
-                            <input type="text" class="form-control" name="codigo" id="codigo">
+                            <input type="text" class="form-control" name="codigo" id="codigo" value="{{ old('codigo') }}">
                         </div>
                 </div>
                 <div class="modal-footer">

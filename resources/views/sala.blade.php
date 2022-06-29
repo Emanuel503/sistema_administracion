@@ -65,7 +65,7 @@ die();
                     @csrf
                     <div class="mb-3">
                         <label for="sala" class="col-form-label">Nombre sala:</label>
-                        <input type="text" class="form-control" name="sala" id="sala">
+                        <input type="text" class="form-control" name="sala" id="sala" value="{{ old('sala') }}">
                     </div>
             </div>
             <div class="modal-footer">

@@ -25,7 +25,7 @@ class DependenciasTransporteController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|min:2',
         ]);
 
         $dependencias = new DependenciasTransporte;
@@ -37,7 +37,7 @@ class DependenciasTransporteController extends Controller
 
     public function update($id, Request $request){
         $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|min:2',
         ]);
 
         $dependencias = DependenciasTransporte::find($id);

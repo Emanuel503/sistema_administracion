@@ -65,7 +65,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="nombre" class="col-form-label">Nombre de la dependencia:</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre">
+                            <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre') }}">
                         </div>
                 </div>
                 <div class="modal-footer">
