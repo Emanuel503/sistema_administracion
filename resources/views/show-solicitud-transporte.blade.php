@@ -6,6 +6,11 @@
     <a href="{{route('solicitudes-transporte.index')}}" class="btn btn-outline-secondary mb-4">Regresar</a>
 
     <div class="mb-3">
+        <label for="id_usuario" class="col-form-label">Usuarios solicitante:</label>
+        <input class="form-control" name="id_usuario" value="{{$solicitudesTransportes->usuario->nombres}} {{$solicitudesTransportes->usuario->apellidos}}" readonly>
+    </div>
+
+    <div class="mb-3">
         <label for="id_dependencia" class="col-form-label">Dependencia:</label>
         <input class="form-control" name="id_dependencia" value="{{$solicitudesTransportes->dependencias->nombre}}" readonly>
     </div>
@@ -17,7 +22,7 @@
 
     <div class="mb-3">
         <label for="fecha" class="col-form-label">Fecha del transporte:</label>
-        <input type="date" class="form-control" name="fecha" id="fecha" vvalue="{{$solicitudesTransportes->fecha}}" readonly>
+        <input type="date" class="form-control" name="fecha" id="fecha" value="{{$solicitudesTransportes->fecha}}" readonly>
     </div>
 
     <div class="mb-3">
@@ -38,6 +43,11 @@
     <div class="mb-3">
         <label for="observaciones" class="col-form-label">Observaciones:</label>
         <textarea readonly class="form-control" name="observaciones" id="observaciones">{{$solicitudesTransportes->observaciones}}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="id_autorizacion" class="col-form-label">Autorizacion:</label>
+        <input class="form-control" name="id_autorizacion" value="{{$solicitudesTransportes->autorizacion->autorizacion}}" readonly>
     </div>
 
     <div class="mb-3">
