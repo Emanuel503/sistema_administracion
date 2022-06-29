@@ -25,6 +25,7 @@
                     <th>Tecnico</th>
                     <th>Autorizacion</th>
                     <th>Vehiculo</th>
+                    <th>Motorista</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -39,7 +40,8 @@
                     <td>{{$solicitud->lugar->nombre}}</td>
                     <td>{{$solicitud->usuario->nombres}} {{$solicitud->usuario->apellidos}}</td>
                     <td>{{$solicitud->autorizacion->autorizacion}}</td>
-                    <td></td>
+                    <td>@if ($solicitud->id_vehiculo == null) Sin asignar @else {{$solicitud->vehiculo}} @endif </td>
+                    <td>@if ($solicitud->id_motorista == null) Sin asignar @else {{$solicitud->motorista}} @endif </td>
                     <td>
                         <div class="d-grid gap-1 d-md-flex">
                             <a class="btn btn-info btn-sm" href="{{ route('solicitudes-transporte.show' ,['solicitudes_transporte' => $solicitud->id])}}">Ver</a>
@@ -96,34 +98,34 @@
                             <label for="id_lugar" class="col-form-label">Lugar:</label>
                             <select id="id_lugar" class="form-select" name="id_lugar">
                                 @foreach ($lugares as $lugar )
-                                    <option @selected( old('id_dependencia') == $dependencia->id ) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+                                    <option @selected( old('id_lugar') == $lugar->id ) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="fecha" class="col-form-label">Fecha del transporte:</label>
-                            <input type="date" class="form-control" name="fecha" id="fecha">
+                            <input type="date" class="form-control" name="fecha" id="fecha" value="{{ old('fecha') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="hora_salida" class="col-form-label">Hora de salida:</label>
-                            <input type="time" class="form-control" name="hora_salida" id="hora_salida">
+                            <input type="time" class="form-control" name="hora_salida" id="hora_salida" value="{{ old('hora_salida') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="hora_regreso" class="col-form-label">Hora de regreso:</label>
-                            <input type="time" class="form-control" name="hora_regreso" id="hora_regreso">
+                            <input type="time" class="form-control" name="hora_regreso" id="hora_regreso" value="{{ old('hora_regreso') }}">
                         </div>
 
                         <div class="mb-3">
                             <label for="objetivo" class="col-form-label">Objetivo:</label>
-                            <textarea class="form-control" name="objetivo" id="objetivo"></textarea>
+                            <textarea class="form-control" name="objetivo" id="objetivo">{{ old('objetivo') }}</textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="observaciones" class="col-form-label">Observaciones:</label>
-                            <textarea class="form-control" name="observaciones" id="observaciones"></textarea>
+                            <textarea class="form-control" name="observaciones" id="observaciones">{{ old('observaciones')}}</textarea>
                         </div>
                 </div>
                 <div class="modal-footer">
