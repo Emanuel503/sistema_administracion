@@ -7,6 +7,7 @@ use App\Models\DependenciasTransporte;
 use App\Models\Lugares;
 use App\Models\SolicitudesTransportes;
 use App\Models\User;
+use App\Models\Vehiculos;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,8 @@ class SolicitudesTransporteController extends Controller
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        $vehiculos = Vehiculos::all();
+        return view('solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function show($id)
@@ -31,7 +33,8 @@ class SolicitudesTransporteController extends Controller
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('show-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        $vehiculos = Vehiculos::all();
+        return view('show-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function edit($id)
@@ -41,7 +44,8 @@ class SolicitudesTransporteController extends Controller
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('edit-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        $vehiculos = Vehiculos::all();
+        return view('edit-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function store(Request $request)
@@ -83,6 +87,7 @@ class SolicitudesTransporteController extends Controller
         $request->validate([
             'id_dependencia' => 'required',
             'id_lugar' => 'required',
+            'id_autorizacion' => 'required',
             'fecha' => 'required|date',
             'hora_salida' => 'required',
             'hora_regreso' => 'required',
@@ -96,6 +101,20 @@ class SolicitudesTransporteController extends Controller
         }
 
         $solicitudesTransporte = SolicitudesTransportes::find($id);
+
+        if($request->id_autorizacion == 1){
+            $request->validate([
+                'id_motorista' => 'required',
+                'id_vehiculo' => 'required'
+            ]);
+
+            $solicitudesTransporte->id_motorista = $request->id_motorista;
+            $solicitudesTransporte->id_vehiculo = $request->id_vehiculo;
+        }else{
+            $solicitudesTransporte->id_motorista = null;
+            $solicitudesTransporte->id_vehiculo = null;
+        }
+        
         $solicitudesTransporte->id_dependencia = $request->id_dependencia;
         $solicitudesTransporte->id_lugar = $request->id_lugar;
         $solicitudesTransporte->id_autorizacion = $request->id_autorizacion;

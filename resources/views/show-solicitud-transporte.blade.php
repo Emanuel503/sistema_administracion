@@ -42,12 +42,12 @@
 
     <div class="mb-3">
         <label for="id_vehiculo" class="col-form-label">Vehiculo:</label>
-        <input class="form-control" name="id_vehiculo" id="id_vehiculo" value="@if ($solicitudesTransportes->id_vehiculo == null) Sin asignar @else {{$solicitudesTransportes->id_vehiculo}} @endif" readonly>
+        <input class="form-control" name="id_vehiculo" id="id_vehiculo" value="@if ($solicitudesTransportes->id_vehiculo == null) Sin asignar @else {{$solicitudesTransportes->vehiculo->placa}} @endif" readonly>
     </div>
 
     <div class="mb-3">
         <label for="id_motorista" class="col-form-label">Motorista:</label>
-        <input class="form-control" name="id_motorista" id="id_motorista" value="@if ($solicitudesTransportes->id_motorista == null) Sin asignar @else {{$solicitudesTransportes->id_motorista}} @endif" readonly>
+        <input class="form-control" name="id_motorista" id="id_motorista" value="@if ($solicitudesTransportes->id_motorista == null) Sin asignar @else {{$solicitudesTransportes->motorista->nombres}} {{$solicitudesTransportes->motorista->apellidos}} @endif" readonly>
     </div>
 
     <div class="mb-3">
