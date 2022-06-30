@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
-<<<<<<< Updated upstream
-@section('css-fullcalendar')
-<link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
-=======
 @section('css-data-table')
     <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
->>>>>>> Stashed changes
 @endsection
 
 @section('content')
@@ -90,73 +85,41 @@
                         <label for="id_sala" class="col-form-label">Sala:</label>
                         <select id="id_sala" class="form-select" name="id_sala">
                             @foreach ($salas as $sala )
-                            <option @selected(old('id_sala')==$sala->id) value="{{$sala->id}}">{{$sala->sala}}</option>
+                                <option @selected(old('id_sala')==$sala->id) value="{{$sala->id}}">{{$sala->sala}}</option>
                             @endforeach
                         </select>
                     </div>
 
-<<<<<<< Updated upstream
                     <div class="mb-3">
                         <label for="fecha" class="col-form-label">Fecha de utilizacion:</label>
-                        <input type="date" class="form-control" name="fecha" id="fecha" value="{{ old('fecha') }}">
+                        <input type="date" class="form-control" name="fecha" id="fecha" value="{{ old('fecha') }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="hora_inicio" class="col-form-label">Hora de inicio:</label>
-                        <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{ old('hora_inicio') }}">
+                        <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{ old('hora_inicio') }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="hora_finalizacion" class="col-form-label">Hora de finalizacion:</label>
-                        <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{ old('hora_finalizacion') }}">
+                        <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{ old('hora_finalizacion') }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="actividad" class="col-form-label">Descripcion de la actividad:</label>
-                        <textarea class="form-control" name="actividad" id="actividad">{{old('actividad')}}</textarea>
+                        <textarea required class="form-control" name="actividad" id="actividad">{{old('actividad')}}</textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="observaciones" class="col-form-label">Observaciones:</label>
-                        <textarea class="form-control" name="observaciones" id="observaciones">{{old('observaciones')}}</textarea>
+                        <textarea required class="form-control" name="observaciones" id="observaciones">{{old('observaciones')}}</textarea>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                </form>
-=======
-                        <div class="mb-3">
-                            <label for="fecha" class="col-form-label">Fecha de utilizacion:</label>
-                            <input type="date" class="form-control" name="fecha" id="fecha" value="{{ old('fecha') }}" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="hora_inicio" class="col-form-label">Hora de inicio:</label>
-                            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{ old('hora_inicio') }}" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="hora_finalizacion" class="col-form-label">Hora de finalizacion:</label>
-                            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{ old('hora_finalizacion') }}" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="actividad" class="col-form-label">Descripcion de la actividad:</label>
-                            <textarea required class="form-control" name="actividad" id="actividad">{{old('actividad')}}</textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="observaciones" class="col-form-label">Observaciones:</label>
-                            <textarea required class="form-control" name="observaciones" id="observaciones">{{old('observaciones')}}</textarea>
-                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
->>>>>>> Stashed changes
             </div>
         </div>
     </div>
