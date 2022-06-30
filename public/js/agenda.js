@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //var formulario = document.querySelector("form");
 
+    var loc = window.location;
+    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
+    var $ruta = loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
+
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
 
@@ -15,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             right: 'dayGridMonth,timeGridWeek,listWeek'
         },
 
-        events: "http://127.0.0.1:8000/calendario",
+        events: $ruta + "calendario",
 
         dateClick: function (info) {
             $("#actividad").modal("show");
@@ -25,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var actividad = info.event;
             console.log(actividad);
 
-            axios.post("http://127.0.0.1:8000/calendario/edit/" + info.event.id).
+            axios.post($ruta + "calendario/edit/" + info.event.id).
                 then(
                     (respuesta) => {
                         document.formulario.id.value = respuesta.data.id;
@@ -35,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.formulario.objetivo.value = respuesta.data.objetivo;
                         document.formulario.observaciones.value = respuesta.data.observaciones;
 
-                        document.getElementById('enlace').setAttribute('href', 'http://127.0.0.1:8000/actividades/' + respuesta.data.id);
+                        document.getElementById('enlace').setAttribute('href', $ruta + 'actividades/' + respuesta.data.id);
 
                         //console.log(respuesta.data.hora_inicio);
                         $("#actividad").modal("show");
