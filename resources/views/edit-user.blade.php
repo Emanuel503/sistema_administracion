@@ -47,12 +47,12 @@ die();
 
     <div class="mb-3">
         <label for="password" class="col-form-label">Contraseña:</label>
-        <input type="text" class="form-control" name="password" id="password" required>
+        <input type="text" class="form-control" name="password" id="password">
     </div>
 
     <div class="mb-3">
         <label for="password_confirmation" class="col-form-label">Confirmar contraseña:</label>
-        <input type="text" class="form-control" name="password_confirmation" id="password_confirmation" required>
+        <input type="text" class="form-control" name="password_confirmation" id="password_confirmation">
     </div>
 
     <div class="mb-3">

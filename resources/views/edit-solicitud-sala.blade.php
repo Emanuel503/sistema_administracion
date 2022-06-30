@@ -63,6 +63,5 @@
         
         <button type="submit" class="btn btn-success mt-4">Modificar</button>
         <a href="{{route('solicitudes-sala.index')}}" class="btn btn-secondary  mt-4">Cancelar</a>
-        
     </form>    
 @endsection

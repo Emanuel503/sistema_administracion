@@ -46,7 +46,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="fecha_registro" class="col-form-label">Fecha de registro:</label>
+        <label for="fecha_registro" class="col-form-label">Fecha de solicitud:</label>
         <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$solicitudesSala->created_at}}" readonly>
     </div>
 

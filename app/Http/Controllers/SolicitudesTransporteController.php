@@ -108,15 +108,15 @@ class SolicitudesTransporteController extends Controller
 
             //Obtiene todos lo registro de coicidan con la hora ingresada, el vehiculo y el dia
             $solicitudes = DB::select(
-                "SELECT * FROM solicitudes_transportes WHERE (hora_salida BETWEEN ? AND ? OR hora_regreso BETWEEN ? AND  ?) and id_vehiculo= ? and fecha = ?",
-                [$request->hora_salida, $request->hora_regreso, $request->hora_salida, $request->hora_regreso, $request->id_vehiculo, $request->fecha]
+                "SELECT * FROM solicitudes_transportes WHERE (hora_salida BETWEEN ? AND ? OR hora_regreso BETWEEN ? AND  ?) and id_vehiculo= ? and fecha = ? and id != ?",
+                [$request->hora_salida, $request->hora_regreso, $request->hora_salida, $request->hora_regreso, $request->id_vehiculo, $request->fecha, $id]
             );
 
             if (sizeof($solicitudes) > 0) {
                 return redirect()->route('solicitudes-transporte.edit', ['solicitudes_transporte' => $id])->with('errorVehiculo', 'El vehiculo seleccionado ya se encuentra reservado para ese horario');
             }
 
-            $solicitudes = DB::select("SELECT * FROM solicitudes_transportes WHERE id_vehiculo= ? and fecha = ?", [$request->id_vehiculo, $request->fecha]);
+            $solicitudes = DB::select("SELECT * FROM solicitudes_transportes WHERE id_vehiculo= ? and fecha = ? and id != ?", [$request->id_vehiculo, $request->fecha, $id]);
             foreach ($solicitudes as $solicitud) {
                 if (
                     strtotime($request->hora_salida) >= strtotime($solicitud->hora_salida) &&
@@ -128,15 +128,15 @@ class SolicitudesTransporteController extends Controller
 
             //Obtiene todos lo registro de coicidan con la hora ingresada, el motorista y el dia
             $solicitudes = DB::select(
-                "SELECT * FROM solicitudes_transportes WHERE (hora_salida BETWEEN ? AND ? OR hora_regreso BETWEEN ? AND  ?) and id_motorista= ? and fecha = ?",
-                [$request->hora_salida, $request->hora_regreso, $request->hora_salida, $request->hora_regreso, $request->id_motorista, $request->fecha]
+                "SELECT * FROM solicitudes_transportes WHERE (hora_salida BETWEEN ? AND ? OR hora_regreso BETWEEN ? AND  ?) and id_motorista= ? and fecha = ? and id != ?",
+                [$request->hora_salida, $request->hora_regreso, $request->hora_salida, $request->hora_regreso, $request->id_motorista, $request->fecha, $id]
             );
 
             if (sizeof($solicitudes) > 0) {
                 return redirect()->route('solicitudes-transporte.edit', ['solicitudes_transporte' => $id])->with('errorMotorista', 'El motorista seleccionado ya se encuentra reservado para ese horario');
             }
 
-            $solicitudes = DB::select("SELECT * FROM solicitudes_transportes WHERE id_motorista= ? and fecha = ?", [$request->id_motorista, $request->fecha]);
+            $solicitudes = DB::select("SELECT * FROM solicitudes_transportes WHERE id_motorista= ? and fecha = ? and id != ?", [$request->id_motorista, $request->fecha, $id]);
             foreach ($solicitudes as $solicitud) {
                 if (
                     strtotime($request->hora_salida) >= strtotime($solicitud->hora_salida) &&
