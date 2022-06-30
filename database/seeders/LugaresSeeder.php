@@ -17,7 +17,7 @@ class LugaresSeeder extends Seeder
     {
         $useradmin=Lugares::create([
             'codigo' => '1',
-            'nombre' => 'Laboratorio Central',
+            'nombre' => 'DISAM',
             ]);
     }
 }

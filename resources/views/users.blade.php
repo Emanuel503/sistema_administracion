@@ -101,12 +101,12 @@ die();
 
                     <div class="mb-3">
                         <label for="password" class="col-form-label">Contraseña:</label>
-                        <input type="text" class="form-control" name="password" id="password" value="{{ old('password') }}" required>
+                        <input type="password" class="form-control" name="password" id="password" value="{{ old('password') }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="password_confirmation" class="col-form-label">Confirmar contraseña:</label>
-                        <input type="text" class="form-control" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}" required>
+                        <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}" required>
                     </div>
 
                     <div class="mb-3">
