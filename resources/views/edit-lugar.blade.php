@@ -13,12 +13,12 @@
         @method('PATCH')
         <div class="mb-3">
             <label for="nombre" class="col-form-label">Nombre del lugar:</label>
-            <input class="form-control" name="nombre" id="nombre" value="{{$lugares->nombre}}">
+            <input class="form-control" name="nombre" id="nombre" value="{{$lugares->nombre}}" required>
         </div>
     
         <div class="mb-3">
             <label for="codigo" class="col-form-label">Codigo:</label>
-            <input class="form-control" name="codigo" id="codigo" value="{{$lugares->codigo}}">
+            <input class="form-control" name="codigo" id="codigo" value="{{$lugares->codigo}}" required>
         </div>
         <button type="submit" class="btn btn-success mt-4">Modificar</button>
         <a href="{{route('lugares.index')}}" class="btn btn-secondary mt-4">Cancelar</a>

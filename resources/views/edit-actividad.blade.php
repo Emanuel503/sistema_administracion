@@ -39,43 +39,42 @@
 
         <div class="mb-3">
             <label for="title" class="col-form-label">Nombre de actividad:</label>
-            <input type="text" class="form-control" name="title" id="title" value="{{$actividades->title}}">
+            <input type="text" class="form-control" name="title" id="title" value="{{$actividades->title}}" required>
         </div>
 
         <div class="mb-3">
             <label for="fecha_inicio" class="col-form-label">Fecha inicio:</label>
-            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="{{$actividades->fecha_inicio}}">
+            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="{{$actividades->fecha_inicio}}" required>
         </div>
 
         <div class="mb-3">
             <label for="fecha_finalizacion" class="col-form-label">Fecha finalizacion:</label>
-            <input type="date" class="form-control" name="fecha_finalizacion" id="fecha_finalizacion" value="{{$actividades->fecha_finalizacion}}">
+            <input type="date" class="form-control" name="fecha_finalizacion" id="fecha_finalizacion" value="{{$actividades->fecha_finalizacion}}" required>
         </div>
 
         <div class="mb-3">
             <label for="hora_inicio" class="col-form-label">Hora inicio:</label>
-            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{$actividades->hora_inicio}}">
+            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{$actividades->hora_inicio}}" required>
         </div>
 
         <div class="mb-3">
             <label for="hora_finalizacion" class="col-form-label">Hora finalizacion:</label>
-            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{$actividades->hora_finalizacion}}">
+            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{$actividades->hora_finalizacion}}" required>
         </div>
 
         <div class="mb-3">
             <label for="objetivo" class="col-form-label">Objetivo:</label>
-            <textarea class="form-control" name="objetivo" id="objetivo">{{$actividades->objetivo}}</textarea>
+            <textarea required class="form-control" name="objetivo" id="objetivo">{{$actividades->objetivo}}</textarea>
         </div>
 
         <div class="mb-3">
             <label for="observaciones" class="col-form-label">Observaciones:</label>
-            <textarea class="form-control" name="observaciones" id="observaciones">{{$actividades->observaciones}}</textarea>
+            <textarea required class="form-control" name="observaciones" id="observaciones">{{$actividades->observaciones}}</textarea>
         </div>
 
         <div class="mb-3">
             <label for="id_estado" class="col-form-label">Estado:</label>
             <select id="id_estado" class="form-select" name="id_estado">
-
                 @if(Auth::user()->rol->id != "1")
                     <option value="{{$actividades->id_estado}}">{{$actividades->estado->tipo_estado}}</option>
                 @else

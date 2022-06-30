@@ -5,7 +5,7 @@
     }
 @endphp
 
-@section('css-fullcalendar')
+@section('css-data-table')
     <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
 @endsection
 
@@ -91,47 +91,47 @@
 
                         <div class="mb-3">
                             <label for="usuario" class="col-form-label">Nombre de usuario:</label>
-                            <input type="text" class="form-control" name="usuario" id="usuario" value="{{ old('usuario') }}">
+                            <input type="text" class="form-control" name="usuario" id="usuario" value="{{ old('usuario') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="col-form-label">Correo electronico:</label>
-                            <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}">
+                            <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="col-form-label">Contraseña:</label>
-                            <input type="text" class="form-control" name="password" id="password" value="{{ old('password') }}">
+                            <input type="text" class="form-control" name="password" id="password" value="{{ old('password') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="password_confirmation" class="col-form-label">Confirmar contraseña:</label>
-                            <input type="text" class="form-control" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}">
+                            <input type="text" class="form-control" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="nombres" class="col-form-label">Nombres:</label>
-                            <input type="text" class="form-control" name="nombres" id="nombres" value="{{ old('nombres') }}">
+                            <input type="text" class="form-control" name="nombres" id="nombres" value="{{ old('nombres') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="apellidos" class="col-form-label">Apellidos:</label>
-                            <input type="text" class="form-control" name="apellidos" id="apellidos" value="{{ old('apellidos') }}">
+                            <input type="text" class="form-control" name="apellidos" id="apellidos" value="{{ old('apellidos') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="cargo" class="col-form-label">Cargo:</label>
-                            <input type="text" class="form-control" name="cargo" id="cargo" value="{{ old('cargo') }}">
+                            <input type="text" class="form-control" name="cargo" id="cargo" value="{{ old('cargo') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="ubicacion" class="col-form-label">Ubicacion:</label>
-                            <input type="text" class="form-control" name="ubicacion" id="ubicacion" value="{{ old('ubicacion') }}">
+                            <input type="text" class="form-control" name="ubicacion" id="ubicacion" value="{{ old('ubicacion') }}" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="telefono" class="col-form-label">Telefono:</label>
-                            <input type="text" class="form-control" name="telefono" id="telefono" value="{{ old('telefono') }}">
+                            <input type="text" class="form-control" name="telefono" id="telefono" value="{{ old('telefono') }}" required>
                         </div>
 
                         <label class="col-form-label">Habilitar para motorista:</label>

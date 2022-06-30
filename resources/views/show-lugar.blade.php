@@ -15,10 +15,20 @@
         <input class="form-control" name="codigo" id="codigo" value="{{$lugares->codigo}}" readonly>
     </div>
 
+    <div class="mb-3">
+        <label for="fecha_registro" class="col-form-label">Fecha de registro:</label>
+        <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$lugares->created_at}}" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="fecha_registro" class="col-form-label">Ultima fecha de modificacion:</label>
+        <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$lugares->updated_at}}" readonly>
+    </div>
+
     <form action="{{ route('lugares.destroy' , ['lugare' => $lugares->id]) }}" method="POST">
         @method('DELETE')
         @csrf
-        <a class="btn btn-success btn-sm" href="{{ route('lugares.edit' , ['lugare' => $lugares->id])}}">Modificar</a>
-        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+        <a class="btn btn-success" href="{{ route('lugares.edit' , ['lugare' => $lugares->id])}}">Modificar</a>
+        <button type="submit" class="btn btn-danger">Eliminar</button>
     </form>
 @endsection

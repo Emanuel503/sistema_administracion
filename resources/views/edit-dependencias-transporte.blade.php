@@ -13,7 +13,7 @@
         @method('PATCH')
         <div class="mb-3">
             <label for="nombre" class="col-form-label">Nombre dependencia:</label>
-            <input class="form-control" name="nombre" id="nombre" value="{{$dependencias->nombre}}">
+            <input class="form-control" name="nombre" id="nombre" value="{{$dependencias->nombre}}" required>
         </div>
     
         <button type="submit" class="btn btn-success mt-4">Modificar</button>
