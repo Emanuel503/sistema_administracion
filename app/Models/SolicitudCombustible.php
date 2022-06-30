@@ -31,6 +31,6 @@ class SolicitudCombustible extends Model
 
     public function vehiculo()
     {
-        return $this->belongsTo(Vehiculos::class, 'id_placa');
+        return $this->belongsTo(Vehiculos::class, 'id_vehiculo');
     }
 }

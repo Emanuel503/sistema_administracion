@@ -38,8 +38,8 @@
     <h5>Detalles de la solicitud</h5>
 
     <div class="mb-3">
-        <label for="id_placa" class="col-form-label">Placa:</label>
-        <select id="id_placa" class="form-select" name="id_placa">
+        <label for="id_vehiculo" class="col-form-label">Placa:</label>
+        <select id="id_vehiculo" class="form-select" name="id_vehiculo">
             @foreach ($vehiculos as $vehiculo)
             <option @selected($solicitudes->id_placa == $vehiculo->id ) value="{{$vehiculo->id}}">{{$vehiculo->placa}}</option>
             @endforeach
@@ -61,20 +61,19 @@
         <label for="lugar_destino" class="col-form-label">Lugar destino:</label>
         <select id="lugar_destino" class="form-select" name="lugar_destino">
             @foreach ($lugares as $lugar)
-            <option @selected($solicitudes->lugar_destino == $lugar->id ) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+            <option @selected($solicitudes->lugar_destino == $lugar->id) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
             @endforeach
         </select>
-
     </div>
 
     <div class="mb-3">
         <label for="fecha_detalle" class="col-form-label">Día:</label>
-        <input type="text" class="form-control" name="fecha_detalle" id="fecha_detalle" value="{{$solicitudes->fecha_detalle}}">
+        <input type="date" class="form-control" name="fecha_detalle" id="fecha_detalle" value="{{$solicitudes->fecha_detalle}}">
     </div>
 
     <div class="mb-3">
         <label for="hora_salida" class="col-form-label">Hora de salida:</label>
-        <input type="text" class="form-control" name="hora_salida" id="hora_salida" value="{{$solicitudes->hora_salida}}">
+        <input type="time" class="form-control" name="hora_salida" id="hora_salida" value="{{$solicitudes->hora_salida}}">
     </div>
 
     <div class="mb-3">
@@ -84,7 +83,10 @@
 
     <div class="mb-3">
         <label for="tipo_combustible" class="col-form-label">Solicita tipo de combustible:</label>
-        <input type="text" class="form-control" name="tipo_combustible" id="tipo_combustible" value="{{$solicitudes->tipo_combustible}}">
+        <select name="tipo_combustible" id="tipo_combustible" class="form-select">
+            <option @selected($solicitudes->tipo_combustible == 'Diesel') value="Diesel">Diesel</option>
+            <option @selected($solicitudes->tipo_combustible == 'Gasolina') value="Gasolina">Gasolina</option>
+        </select>
     </div>
 
     <div class="mb-3">

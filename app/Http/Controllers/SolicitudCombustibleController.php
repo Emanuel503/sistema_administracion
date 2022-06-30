@@ -45,46 +45,44 @@ class SolicitudCombustibleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_organizador' => 'required',
-            'id_coordinador' => 'required',
-            'id_lugar' => 'required',
-            'title' => 'required|min:5',
-            'fecha_inicio' => 'required|date',
-            'fecha_finalizacion' => 'required|date',
-            'hora_inicio' => 'required',
-            'hora_finalizacion' => 'required',
-            'objetivo' => 'required|min:5',
-            'observaciones' => 'required|min:5'
+            'id_destinatario' => 'required',
+            'id_origen' => 'required',
+            'fecha_solicitud' => 'required',
+            'id_vehiculo' => 'required',
+            'id_conductor' => 'required',
+            'lugar_destino' => 'required',
+            'fecha_detalle' => 'required',
+            'hora_salida' => 'required',
+            'objetivo' => 'required',
+            'tipo_combustible' => 'required',
+            'cantidad_combustible' => 'required'
         ]);
 
-        $comprobar = $this->comprobarHorario($request->fecha_inicio, $request->fecha_finalizacion, $request->hora_inicio, $request->hora_finalizacion);
+        $solicitud = new SolicitudCombustible();
 
-        if ($comprobar == "errorHora") {
-            return redirect()->route('actividades.index')->with('errorHora', 'La hora de incio no puede ser mayor o igual a la hora de finalizacion')->withInput();
+        $km = DB::select("SELECT * FROM vehiculos WHERE id = ?", [$request->id_vehiculo]);
+
+        $solicitud->id_destinatario = $request->id_destinatario;
+        $solicitud->id_origen = $request->id_origen;
+        $solicitud->fecha_solicitud = $request->fecha_solicitud;
+        $solicitud->id_vehiculo = $request->id_vehiculo;
+        $solicitud->id_conductor = $request->id_conductor;
+        $solicitud->lugar_destino = $request->lugar_destino;
+        $solicitud->fecha_detalle = $request->fecha_detalle;
+        $solicitud->hora_salida = $request->hora_salida;
+        $solicitud->objetivo = $request->objetivo;
+        $solicitud->tipo_combustible = $request->tipo_combustible;
+        $solicitud->cantidad_combustible = $request->cantidad_combustible;
+
+        foreach ($km  as $k) {
+            $kilometraje = $k->kilometraje;
         }
 
-        if ($comprobar == "errorFecha") {
-            return redirect()->route('actividades.index')->with('errorFecha', 'La fecha de incio no puede ser mayor a la fecha de finalizacion')->withInput();
-        }
+        $solicitud->kilometraje = $kilometraje;
 
-        $actividad = new Actividades();
-        $actividad->id_organizador = $request->id_organizador;
-        $actividad->id_lugar = $request->id_lugar;
-        $actividad->id_coordinador = $request->id_coordinador;
-        $actividad->id_estado = 5;
-        $actividad->title = $request->title;
-        $actividad->fecha_inicio = $request->fecha_inicio;
-        $actividad->fecha_finalizacion = $request->fecha_finalizacion;
-        $actividad->hora_inicio = $request->hora_inicio;
-        $actividad->hora_finalizacion = $request->hora_finalizacion;
-        $actividad->objetivo = $request->objetivo;
-        $actividad->observaciones = $request->observaciones;
-        $actividad->start = $request->fecha_inicio . ' ' . $request->hora_inicio;;
-        $actividad->end = $request->fecha_finalizacion . ' ' . $request->hora_finalizacion;
+        $solicitud->save();
 
-        $actividad->save();
-
-        return redirect()->route('actividades.index')->with('success', 'Actividad guardada correctamente.');
+        return redirect()->route('actividades.index')->with('success', 'Solicitud guardada correctamente.');
     }
 
     public function update($id, Request $request)
@@ -93,7 +91,7 @@ class SolicitudCombustibleController extends Controller
             'id_destinatario' => 'required',
             'id_origen' => 'required',
             'fecha_solicitud' => 'required',
-            'id_placa' => 'required',
+            'id_vehiculo' => 'required',
             'id_conductor' => 'required',
             'lugar_destino' => 'required',
             'fecha_detalle' => 'required',
@@ -105,12 +103,12 @@ class SolicitudCombustibleController extends Controller
 
         $solicitud = SolicitudCombustible::find($id);
 
-        $km = DB::select("SELECT kilometraje FROM vehiculos WHERE id = ?", [$request->id_placa]);
+        $km = DB::select("SELECT * FROM vehiculos WHERE id = ?", [$request->id_vehiculo]);
 
         $solicitud->id_destinatario = $request->id_destinatario;
         $solicitud->id_origen = $request->id_origen;
         $solicitud->fecha_solicitud = $request->fecha_solicitud;
-        $solicitud->id_placa = $request->id_placa;
+        $solicitud->id_vehiculo = $request->id_vehiculo;
         $solicitud->id_conductor = $request->id_conductor;
         $solicitud->lugar_destino = $request->lugar_destino;
         $solicitud->fecha_detalle = $request->fecha_detalle;
@@ -118,18 +116,22 @@ class SolicitudCombustibleController extends Controller
         $solicitud->objetivo = $request->objetivo;
         $solicitud->tipo_combustible = $request->tipo_combustible;
         $solicitud->cantidad_combustible = $request->cantidad_combustible;
-        $solicitud->kilometraje = $request->id_placa;
 
-
+        foreach ($km  as $k) {
+            if ($request->id_vehiculo != $k->id) {
+                $kilometraje = $k->kilometraje;
+                $solicitud->kilometraje = $kilometraje;
+            }
+        }
 
         $solicitud->save();
 
-        return redirect()->route('solicitud-combustible.index')->with('success', 'Actividad actualizada correctamente');
+        return redirect()->route('solicitud-combustible.index')->with('success', 'Solicitud actualizada correctamente');
     }
 
     public function destroy($id)
     {
         SolicitudCombustible::destroy($id);
-        return redirect()->route('solicitud-combustible.index')->with('success', 'Actividad eliminada correctamente');
+        return redirect()->route('solicitud-combustible.index')->with('success', 'Solicitud eliminada correctamente');
     }
 }

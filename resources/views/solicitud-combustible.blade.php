@@ -67,7 +67,9 @@
                         <label for="id_destinatario" class="col-form-label">Para:</label>
                         <select id="id_destinatario" class="form-select" name="id_destinatario">
                             @foreach ($usuarios as $usuario)
+                            @if ($usuario->cargo == 'Jefe administracion')
                             <option @selected( old('id_destinatario')==$usuario->id) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
+                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -76,9 +78,7 @@
                         <label for="id_origen" class="col-form-label">De:</label>
                         <select id="id_origen" class="form-select" name="id_origen">
                             @foreach ($usuarios as $usuario )
-                            @if ($usuario->cargo == 'Jefe de administracion')
                             <option @selected( old('id_origen')==$usuario->id) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
-                            @endif
                             @endforeach
                         </select>
                     </div>
@@ -91,17 +91,21 @@
                     <h5>Detalles de la solicitud</h5>
 
                     <div class="mb-3">
-                        <label for="id_placa" class="col-form-label">Placa:</label>
-                        @foreach ($vehiculos as $vehiculo )
-                        <option @selected( old('id_placa')==$vehiculo->id) value="{{$vehiculo->id}}">{{$vehiculo->placa}}</option>
-                        @endforeach
+                        <label for="id_vehiculo" class="col-form-label">Placa:</label>
+                        <select id="id_vehiculo" class="form-select" name="id_vehiculo">
+                            @foreach ($vehiculos as $vehiculo )
+                            <option @selected( old('id_vehiculo')==$vehiculo->id) value="{{$vehiculo->id}}">{{$vehiculo->placa}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="id_conductor" class="col-form-label">Conductor:</label>
-                        @foreach ($usuarios as $usuario)
-                        <option @selected( old('id_conductor')==$usuario->id) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
-                        @endforeach
+                        <select id="id_conductor" class="form-select" name="id_conductor">
+                            @foreach ($usuarios as $usuario)
+                            <option @selected( old('id_conductor')==$usuario->id) value="{{$usuario->id}}">{{$usuario->nombres}} {{$usuario->apellidos}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -130,7 +134,7 @@
 
                     <div class="mb-3">
                         <label for="tipo_combustible" class="col-form-label">Solicita tipo de combustible:</label>
-                        <select name="tipo_combustible" id="tipo_combustible">
+                        <select name="tipo_combustible" id="tipo_combustible" class="form-select">
                             <option @selected( old('tipo_combustible')=='Diesel' ) value="Diesel">Diesel</option>
                             <option @selected( old('tipo_combustible')=='Gasolina' ) value="Gasolina">Gasolina</option>
                         </select>

@@ -20,15 +20,15 @@ return new class extends Migration
             $table->foreignId('id_origen')->constrained('users', 'id');
             $table->date('fecha_solicitud');
             //Detalle
-            $table->foreignId('id_placa')->constrained('vehiculos', 'id');
+            $table->foreignId('id_vehiculo')->constrained('vehiculos', 'id');
             $table->foreignId('id_conductor')->constrained('users', 'id');
             $table->foreignId('lugar_destino')->constrained('lugares', 'id');
             $table->date('fecha_detalle');
             $table->time('hora_salida');
-            $table->foreignId('kilometraje')->constrained('vehiculos', 'id');
             $table->string('objetivo');
             $table->string('tipo_combustible');
             $table->string('cantidad_combustible');
+            $table->string('kilometraje');
             $table->timestamps();
         });
     }

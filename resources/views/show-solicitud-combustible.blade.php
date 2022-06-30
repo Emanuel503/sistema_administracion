@@ -60,7 +60,12 @@
 
 <div class="mb-3">
     <label for="cantidad_combustible" class="col-form-label">Cantidad de galones autorizado:</label>
-    <input type="text" class="form-control" name="lugar_destino" id="lugar_destino" value="{{$solicitudes->cantidad_combustible}}" readonly>
+    <input type="text" class="form-control" name="lugar_destino" id="lugar_destino" value="{{$solicitudes->cantidad_combustible}} gal." readonly>
+</div>
+
+<div class="mb-3">
+    <label for="km" class="col-form-label">Kilometraje vehiculo:</label>
+    <input type="text" class="form-control" name="km" id="km" value="{{$solicitudes->kilometraje}} km" readonly>
 </div>
 
 <form action="{{ route('solicitud-combustible.destroy' , ['solicitud_combustible' => $solicitudes->id]) }}" method="POST">

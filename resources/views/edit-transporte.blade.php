@@ -94,7 +94,7 @@
 
     <div class="mb-3">
         <label for="distancia_recorrida" class="col-form-label">Distancia recorrida:</label>
-        <input type="text" class="form-control" name="distancia_recorrida" id="distancia_recorrida" value="{{$transportes->distancia_recorrida}}">
+        <input type="text" class="form-control" name="distancia_recorrida" id="distancia_recorrida" value="{{$transportes->distancia_recorrida}}" readonly>
     </div>
 
     <div class="mb-3">
