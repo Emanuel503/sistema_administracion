@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2022 a las 19:30:05
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Host: 127.0.0.1
+-- Generation Time: Jun 30, 2022 at 08:22 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `sistema_disam`
+-- Database: `sistema_disam`
 --
-CREATE DATABASE IF NOT EXISTS `sistema_disam` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `sistema_disam`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `actividades`
+-- Table structure for table `actividades`
 --
 
 CREATE TABLE `actividades` (
@@ -51,7 +49,7 @@ CREATE TABLE `actividades` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `autorizaciones`
+-- Table structure for table `autorizaciones`
 --
 
 CREATE TABLE `autorizaciones` (
@@ -62,18 +60,18 @@ CREATE TABLE `autorizaciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `autorizaciones`
+-- Dumping data for table `autorizaciones`
 --
 
 INSERT INTO `autorizaciones` (`id`, `autorizacion`, `created_at`, `updated_at`) VALUES
-(1, 'Autorizado', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
-(2, 'No Autorizado', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
-(3, 'Pendiente', '2022-06-30 23:18:08', '2022-06-30 23:18:08');
+(1, 'Autorizado', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(2, 'No Autorizado', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(3, 'Pendiente', '2022-07-01 00:21:36', '2022-07-01 00:21:36');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dependencias_transportes`
+-- Table structure for table `dependencias_transportes`
 --
 
 CREATE TABLE `dependencias_transportes` (
@@ -86,7 +84,7 @@ CREATE TABLE `dependencias_transportes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estados_actividades`
+-- Table structure for table `estados_actividades`
 --
 
 CREATE TABLE `estados_actividades` (
@@ -97,20 +95,20 @@ CREATE TABLE `estados_actividades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `estados_actividades`
+-- Dumping data for table `estados_actividades`
 --
 
 INSERT INTO `estados_actividades` (`id`, `tipo_estado`, `created_at`, `updated_at`) VALUES
-(1, 'Realizada', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
-(2, 'Suspendida', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
-(3, 'Pospuesta', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
-(4, 'Inasistencia', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
-(5, 'Pendiente', '2022-06-30 23:18:08', '2022-06-30 23:18:08');
+(1, 'Realizada', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(2, 'Suspendida', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(3, 'Pospuesta', '2022-07-01 00:21:37', '2022-07-01 00:21:37'),
+(4, 'Inasistencia', '2022-07-01 00:21:37', '2022-07-01 00:21:37'),
+(5, 'Pendiente', '2022-07-01 00:21:37', '2022-07-01 00:21:37');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estados_usuarios`
+-- Table structure for table `estados_usuarios`
 --
 
 CREATE TABLE `estados_usuarios` (
@@ -121,17 +119,17 @@ CREATE TABLE `estados_usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `estados_usuarios`
+-- Dumping data for table `estados_usuarios`
 --
 
 INSERT INTO `estados_usuarios` (`id`, `estado`, `created_at`, `updated_at`) VALUES
-(1, 'Activo', '2022-06-30 23:18:07', '2022-06-30 23:18:07'),
-(2, 'Inactivo', '2022-06-30 23:18:07', '2022-06-30 23:18:07');
+(1, 'Activo', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(2, 'Inactivo', '2022-07-01 00:21:36', '2022-07-01 00:21:36');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -147,7 +145,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `lugares`
+-- Table structure for table `lugares`
 --
 
 CREATE TABLE `lugares` (
@@ -159,16 +157,16 @@ CREATE TABLE `lugares` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `lugares`
+-- Dumping data for table `lugares`
 --
 
 INSERT INTO `lugares` (`id`, `codigo`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, '1', 'Laboratorio Central', '2022-06-30 23:18:07', '2022-06-30 23:18:07');
+(1, '1', 'DISAM', '2022-07-01 00:21:36', '2022-07-01 00:21:36');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -178,32 +176,32 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_100000_create_password_resets_table', 1),
-(2, '2019_08_19_000000_create_failed_jobs_table', 1),
-(3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(4, '2022_06_20_142539_lugares', 1),
-(5, '2022_06_20_142547_roles', 1),
-(6, '2022_06_20_142613_estados_usuarios', 1),
-(7, '2022_06_20_142623_users', 1),
-(8, '2022_06_21_153829_salas', 1),
-(9, '2022_06_21_154103_autorizaciones', 1),
-(10, '2022_06_21_164102_solicitudes_salas', 1),
-(11, '2022_06_21_165105_estados_actividades', 1),
-(12, '2022_06_23_151826_actividades', 1),
-(13, '2022_06_27_194210_dependencias_transportes', 1),
-(14, '2022_06_28_210648_vehiculos', 1),
-(15, '2022_06_29_145941_transportes', 1),
-(16, '2022_06_29_160148_solicitudes_transportes', 1),
-(17, '2022_06_30_142321_solicitud_combustibles', 1);
+(18, '2014_10_12_100000_create_password_resets_table', 1),
+(19, '2019_08_19_000000_create_failed_jobs_table', 1),
+(20, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(21, '2022_06_20_142539_lugares', 1),
+(22, '2022_06_20_142547_roles', 1),
+(23, '2022_06_20_142613_estados_usuarios', 1),
+(24, '2022_06_20_142623_users', 1),
+(25, '2022_06_21_153829_salas', 1),
+(26, '2022_06_21_154103_autorizaciones', 1),
+(27, '2022_06_21_164102_solicitudes_salas', 1),
+(28, '2022_06_21_165105_estados_actividades', 1),
+(29, '2022_06_23_151826_actividades', 1),
+(30, '2022_06_27_194210_dependencias_transportes', 1),
+(31, '2022_06_28_210648_vehiculos', 1),
+(32, '2022_06_29_145941_transportes', 1),
+(33, '2022_06_29_160148_solicitudes_transportes', 1),
+(34, '2022_06_30_142321_solicitud_combustibles', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -215,7 +213,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -233,7 +231,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
@@ -244,17 +242,22 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `rol`, `created_at`, `updated_at`) VALUES
-(1, 'Administrador', '2022-06-30 23:18:07', '2022-06-30 23:18:07'),
-(2, 'Usuario', '2022-06-30 23:18:07', '2022-06-30 23:18:07');
+(1, 'Administrador', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(2, 'Analista', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(3, 'Digitador', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(4, 'Participante', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(5, 'Motorista', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(6, 'Jefe de conservación', '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(7, 'Usuario', '2022-07-01 00:21:36', '2022-07-01 00:21:36');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `salas`
+-- Table structure for table `salas`
 --
 
 CREATE TABLE `salas` (
@@ -267,7 +270,7 @@ CREATE TABLE `salas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `solicitudes_salas`
+-- Table structure for table `solicitudes_salas`
 --
 
 CREATE TABLE `solicitudes_salas` (
@@ -287,7 +290,7 @@ CREATE TABLE `solicitudes_salas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `solicitudes_transportes`
+-- Table structure for table `solicitudes_transportes`
 --
 
 CREATE TABLE `solicitudes_transportes` (
@@ -311,7 +314,7 @@ CREATE TABLE `solicitudes_transportes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `solicitud_combustibles`
+-- Table structure for table `solicitud_combustibles`
 --
 
 CREATE TABLE `solicitud_combustibles` (
@@ -335,7 +338,7 @@ CREATE TABLE `solicitud_combustibles` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `transportes`
+-- Table structure for table `transportes`
 --
 
 CREATE TABLE `transportes` (
@@ -361,7 +364,7 @@ CREATE TABLE `transportes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -385,16 +388,17 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Volcado de datos para la tabla `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `id_rol`, `id_dependencia`, `id_estado`, `email`, `usuario`, `email_verified_at`, `password`, `nombres`, `apellidos`, `cargo`, `ubicacion`, `telefono`, `motorista`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 'admin@gmail.com', 'admin', NULL, '$2y$10$YRfoKBaxZ9IjunpqyJP9RumTnHr7imRenUHFVztzK7FLbuq8w2ZU.', 'admin', 'admin', 'admin', 'DISAM', '2234-2345', 'no', NULL, '2022-06-30 23:18:08', '2022-06-30 23:18:08');
+(1, 1, 1, 1, 'admin@gmail.com', 'admin', NULL, '$2y$10$mN2.ObXUlUS1rmPbw8LSZuJiQ1xruaIBmRYH2soSv.MBgMVmentQq', 'admin', 'admin', 'admin', 'DISAM', '2234-2345', 'no', NULL, '2022-07-01 00:21:36', '2022-07-01 00:21:36'),
+(2, 2, 1, 1, 'user@gmail.com', 'usuario', NULL, '$2y$10$SELt4Nkl7kf5ZXIWlqxQ4.jRz7bAARULrwt2SPv/DLmLOFCZwOHtW', 'usuario', 'usuario', 'usuario', 'DISAM', '2234-2345', 'si', NULL, '2022-07-01 00:21:36', '2022-07-01 00:21:36');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `vehiculos`
+-- Table structure for table `vehiculos`
 --
 
 CREATE TABLE `vehiculos` (
@@ -406,11 +410,11 @@ CREATE TABLE `vehiculos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `actividades`
+-- Indexes for table `actividades`
 --
 ALTER TABLE `actividades`
   ADD PRIMARY KEY (`id`),
@@ -420,56 +424,56 @@ ALTER TABLE `actividades`
   ADD KEY `actividades_id_estado_foreign` (`id_estado`);
 
 --
--- Indices de la tabla `autorizaciones`
+-- Indexes for table `autorizaciones`
 --
 ALTER TABLE `autorizaciones`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `dependencias_transportes`
+-- Indexes for table `dependencias_transportes`
 --
 ALTER TABLE `dependencias_transportes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `estados_actividades`
+-- Indexes for table `estados_actividades`
 --
 ALTER TABLE `estados_actividades`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `estados_usuarios`
+-- Indexes for table `estados_usuarios`
 --
 ALTER TABLE `estados_usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indices de la tabla `lugares`
+-- Indexes for table `lugares`
 --
 ALTER TABLE `lugares`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indices de la tabla `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -477,19 +481,19 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indices de la tabla `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `salas`
+-- Indexes for table `salas`
 --
 ALTER TABLE `salas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `solicitudes_salas`
+-- Indexes for table `solicitudes_salas`
 --
 ALTER TABLE `solicitudes_salas`
   ADD PRIMARY KEY (`id`),
@@ -498,7 +502,7 @@ ALTER TABLE `solicitudes_salas`
   ADD KEY `solicitudes_salas_id_sala_foreign` (`id_sala`);
 
 --
--- Indices de la tabla `solicitudes_transportes`
+-- Indexes for table `solicitudes_transportes`
 --
 ALTER TABLE `solicitudes_transportes`
   ADD PRIMARY KEY (`id`),
@@ -510,7 +514,7 @@ ALTER TABLE `solicitudes_transportes`
   ADD KEY `solicitudes_transportes_id_autorizacion_foreign` (`id_autorizacion`);
 
 --
--- Indices de la tabla `solicitud_combustibles`
+-- Indexes for table `solicitud_combustibles`
 --
 ALTER TABLE `solicitud_combustibles`
   ADD PRIMARY KEY (`id`),
@@ -521,7 +525,7 @@ ALTER TABLE `solicitud_combustibles`
   ADD KEY `solicitud_combustibles_lugar_destino_foreign` (`lugar_destino`);
 
 --
--- Indices de la tabla `transportes`
+-- Indexes for table `transportes`
 --
 ALTER TABLE `transportes`
   ADD PRIMARY KEY (`id`),
@@ -533,7 +537,7 @@ ALTER TABLE `transportes`
   ADD KEY `transportes_pasajero_foreign` (`pasajero`);
 
 --
--- Indices de la tabla `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -544,124 +548,124 @@ ALTER TABLE `users`
   ADD KEY `users_id_estado_foreign` (`id_estado`);
 
 --
--- Indices de la tabla `vehiculos`
+-- Indexes for table `vehiculos`
 --
 ALTER TABLE `vehiculos`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `vehiculos_placa_unique` (`placa`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `actividades`
+-- AUTO_INCREMENT for table `actividades`
 --
 ALTER TABLE `actividades`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `autorizaciones`
+-- AUTO_INCREMENT for table `autorizaciones`
 --
 ALTER TABLE `autorizaciones`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `dependencias_transportes`
+-- AUTO_INCREMENT for table `dependencias_transportes`
 --
 ALTER TABLE `dependencias_transportes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `estados_actividades`
+-- AUTO_INCREMENT for table `estados_actividades`
 --
 ALTER TABLE `estados_actividades`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `estados_usuarios`
+-- AUTO_INCREMENT for table `estados_usuarios`
 --
 ALTER TABLE `estados_usuarios`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `lugares`
+-- AUTO_INCREMENT for table `lugares`
 --
 ALTER TABLE `lugares`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT de la tabla `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `salas`
+-- AUTO_INCREMENT for table `salas`
 --
 ALTER TABLE `salas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `solicitudes_salas`
+-- AUTO_INCREMENT for table `solicitudes_salas`
 --
 ALTER TABLE `solicitudes_salas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `solicitudes_transportes`
+-- AUTO_INCREMENT for table `solicitudes_transportes`
 --
 ALTER TABLE `solicitudes_transportes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `solicitud_combustibles`
+-- AUTO_INCREMENT for table `solicitud_combustibles`
 --
 ALTER TABLE `solicitud_combustibles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `transportes`
+-- AUTO_INCREMENT for table `transportes`
 --
 ALTER TABLE `transportes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `vehiculos`
+-- AUTO_INCREMENT for table `vehiculos`
 --
 ALTER TABLE `vehiculos`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `actividades`
+-- Constraints for table `actividades`
 --
 ALTER TABLE `actividades`
   ADD CONSTRAINT `actividades_id_coordinador_foreign` FOREIGN KEY (`id_coordinador`) REFERENCES `users` (`id`),
@@ -670,7 +674,7 @@ ALTER TABLE `actividades`
   ADD CONSTRAINT `actividades_id_organizador_foreign` FOREIGN KEY (`id_organizador`) REFERENCES `lugares` (`id`);
 
 --
--- Filtros para la tabla `solicitudes_salas`
+-- Constraints for table `solicitudes_salas`
 --
 ALTER TABLE `solicitudes_salas`
   ADD CONSTRAINT `solicitudes_salas_id_autorizacion_foreign` FOREIGN KEY (`id_autorizacion`) REFERENCES `autorizaciones` (`id`),
@@ -678,7 +682,7 @@ ALTER TABLE `solicitudes_salas`
   ADD CONSTRAINT `solicitudes_salas_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
 
 --
--- Filtros para la tabla `solicitudes_transportes`
+-- Constraints for table `solicitudes_transportes`
 --
 ALTER TABLE `solicitudes_transportes`
   ADD CONSTRAINT `solicitudes_transportes_id_autorizacion_foreign` FOREIGN KEY (`id_autorizacion`) REFERENCES `autorizaciones` (`id`),
@@ -689,7 +693,7 @@ ALTER TABLE `solicitudes_transportes`
   ADD CONSTRAINT `solicitudes_transportes_id_vehiculo_foreign` FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculos` (`id`);
 
 --
--- Filtros para la tabla `solicitud_combustibles`
+-- Constraints for table `solicitud_combustibles`
 --
 ALTER TABLE `solicitud_combustibles`
   ADD CONSTRAINT `solicitud_combustibles_id_conductor_foreign` FOREIGN KEY (`id_conductor`) REFERENCES `users` (`id`),
@@ -699,7 +703,7 @@ ALTER TABLE `solicitud_combustibles`
   ADD CONSTRAINT `solicitud_combustibles_lugar_destino_foreign` FOREIGN KEY (`lugar_destino`) REFERENCES `lugares` (`id`);
 
 --
--- Filtros para la tabla `transportes`
+-- Constraints for table `transportes`
 --
 ALTER TABLE `transportes`
   ADD CONSTRAINT `transportes_id_conductor_foreign` FOREIGN KEY (`id_conductor`) REFERENCES `users` (`id`),
@@ -710,7 +714,7 @@ ALTER TABLE `transportes`
   ADD CONSTRAINT `transportes_pasajero_foreign` FOREIGN KEY (`pasajero`) REFERENCES `users` (`id`);
 
 --
--- Filtros para la tabla `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_id_dependencia_foreign` FOREIGN KEY (`id_dependencia`) REFERENCES `lugares` (`id`),
