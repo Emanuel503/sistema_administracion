@@ -8,7 +8,6 @@ use App\Models\Lugares;
 use App\Models\SolicitudesTransportes;
 use App\Models\User;
 use App\Models\Vehiculos;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -75,7 +74,6 @@ class SolicitudesTransporteController extends Controller
         $solicitudesTransporte->hora_regreso = $request->hora_regreso;
         $solicitudesTransporte->objetivo = $request->objetivo;
         $solicitudesTransporte->observaciones = $request->observaciones;
-        $solicitudesTransporte->fecha_solicitud = $date = Carbon::now();
         $solicitudesTransporte->lugar_solicitud = "San Salvador";
 
         $solicitudesTransporte->save();

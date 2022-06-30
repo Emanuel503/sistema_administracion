@@ -25,27 +25,27 @@
         
         <div class="mb-3">
             <label for="fecha" class="col-form-label">Fecha de utilizacion:</label>
-            <input type="date" class="form-control" name="fecha" id="fecha" value="{{ $solicitudesSala->fecha }}" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif>
+            <input type="date" class="form-control" name="fecha" id="fecha" value="{{ $solicitudesSala->fecha }}" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif required>
         </div>
 
         <div class="mb-3">
             <label for="hora_inicio" class="col-form-label">Hora de inicio:</label>
-            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{ $solicitudesSala->hora_inicio }}" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif>
+            <input type="time" class="form-control" name="hora_inicio" id="hora_inicio" value="{{ $solicitudesSala->hora_inicio }}" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif required>
         </div>
 
         <div class="mb-3">
             <label for="hora_finalizacion" class="col-form-label">Hora de finalizacion:</label>
-            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{ $solicitudesSala->hora_finalizacion }}" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif>
+            <input type="time" class="form-control" name="hora_finalizacion" id="hora_finalizacion" value="{{ $solicitudesSala->hora_finalizacion }}" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif required>
         </div>
 
         <div class="mb-3">
             <label for="actividad" class="col-form-label">Descripcion de la actividad:</label>
-            <textarea class="form-control" name="actividad" id="actividad" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif>{{$solicitudesSala->actividad}}</textarea>
+            <textarea required class="form-control" name="actividad" id="actividad" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif>{{$solicitudesSala->actividad}}</textarea>
         </div>
 
         <div class="mb-3">
             <label for="observaciones" class="col-form-label">Observaciones:</label>
-            <textarea class="form-control" name="observaciones" id="observaciones" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif>{{$solicitudesSala->observaciones}}</textarea>
+            <textarea required class="form-control" name="observaciones" id="observaciones" @if(Auth::user()->rol->id != $solicitudesSala->usuario->id) readonly @endif>{{$solicitudesSala->observaciones}}</textarea>
         </div>
 
         <div class="mb-3">
