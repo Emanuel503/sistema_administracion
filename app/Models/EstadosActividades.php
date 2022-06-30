@@ -10,7 +10,8 @@ class EstadosActividades extends Model
 {
     use HasFactory;
 
-    public function Actividades(){
+    public function Actividades()
+    {
         return $this->hasMany(Actividades::class);
     }
 }

@@ -12,23 +12,28 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function rol(){
+    public function rol()
+    {
         return $this->belongsTo(Roles::class, 'id_rol');
     }
 
-    public function dependencia(){
+    public function dependencia()
+    {
         return $this->belongsTo(Lugares::class, 'id_dependencia');
     }
 
-    public function estadoUsuario(){
+    public function estadoUsuario()
+    {
         return $this->belongsTo(EstadosUsuarios::class, 'id_estado');
     }
 
-    public function SolicitudesSalas(){
+    public function SolicitudesSalas()
+    {
         return $this->hasMany(SolicitudesSalas::class);
     }
 
-    public function SolicitudesTransporte(){
+    public function SolicitudesTransporte()
+    {
         return $this->hasMany(SolicitudesTransportes::class);
     }
 

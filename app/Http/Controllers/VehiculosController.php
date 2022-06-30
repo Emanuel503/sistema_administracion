@@ -46,7 +46,7 @@ class VehiculosController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'placa' => 'required|unique:vehiculos,placa,'.$id,
+            'placa' => 'required|unique:vehiculos,placa,' . $id,
             'km' => 'required|numeric'
         ]);
 

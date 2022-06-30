@@ -10,7 +10,8 @@ class Vehiculos extends Model
 {
     use HasFactory;
 
-    public function SolicitudesTransporte(){
+    public function SolicitudesTransporte()
+    {
         return $this->hasMany(SolicitudesTransportes::class);
     }
 }

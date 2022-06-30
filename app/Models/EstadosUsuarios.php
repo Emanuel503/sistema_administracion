@@ -10,7 +10,8 @@ class EstadosUsuarios extends Model
 {
     use HasFactory;
 
-    public function Users(){
+    public function Users()
+    {
         return $this->hasMany(User::class);
     }
 }

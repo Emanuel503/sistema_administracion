@@ -20,13 +20,13 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
-                                
+
                                 @error('email')
-                                    <span class="text-danger"><strong>Correo o contraseña incorrecta</strong></span>
+                                <span class="text-danger"><strong>Correo o contraseña incorrecta</strong></span>
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">

@@ -8,7 +8,8 @@ use Exception;
 
 class LugaresController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $lugares = Lugares::all();
         return view('lugares', ['lugares' => $lugares]);
     }
@@ -45,7 +46,7 @@ class LugaresController extends Controller
     {
         $request->validate([
             'nombre' => 'required|min:3',
-            'codigo' => 'required|numeric|unique:lugares,codigo, '.$id,
+            'codigo' => 'required|numeric|unique:lugares,codigo, ' . $id,
         ]);
 
         $lugar = Lugares::find($id);
@@ -58,10 +59,10 @@ class LugaresController extends Controller
 
     public function destroy($id)
     {
-        try{
+        try {
             Lugares::destroy($id);
             return redirect()->route('lugares.index')->with('success', 'Lugar eliminado correctamente');
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return redirect()->route('lugares.index')->with('errorEliminar', 'No se puede eliminar el lugar, ya contiene registros');
         }
     }

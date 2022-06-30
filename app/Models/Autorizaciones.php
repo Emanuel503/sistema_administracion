@@ -11,11 +11,13 @@ class Autorizaciones extends Model
 {
     use HasFactory;
 
-    public function SolicitudesSalas(){
+    public function SolicitudesSalas()
+    {
         return $this->hasMany(SolicitudesSalas::class);
     }
 
-    public function SolicitudesTranporte(){
+    public function SolicitudesTranporte()
+    {
         return $this->hasMany(SolicitudesTransportes::class);
     }
 }

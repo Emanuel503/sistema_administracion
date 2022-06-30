@@ -12,31 +12,35 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $usuarios = User::all();
         $roles = Roles::all();
         $estadosUsuarios = EstadosUsuarios::all();
         $dependencias = Lugares::all();
-        return view('users', ['usuarios' => $usuarios, 'roles' => $roles,'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias ]);
+        return view('users', ['usuarios' => $usuarios, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $usuario = User::find($id);
         $roles = Roles::all();
         $estadosUsuarios = EstadosUsuarios::all();
         $dependencias = Lugares::all();
-        return view('show-user', ['usuario' => $usuario, 'roles' => $roles,'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias ]);
+        return view('show-user', ['usuario' => $usuario, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $usuario = User::find($id);
         $roles = Roles::all();
         $estadosUsuarios = EstadosUsuarios::all();
         $dependencias = Lugares::all();
-        return view('edit-user', ['usuario' => $usuario, 'roles' => $roles,'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias ]);
+        return view('edit-user', ['usuario' => $usuario, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'id_rol' => 'required',
             'id_dependencia' => 'required',
@@ -67,16 +71,17 @@ class UsersController extends Controller
         $usuario->motorista = $request->motorista;
 
         $usuario->save();
-        return redirect()->route('users.index')->with('success','Usuario registrado correctamente');
+        return redirect()->route('users.index')->with('success', 'Usuario registrado correctamente');
     }
 
-    public function update($id,Request $request){
+    public function update($id, Request $request)
+    {
         $request->validate([
             'id_rol' => 'required',
             'id_dependencia' => 'required',
             'id_estado' => 'required',
-            'email' => 'required|email|unique:users,email, '.$id,
-            'usuario' => 'required|unique:users,usuario, '.$id,
+            'email' => 'required|email|unique:users,email, ' . $id,
+            'usuario' => 'required|unique:users,usuario, ' . $id,
             'nombres' => 'required|min:5|max:50',
             'apellidos' => 'required|min:5|max:50',
             'cargo' => 'required|min:5|max:50',
@@ -98,24 +103,25 @@ class UsersController extends Controller
         $usuario->telefono = $request->telefono;
         $usuario->motorista = $request->motorista;
 
-        if($request->password != null){
+        if ($request->password != null) {
             $request->validate([
-                'password'=> 'min:8|confirmed'
+                'password' => 'min:8|confirmed'
             ]);
-            $usuario->password = Hash::make($request->password); 
+            $usuario->password = Hash::make($request->password);
         }
-        
+
         $usuario->save();
 
-        return redirect()->route('users.index')->with('success','Usuario actualizado correctamente');
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente');
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             User::destroy($id);
-            return redirect()->route('users.index')->with('success','Usuario eliminado correctamente');
-        }catch(Exception $e){
+            return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente');
+        } catch (Exception $e) {
             return redirect()->route('users.index')->with('errorEliminar', 'No se puede eliminar el usuario, ya contiene registros');
         }
-    } 
+    }
 }

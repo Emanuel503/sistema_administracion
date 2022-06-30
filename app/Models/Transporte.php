@@ -33,7 +33,7 @@ class Transporte extends Model
     {
         return $this->belongsTo(Vehiculos::class, 'id_placa');
     }
-    
+
     public function dependencias()
     {
         return $this->belongsTo(DependenciasTransporte::class, 'id_dependencia');

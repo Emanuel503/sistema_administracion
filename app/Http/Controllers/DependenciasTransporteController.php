@@ -8,22 +8,26 @@ use Exception;
 
 class DependenciasTransporteController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $dependencias = DependenciasTransporte::all();
         return view('dependencias-transporte', ['dependencias' => $dependencias]);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $dependencias = DependenciasTransporte::find($id);
         return view('show-dependencias-transporte', ['dependencias' => $dependencias]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $dependencias = DependenciasTransporte::find($id);
         return view('edit-dependencias-transporte', ['dependencias' => $dependencias]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'nombre' => 'required|min:2',
         ]);
@@ -35,7 +39,8 @@ class DependenciasTransporteController extends Controller
         return redirect()->route('dependencias-transporte.index')->with('success', 'Dependencia guardada correctamente');
     }
 
-    public function update($id, Request $request){
+    public function update($id, Request $request)
+    {
         $request->validate([
             'nombre' => 'required|min:2',
         ]);
@@ -47,7 +52,8 @@ class DependenciasTransporteController extends Controller
         return redirect()->route('dependencias-transporte.index')->with('success', 'Dependencia actualizada correctamente');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         try {
             DependenciasTransporte::destroy($id);
             return redirect()->route('dependencias-transporte.index')->with('success', 'Dependencia eliminada correctamente');

@@ -13,7 +13,7 @@
 
 @if (sizeof($transportes) > 0)
 <div class="table-responsive">
-    <table id="actividades" class="table table-striped table-hover table-bordered table-sm shadow">
+    <table id="transporte" class="table table-striped table-hover table-bordered table-sm shadow">
         <thead>
             <tr class="table-dark">
                 <th>Fecha</th>
@@ -194,11 +194,11 @@
 <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('#actividades tbody').on('click', 'tr', function() {
+        $('#transporte tbody').on('click', 'tr', function() {
             $(this).toggleClass('selected');
         });
 
-        $('#actividades').DataTable({
+        $('#transporte').DataTable({
             language: {
                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             },

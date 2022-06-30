@@ -11,11 +11,13 @@ class Lugares extends Model
 {
     use HasFactory;
 
-    public function Users(){
+    public function Users()
+    {
         return $this->hasMany(User::class);
     }
 
-    public function SolicitudesTransportes(){
+    public function SolicitudesTransportes()
+    {
         return $this->hasMany(SolicitudesTransportes::class);
     }
 }

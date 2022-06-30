@@ -10,7 +10,8 @@ class Salas extends Model
 {
     use HasFactory;
 
-    public function SolicitudesSalas(){
+    public function SolicitudesSalas()
+    {
         return $this->hasMany(SolicitudesSalas::class);
     }
 }
