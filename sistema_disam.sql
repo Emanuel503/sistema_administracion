@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2022 a las 17:41:00
+-- Tiempo de generación: 30-06-2022 a las 19:30:05
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -66,9 +66,9 @@ CREATE TABLE `autorizaciones` (
 --
 
 INSERT INTO `autorizaciones` (`id`, `autorizacion`, `created_at`, `updated_at`) VALUES
-(1, 'Autorizado', '2022-06-28 02:32:13', '2022-06-28 02:32:13'),
-(2, 'No Autorizado', '2022-06-28 02:32:14', '2022-06-28 02:32:14'),
-(3, 'Pendiente', '2022-06-28 02:32:14', '2022-06-28 02:32:14');
+(1, 'Autorizado', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
+(2, 'No Autorizado', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
+(3, 'Pendiente', '2022-06-30 23:18:08', '2022-06-30 23:18:08');
 
 -- --------------------------------------------------------
 
@@ -101,11 +101,11 @@ CREATE TABLE `estados_actividades` (
 --
 
 INSERT INTO `estados_actividades` (`id`, `tipo_estado`, `created_at`, `updated_at`) VALUES
-(1, 'Realizada', '2022-06-28 02:32:14', '2022-06-28 02:32:14'),
-(2, 'Suspendida', '2022-06-28 02:32:14', '2022-06-28 02:32:14'),
-(3, 'Pospuesta', '2022-06-28 02:32:14', '2022-06-28 02:32:14'),
-(4, 'Inasistencia', '2022-06-28 02:32:14', '2022-06-28 02:32:14'),
-(5, 'Pendiente', '2022-06-28 02:32:14', '2022-06-28 02:32:14');
+(1, 'Realizada', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
+(2, 'Suspendida', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
+(3, 'Pospuesta', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
+(4, 'Inasistencia', '2022-06-30 23:18:08', '2022-06-30 23:18:08'),
+(5, 'Pendiente', '2022-06-30 23:18:08', '2022-06-30 23:18:08');
 
 -- --------------------------------------------------------
 
@@ -125,8 +125,8 @@ CREATE TABLE `estados_usuarios` (
 --
 
 INSERT INTO `estados_usuarios` (`id`, `estado`, `created_at`, `updated_at`) VALUES
-(1, 'Activo', '2022-06-28 02:32:13', '2022-06-28 02:32:13'),
-(2, 'Inactivo', '2022-06-28 02:32:13', '2022-06-28 02:32:13');
+(1, 'Activo', '2022-06-30 23:18:07', '2022-06-30 23:18:07'),
+(2, 'Inactivo', '2022-06-30 23:18:07', '2022-06-30 23:18:07');
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,7 @@ CREATE TABLE `lugares` (
 --
 
 INSERT INTO `lugares` (`id`, `codigo`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, '30', 'HOSPITAL SAN JUAN DE DIOS, SANTA ANA', '2022-06-28 02:32:13', '2022-06-28 02:32:13');
+(1, '1', 'Laboratorio Central', '2022-06-30 23:18:07', '2022-06-30 23:18:07');
 
 -- --------------------------------------------------------
 
@@ -182,20 +182,23 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(13, '2014_10_12_100000_create_password_resets_table', 1),
-(14, '2019_08_19_000000_create_failed_jobs_table', 1),
-(15, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(16, '2022_06_20_142539_lugares', 1),
-(17, '2022_06_20_142547_roles', 1),
-(18, '2022_06_20_142613_estados_usuarios', 1),
-(19, '2022_06_20_142623_users', 1),
-(20, '2022_06_21_153829_salas', 1),
-(21, '2022_06_21_154103_autorizaciones', 1),
-(22, '2022_06_21_164102_solicitudes_salas', 1),
-(23, '2022_06_21_165105_estados_actividades', 1),
-(24, '2022_06_23_151826_actividades', 1),
-(25, '2022_06_27_194210_dependencias_transportes', 1),
-(26, '2022_06_27_202539_solicitudes_transportes', 1);
+(1, '2014_10_12_100000_create_password_resets_table', 1),
+(2, '2019_08_19_000000_create_failed_jobs_table', 1),
+(3, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(4, '2022_06_20_142539_lugares', 1),
+(5, '2022_06_20_142547_roles', 1),
+(6, '2022_06_20_142613_estados_usuarios', 1),
+(7, '2022_06_20_142623_users', 1),
+(8, '2022_06_21_153829_salas', 1),
+(9, '2022_06_21_154103_autorizaciones', 1),
+(10, '2022_06_21_164102_solicitudes_salas', 1),
+(11, '2022_06_21_165105_estados_actividades', 1),
+(12, '2022_06_23_151826_actividades', 1),
+(13, '2022_06_27_194210_dependencias_transportes', 1),
+(14, '2022_06_28_210648_vehiculos', 1),
+(15, '2022_06_29_145941_transportes', 1),
+(16, '2022_06_29_160148_solicitudes_transportes', 1),
+(17, '2022_06_30_142321_solicitud_combustibles', 1);
 
 -- --------------------------------------------------------
 
@@ -245,8 +248,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `rol`, `created_at`, `updated_at`) VALUES
-(1, 'Administrador', '2022-06-28 02:32:13', '2022-06-28 02:32:13'),
-(2, 'Usuario', '2022-06-28 02:32:13', '2022-06-28 02:32:13');
+(1, 'Administrador', '2022-06-30 23:18:07', '2022-06-30 23:18:07'),
+(2, 'Usuario', '2022-06-30 23:18:07', '2022-06-30 23:18:07');
 
 -- --------------------------------------------------------
 
@@ -260,13 +263,6 @@ CREATE TABLE `salas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `salas`
---
-
-INSERT INTO `salas` (`id`, `sala`, `created_at`, `updated_at`) VALUES
-(1, 'Sala DISAM', '2022-06-28 02:32:14', '2022-06-28 02:32:14');
 
 -- --------------------------------------------------------
 
@@ -288,13 +284,6 @@ CREATE TABLE `solicitudes_salas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `solicitudes_salas`
---
-
-INSERT INTO `solicitudes_salas` (`id`, `id_autorizacion`, `id_usuario`, `id_sala`, `fecha`, `hora_inicio`, `hora_finalizacion`, `actividad`, `observaciones`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 1, '2022-06-14', '11:39:00', '14:41:00', 'sfadasdfsdafsadfsadf', 'sdfasdfadsfaasfd', '2022-06-28 21:38:05', '2022-06-28 21:38:30');
-
 -- --------------------------------------------------------
 
 --
@@ -306,14 +295,65 @@ CREATE TABLE `solicitudes_transportes` (
   `id_dependencia` bigint(20) UNSIGNED NOT NULL,
   `id_lugar` bigint(20) UNSIGNED NOT NULL,
   `id_usuario` bigint(20) UNSIGNED NOT NULL,
+  `id_motorista` bigint(20) UNSIGNED DEFAULT NULL,
+  `id_vehiculo` bigint(20) UNSIGNED DEFAULT NULL,
   `id_autorizacion` bigint(20) UNSIGNED NOT NULL,
-  `fecha` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `hora_salida` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `hora_regreso` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `hora_salida` time NOT NULL,
+  `hora_regreso` time NOT NULL,
   `objetivo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `observaciones` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fecha_solicitud` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lugar_solicitud` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud_combustibles`
+--
+
+CREATE TABLE `solicitud_combustibles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_destinatario` bigint(20) UNSIGNED NOT NULL,
+  `id_origen` bigint(20) UNSIGNED NOT NULL,
+  `fecha_solicitud` date NOT NULL,
+  `id_vehiculo` bigint(20) UNSIGNED NOT NULL,
+  `id_conductor` bigint(20) UNSIGNED NOT NULL,
+  `lugar_destino` bigint(20) UNSIGNED NOT NULL,
+  `fecha_detalle` date NOT NULL,
+  `hora_salida` time NOT NULL,
+  `objetivo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_combustible` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cantidad_combustible` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kilometraje` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `transportes`
+--
+
+CREATE TABLE `transportes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_dependencia` bigint(20) UNSIGNED NOT NULL,
+  `id_conductor` bigint(20) UNSIGNED NOT NULL,
+  `id_placa` bigint(20) UNSIGNED NOT NULL,
+  `fecha` date NOT NULL,
+  `hora_salida` time NOT NULL,
+  `km_salida` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lugar_salida` bigint(20) UNSIGNED NOT NULL,
+  `hora_destino` time NOT NULL,
+  `km_destino` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lugar_destino` bigint(20) UNSIGNED NOT NULL,
+  `distancia_recorrida` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `combustible` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_combustible` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pasajero` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -349,8 +389,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `id_rol`, `id_dependencia`, `id_estado`, `email`, `usuario`, `email_verified_at`, `password`, `nombres`, `apellidos`, `cargo`, `ubicacion`, `telefono`, `motorista`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 'admin@gmail.com', 'admin', NULL, '$2y$10$arpajYsQ5MvFNqac9eFOeeAtlz2Xz8T3z6iCeQnkZIVdmSXfC.azC', 'admin', 'admin', 'admin', 'DISAM', '2234-2345', 'no', NULL, '2022-06-28 02:32:13', '2022-06-28 02:32:13'),
-(2, 2, 1, 1, 'user@gmail.com', 'usuario', NULL, '$2y$10$eeMc/.a2a77fAsY5vOx2.ej/hHhmiVLsIs/GTCFGdDw3XH6wiJcvq', 'usuario', 'usuario', 'usuario', 'DISAM', '2234-2345', 'si', NULL, '2022-06-28 02:32:13', '2022-06-28 02:32:13');
+(1, 1, 1, 1, 'admin@gmail.com', 'admin', NULL, '$2y$10$YRfoKBaxZ9IjunpqyJP9RumTnHr7imRenUHFVztzK7FLbuq8w2ZU.', 'admin', 'admin', 'admin', 'DISAM', '2234-2345', 'no', NULL, '2022-06-30 23:18:08', '2022-06-30 23:18:08');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehiculos`
+--
+
+CREATE TABLE `vehiculos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `placa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kilometraje` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Índices para tablas volcadas
@@ -452,7 +505,32 @@ ALTER TABLE `solicitudes_transportes`
   ADD KEY `solicitudes_transportes_id_dependencia_foreign` (`id_dependencia`),
   ADD KEY `solicitudes_transportes_id_lugar_foreign` (`id_lugar`),
   ADD KEY `solicitudes_transportes_id_usuario_foreign` (`id_usuario`),
+  ADD KEY `solicitudes_transportes_id_motorista_foreign` (`id_motorista`),
+  ADD KEY `solicitudes_transportes_id_vehiculo_foreign` (`id_vehiculo`),
   ADD KEY `solicitudes_transportes_id_autorizacion_foreign` (`id_autorizacion`);
+
+--
+-- Indices de la tabla `solicitud_combustibles`
+--
+ALTER TABLE `solicitud_combustibles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `solicitud_combustibles_id_destinatario_foreign` (`id_destinatario`),
+  ADD KEY `solicitud_combustibles_id_origen_foreign` (`id_origen`),
+  ADD KEY `solicitud_combustibles_id_vehiculo_foreign` (`id_vehiculo`),
+  ADD KEY `solicitud_combustibles_id_conductor_foreign` (`id_conductor`),
+  ADD KEY `solicitud_combustibles_lugar_destino_foreign` (`lugar_destino`);
+
+--
+-- Indices de la tabla `transportes`
+--
+ALTER TABLE `transportes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `transportes_id_dependencia_foreign` (`id_dependencia`),
+  ADD KEY `transportes_id_conductor_foreign` (`id_conductor`),
+  ADD KEY `transportes_id_placa_foreign` (`id_placa`),
+  ADD KEY `transportes_lugar_salida_foreign` (`lugar_salida`),
+  ADD KEY `transportes_lugar_destino_foreign` (`lugar_destino`),
+  ADD KEY `transportes_pasajero_foreign` (`pasajero`);
 
 --
 -- Indices de la tabla `users`
@@ -464,6 +542,13 @@ ALTER TABLE `users`
   ADD KEY `users_id_rol_foreign` (`id_rol`),
   ADD KEY `users_id_dependencia_foreign` (`id_dependencia`),
   ADD KEY `users_id_estado_foreign` (`id_estado`);
+
+--
+-- Indices de la tabla `vehiculos`
+--
+ALTER TABLE `vehiculos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `vehiculos_placa_unique` (`placa`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -515,7 +600,7 @@ ALTER TABLE `lugares`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -533,13 +618,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `salas`
 --
 ALTER TABLE `salas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitudes_salas`
 --
 ALTER TABLE `solicitudes_salas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `solicitudes_transportes`
@@ -548,10 +633,28 @@ ALTER TABLE `solicitudes_transportes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `solicitud_combustibles`
+--
+ALTER TABLE `solicitud_combustibles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `transportes`
+--
+ALTER TABLE `transportes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `vehiculos`
+--
+ALTER TABLE `vehiculos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -581,7 +684,30 @@ ALTER TABLE `solicitudes_transportes`
   ADD CONSTRAINT `solicitudes_transportes_id_autorizacion_foreign` FOREIGN KEY (`id_autorizacion`) REFERENCES `autorizaciones` (`id`),
   ADD CONSTRAINT `solicitudes_transportes_id_dependencia_foreign` FOREIGN KEY (`id_dependencia`) REFERENCES `dependencias_transportes` (`id`),
   ADD CONSTRAINT `solicitudes_transportes_id_lugar_foreign` FOREIGN KEY (`id_lugar`) REFERENCES `lugares` (`id`),
-  ADD CONSTRAINT `solicitudes_transportes_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `solicitudes_transportes_id_motorista_foreign` FOREIGN KEY (`id_motorista`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `solicitudes_transportes_id_usuario_foreign` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `solicitudes_transportes_id_vehiculo_foreign` FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculos` (`id`);
+
+--
+-- Filtros para la tabla `solicitud_combustibles`
+--
+ALTER TABLE `solicitud_combustibles`
+  ADD CONSTRAINT `solicitud_combustibles_id_conductor_foreign` FOREIGN KEY (`id_conductor`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `solicitud_combustibles_id_destinatario_foreign` FOREIGN KEY (`id_destinatario`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `solicitud_combustibles_id_origen_foreign` FOREIGN KEY (`id_origen`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `solicitud_combustibles_id_vehiculo_foreign` FOREIGN KEY (`id_vehiculo`) REFERENCES `vehiculos` (`id`),
+  ADD CONSTRAINT `solicitud_combustibles_lugar_destino_foreign` FOREIGN KEY (`lugar_destino`) REFERENCES `lugares` (`id`);
+
+--
+-- Filtros para la tabla `transportes`
+--
+ALTER TABLE `transportes`
+  ADD CONSTRAINT `transportes_id_conductor_foreign` FOREIGN KEY (`id_conductor`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `transportes_id_dependencia_foreign` FOREIGN KEY (`id_dependencia`) REFERENCES `dependencias_transportes` (`id`),
+  ADD CONSTRAINT `transportes_id_placa_foreign` FOREIGN KEY (`id_placa`) REFERENCES `vehiculos` (`id`),
+  ADD CONSTRAINT `transportes_lugar_destino_foreign` FOREIGN KEY (`lugar_destino`) REFERENCES `lugares` (`id`),
+  ADD CONSTRAINT `transportes_lugar_salida_foreign` FOREIGN KEY (`lugar_salida`) REFERENCES `lugares` (`id`),
+  ADD CONSTRAINT `transportes_pasajero_foreign` FOREIGN KEY (`pasajero`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `users`
