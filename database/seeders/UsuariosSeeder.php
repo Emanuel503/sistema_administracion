@@ -16,7 +16,7 @@ class UsuariosSeeder extends Seeder
      */
     public function run()
     {
-        $useradmin=User::create([
+        $useradmin = User::create([
             'id_rol' => 1,
             'id_dependencia' => 1,
             'id_estado' => 1,
@@ -29,6 +29,21 @@ class UsuariosSeeder extends Seeder
             'ubicacion' => 'DISAM',
             'telefono' => '2234-2345',
             'motorista' => 'no',
-            ]);
+        ]);
+
+        $user1 = User::create([
+            'id_rol' => 2,
+            'id_dependencia' => 1,
+            'id_estado' => 1,
+            'email' => 'user@gmail.com',
+            'usuario' => 'usuario',
+            'password' => Hash::make('admin'),
+            'nombres' => 'usuario',
+            'apellidos' => 'usuario',
+            'cargo' => 'usuario',
+            'ubicacion' => 'DISAM',
+            'telefono' => '2234-2345',
+            'motorista' => 'si',
+        ]);
     }
 }

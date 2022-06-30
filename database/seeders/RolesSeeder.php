@@ -17,7 +17,7 @@ class RolesSeeder extends Seeder
     {
         $admin = Roles::create([
             'rol' => 'Administrador',
-        ]);
+        ]);        
         $user = Roles::create([
             'rol' => 'Analista',
         ]);
@@ -32,6 +32,9 @@ class RolesSeeder extends Seeder
         ]);
         $user = Roles::create([
             'rol' => 'Jefe de conservación',
+        ]);
+        $user = Roles::create([
+            'rol' => 'Usuario',
         ]);
     }
 }
