@@ -71,6 +71,16 @@
         <input type="text" class="form-control" name="id_estado" id="id_estado" value="{{$usuario->estadoUsuario->estado}}" readonly>
     </div>
 
+    <div class="mb-3">
+        <label for="fecha_registro" class="col-form-label">Fecha de registro:</label>
+        <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$usuario->created_at}}" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="fecha_registro" class="col-form-label">Ultima fecha de modificacion:</label>
+        <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$usuario->updated_at}}" readonly>
+    </div>
+
     <form action="{{ route('users.destroy' , ['user' => $usuario->id]) }}" method="POST">
         @method('DELETE')
         @csrf

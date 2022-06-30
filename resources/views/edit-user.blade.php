@@ -37,47 +37,47 @@
         
         <div class="mb-3">
             <label for="usuario" class="col-form-label">Nombre de usuario:</label>
-            <input type="text" class="form-control" name="usuario" id="usuario" value="{{$usuario->usuario}}">
+            <input type="text" class="form-control" name="usuario" id="usuario" value="{{$usuario->usuario}}" required>
         </div>
 
         <div class="mb-3">
             <label for="email" class="col-form-label">Correo electronico:</label>
-            <input type="email" class="form-control" name="email" id="email" value="{{$usuario->email}}">
+            <input type="email" class="form-control" name="email" id="email" value="{{$usuario->email}}" required>
         </div>
 
         <div class="mb-3">
             <label for="password" class="col-form-label">Contraseña:</label>
-            <input type="text" class="form-control" name="password" id="password">
+            <input type="text" class="form-control" name="password" id="password" required>
         </div>
 
         <div class="mb-3">
             <label for="password_confirmation" class="col-form-label">Confirmar contraseña:</label>
-            <input type="text" class="form-control" name="password_confirmation" id="password_confirmation">
+            <input type="text" class="form-control" name="password_confirmation" id="password_confirmation" required>
         </div>
 
         <div class="mb-3">
             <label for="nombres" class="col-form-label">Nombres:</label>
-            <input type="text" class="form-control" name="nombres" id="nombres" value="{{$usuario->nombres}}">
+            <input type="text" class="form-control" name="nombres" id="nombres" value="{{$usuario->nombres}}" required>
         </div>
 
         <div class="mb-3">
             <label for="apellidos" class="col-form-label">Apellidos:</label>
-            <input type="text" class="form-control" name="apellidos" id="apellidos" value="{{$usuario->apellidos}}">
+            <input type="text" class="form-control" name="apellidos" id="apellidos" value="{{$usuario->apellidos}}" required>
         </div>
 
         <div class="mb-3">
             <label for="cargo" class="col-form-label">Cargo:</label>
-            <input type="text" class="form-control" name="cargo" id="cargo" value="{{$usuario->cargo}}">
+            <input type="text" class="form-control" name="cargo" id="cargo" value="{{$usuario->cargo}}" required>
         </div>
 
         <div class="mb-3">
             <label for="ubicacion" class="col-form-label">Ubicacion:</label>
-            <input type="text" class="form-control" name="ubicacion" id="ubicacion" value="{{$usuario->ubicacion}}">
+            <input type="text" class="form-control" name="ubicacion" id="ubicacion" value="{{$usuario->ubicacion}}" required>
         </div>
 
         <div class="mb-3">
             <label for="telefono" class="col-form-label">Telefono:</label>
-            <input type="text" class="form-control" name="telefono" id="telefono" value="{{$usuario->telefono}}">
+            <input type="text" class="form-control" name="telefono" id="telefono" value="{{$usuario->telefono}}" required>
         </div>
 
         <label class="col-form-label">Habilitar para motorista:</label>

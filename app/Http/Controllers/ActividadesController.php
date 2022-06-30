@@ -12,7 +12,7 @@ class ActividadesController extends Controller
 {
     public function comprobarHorario($fecha_inicio, $fecha_finalizacion, $hora_inicio, $hora_finalizacion)
     {
-        if (strtotime($hora_inicio) >= strtotime($hora_finalizacion) && strtotime($fecha_inicio) == strtotime($hora_finalizacion)) {
+        if (strtotime($hora_inicio) >= strtotime($hora_finalizacion) && $fecha_inicio == $fecha_finalizacion) {
             return "errorHora";
         }
 

@@ -5,7 +5,7 @@
     }
 @endphp
 
-@section('css-fullcalendar')
+@section('css-data-table')
     <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
 @endsection
 
@@ -67,11 +67,11 @@
                         @csrf
                         <div class="mb-3">
                             <label for="placa" class="col-form-label">Número de placa:</label>
-                            <input type="text" class="form-control" name="placa" id="placa" value="{{ old('placa') }}">
+                            <input type="text" class="form-control" name="placa" id="placa" value="{{ old('placa') }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="km" class="col-form-label">Kilometraje:</label>
-                            <input type="text" class="form-control" name="km" id="km" value="{{ old('km') }}">
+                            <input type="text" class="form-control" name="km" id="km" value="{{ old('km') }}" required>
                         </div>
                 </div>
                 <div class="modal-footer">
