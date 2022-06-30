@@ -9,7 +9,6 @@ use App\Models\Vehiculos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
 class SolicitudCombustibleController extends Controller
 {
     public function index()
@@ -47,15 +46,15 @@ class SolicitudCombustibleController extends Controller
         $request->validate([
             'id_destinatario' => 'required',
             'id_origen' => 'required',
-            'fecha_solicitud' => 'required',
+            'fecha_solicitud' => 'required|date',
             'id_vehiculo' => 'required',
             'id_conductor' => 'required',
             'lugar_destino' => 'required',
-            'fecha_detalle' => 'required',
+            'fecha_detalle' => 'required|date',
             'hora_salida' => 'required',
-            'objetivo' => 'required',
+            'objetivo' => 'required|min:5',
             'tipo_combustible' => 'required',
-            'cantidad_combustible' => 'required'
+            'cantidad_combustible' => 'required|numeric|min:0'
         ]);
 
         $solicitud = new SolicitudCombustible();
@@ -82,7 +81,7 @@ class SolicitudCombustibleController extends Controller
 
         $solicitud->save();
 
-        return redirect()->route('actividades.index')->with('success', 'Solicitud guardada correctamente.');
+        return redirect()->route('solicitud-combustible.index')->with('success', 'Solicitud guardada correctamente.');
     }
 
     public function update($id, Request $request)
@@ -90,15 +89,15 @@ class SolicitudCombustibleController extends Controller
         $request->validate([
             'id_destinatario' => 'required',
             'id_origen' => 'required',
-            'fecha_solicitud' => 'required',
+            'fecha_solicitud' => 'required|date',
             'id_vehiculo' => 'required',
             'id_conductor' => 'required',
             'lugar_destino' => 'required',
-            'fecha_detalle' => 'required',
+            'fecha_detalle' => 'required|date',
             'hora_salida' => 'required',
-            'objetivo' => 'required',
+            'objetivo' => 'required|min:5',
             'tipo_combustible' => 'required',
-            'cantidad_combustible' => 'required'
+            'cantidad_combustible' => 'required|numeric|min:0'
         ]);
 
         $solicitud = SolicitudCombustible::find($id);

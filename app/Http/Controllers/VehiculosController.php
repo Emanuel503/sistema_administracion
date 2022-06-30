@@ -31,7 +31,7 @@ class VehiculosController extends Controller
     {
         $request->validate([
             'placa' => 'required|unique:vehiculos,placa',
-            'km' => 'required'
+            'km' => 'required|numeric|min:0'
         ]);
 
         $vehiculos = new Vehiculos();
@@ -47,7 +47,7 @@ class VehiculosController extends Controller
     {
         $request->validate([
             'placa' => 'required|unique:vehiculos,placa,' . $id,
-            'km' => 'required'
+            'km' => 'required|numeric|min:0'
         ]);
 
         $placas = Vehiculos::find($id);

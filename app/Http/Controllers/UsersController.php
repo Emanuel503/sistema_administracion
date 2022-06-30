@@ -50,9 +50,9 @@ class UsersController extends Controller
             'password' => 'required|min:8|confirmed',
             'nombres' => 'required|min:5|max:50',
             'apellidos' => 'required|min:5|max:50',
-            'cargo' => 'required|min:5|max:50',
+            'cargo' => 'required|min:3|max:50',
             'ubicacion' => 'required|min:5|max:50',
-            'telefono' => 'required|min:5|max:50|',
+            'telefono' => 'required|min:5|max:9|',
             'motorista' => 'required'
         ]);
 
@@ -84,9 +84,9 @@ class UsersController extends Controller
             'usuario' => 'required|unique:users,usuario, ' . $id,
             'nombres' => 'required|min:5|max:50',
             'apellidos' => 'required|min:5|max:50',
-            'cargo' => 'required|min:5|max:50',
+            'cargo' => 'required|min:3|max:50',
             'ubicacion' => 'required|min:5|max:50',
-            'telefono' => 'required|min:5|max:50|',
+            'telefono' => 'required|min:5|max:9|',
             'motorista' => 'required'
         ]);
 

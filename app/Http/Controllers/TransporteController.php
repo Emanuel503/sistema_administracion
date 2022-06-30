@@ -10,8 +10,6 @@ use App\Models\Vehiculos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use function GuzzleHttp\Promise\all;
-
 class TransporteController extends Controller
 {
     public function comprobarHoras($hora_salida, $hora_destino)
@@ -59,17 +57,17 @@ class TransporteController extends Controller
             'id_dependencia' => 'required',
             'id_conductor' => 'required',
             'id_placa' => 'required',
-            'fecha' => 'required',
+            'fecha' => 'required|date',
             //Salida
             'hora_salida' => 'required',
-            'km_salida' => 'required',
+            'km_salida' => 'required|numeric|min:0',
             'lugar_salida' => 'required',
             //Destino
             'hora_destino' => 'required',
-            'km_destino' => 'required',
+            'km_destino' => 'required|numeric|min:0',
             'lugar_destino' => 'required',
             //Otros            
-            'combustible' => 'required',
+            'combustible' => 'required|numeric|min:0',
             'tipo_combustible' => 'required',
             'pasajero' => 'required'
         ]);
@@ -81,18 +79,18 @@ class TransporteController extends Controller
 
         foreach ($validacionKm as $val) {
             if ($request->km_salida < $val->kilometraje) {
-                return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje ingresado es menor al ultimo registrado.');
+                return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje ingresado es menor al ultimo registrado.')->withInput();
             }
         }
 
         if ($request->km_destino < $request->km_salida) {
-            return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje de destino no puede ser menor al kilometraje de salida.');
+            return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje de destino no puede ser menor al kilometraje de salida.')->withInput();
         }
 
         $comprobar = $this->comprobarHoras($request->hora_salida, $request->hora_destino);
 
         if ($comprobar == "errorHora") {
-            return redirect()->route('transporte.index')->with('errorHora', 'La hora de destino no puede ser menor que la hora de salida.');
+            return redirect()->route('transporte.index')->with('errorHora', 'La hora de destino no puede ser menor que la hora de salida.')->withInput();
         }
 
         $transporte = new Transporte();
@@ -128,17 +126,17 @@ class TransporteController extends Controller
             'id_dependencia' => 'required',
             'id_conductor' => 'required',
             'id_placa' => 'required',
-            'fecha' => 'required',
+            'fecha' => 'required|date',
             //Salida
             'hora_salida' => 'required',
-            'km_salida' => 'required',
+            'km_salida' => 'required|numeric',
             'lugar_salida' => 'required',
             //Destino
             'hora_destino' => 'required',
-            'km_destino' => 'required',
+            'km_destino' => 'required|numeric',
             'lugar_destino' => 'required',
             //Otros
-            'combustible' => 'required',
+            'combustible' => 'required|numeric|min:0',
             'tipo_combustible' => 'required',
             'pasajero' => 'required'
         ]);
@@ -152,18 +150,18 @@ class TransporteController extends Controller
 
         foreach ($validacionKm as $val) {
             if ($request->km_salida < $val->kilometraje) {
-                return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje ingresado es menor al ultimo registrado.');
+                return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje ingresado es menor al ultimo registrado.')->withInput();
             }
         }
 
         if ($request->km_destino < $request->km_salida) {
-            return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje de destino no puede ser menor al kilometraje de salida.');
+            return redirect()->route('transporte.index')->with('errorHora', 'El kilometraje de destino no puede ser menor al kilometraje de salida.')->withInput();
         }
 
         $comprobar = $this->comprobarHoras($request->hora_salida, $request->hora_destino);
 
         if ($comprobar == "errorHora") {
-            return redirect()->route('transporte.index')->with('errorHora', 'La hora de destino no puede ser menor que la hora de salida.');
+            return redirect()->route('transporte.index')->with('errorHora', 'La hora de destino no puede ser menor que la hora de salida.')->withInput();
         }
 
         $transporte = Transporte::find($id);
