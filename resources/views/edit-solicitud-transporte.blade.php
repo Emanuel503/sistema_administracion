@@ -106,3 +106,22 @@
         <a href="{{route('solicitudes-transporte.index')}}" class="btn btn-secondary  mt-4">Cancelar</a>
     </form>
 @endsection
+
+@section('js-solicitud-transporte')
+    <script>
+        //Funciones para mostrar los input de motorista y vehiculo (solicitud de vehiculo)
+        var selectAutorizacion = document.getElementById("id_autorizacion_vehiculo");
+        var divVehiculo = document.getElementById("divVehiculo");
+        var divMotorista = document.getElementById("divMotorista");
+
+        selectAutorizacion.addEventListener("change", function() {
+            if(selectAutorizacion.value == 1){
+                divVehiculo.removeAttribute("hidden");
+                divMotorista.removeAttribute("hidden");
+            }else{
+                divVehiculo.setAttribute("hidden","");
+                divMotorista.setAttribute("hidden","");
+            }
+        });
+    </script>
+@endsection

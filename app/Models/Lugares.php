@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\SolicitudesTransportes;
+use App\Models\RegistrosSalidas;
 
 class Lugares extends Model
 {
@@ -19,5 +20,10 @@ class Lugares extends Model
     public function SolicitudesTransportes()
     {
         return $this->hasMany(SolicitudesTransportes::class);
+    }
+
+    public function RegistrosSalidas()
+    {
+        return $this->hasMany(RegistrosSalidas::class);
     }
 }

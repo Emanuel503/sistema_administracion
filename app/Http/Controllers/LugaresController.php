@@ -30,12 +30,16 @@ class LugaresController extends Controller
     {
         $request->validate([
             'nombre' => 'required|min:3',
-            'codigo' => 'required|numeric|unique:lugares,codigo,'
+            'codigo' => 'required|numeric|unique:lugares,codigo,',
+            'departamento' => 'required',
+            'municipio' => 'required',
         ]);
 
         $lugar = new Lugares();
         $lugar->nombre = $request->nombre;
         $lugar->codigo = $request->codigo;
+        $lugar->departamento = $request->departamento;
+        $lugar->municipio = $request->municipio;
 
         $lugar->save();
 
@@ -47,11 +51,16 @@ class LugaresController extends Controller
         $request->validate([
             'nombre' => 'required|min:3',
             'codigo' => 'required|numeric|unique:lugares,codigo, ' . $id,
+            'departamento' => 'required',
+            'municipio' => 'required',
         ]);
 
         $lugar = Lugares::find($id);
         $lugar->nombre = $request->nombre;
         $lugar->codigo = $request->codigo;
+        $lugar->departamento = $request->departamento;
+        $lugar->municipio = $request->municipio;
+
         $lugar->save();
 
         return redirect()->route('lugares.index')->with('success', 'Lugar actualizado correctamente');

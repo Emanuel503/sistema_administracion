@@ -26,6 +26,8 @@
                     <th>#</th>
                     <th>Nombre del lugar</th>
                     <th>Codigo</th>
+                    <th>Departamento</th>
+                    <th>Municipio</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -35,6 +37,8 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$lugar->nombre}}</td>
                     <td>{{$lugar->codigo}}</td>
+                    <td>{{$lugar->departamento}}</td>
+                    <td>{{$lugar->municipio}}</td>
                     <td>
                         <form action="{{ route('lugares.destroy' , ['lugare' => $lugar->id]) }}" method="POST">
                             @method('DELETE')

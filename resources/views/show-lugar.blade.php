@@ -16,6 +16,16 @@
 </div>
 
 <div class="mb-3">
+    <label for="departamento" class="col-form-label">Departamento:</label>
+    <input class="form-control" name="departamento" id="departamento" value="{{$lugares->departamento}}" readonly>
+</div>
+
+<div class="mb-3">
+    <label for="municipio" class="col-form-label">Municipio:</label>
+    <input class="form-control" name="municipio" id="municipio" value="{{$lugares->municipio}}" readonly>
+</div>
+
+<div class="mb-3">
     <label for="fecha_registro" class="col-form-label">Fecha de registro:</label>
     <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$lugares->created_at}}" readonly>
 </div>

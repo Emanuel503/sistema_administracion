@@ -1,5 +1,5 @@
 @section('css-data-table')
-<link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
 @endsection
 
 @extends('layouts.app')

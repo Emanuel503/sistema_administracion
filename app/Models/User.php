@@ -37,6 +37,11 @@ class User extends Authenticatable
         return $this->hasMany(SolicitudesTransportes::class);
     }
 
+    public function SolicitudesSalidas()
+    {
+        return $this->hasMany(SolicitudesSalidas::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

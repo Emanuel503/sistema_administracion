@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\EstadosActividades;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsuariosSeeder::class);
         $this->call(AutorizacionesSeeder::class);
         $this->call(EstadosActividadesSeeder::class);
+        $this->call(EstadosRegistrosSalidasSeeder::class);
     }
 }

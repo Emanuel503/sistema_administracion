@@ -49,6 +49,7 @@
                                 </ul>
                             </li>
                             <li><a class="dropdown-item" href="{{url('/solicitudes-sala')}}">Solicitudes de sala</a></li>
+                            <li><a class="dropdown-item" href="{{route('registros-salida.index')}}">Registros de salida</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -83,6 +84,7 @@
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     @yield('js-fullcalendar')
     @yield('js-data-table')
+    @yield('js-solicitud-transporte')
 </body>
 
 </html>

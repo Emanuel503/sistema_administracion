@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="my-4">Detalles de la placa</h3>
+<h3 class="my-4">Detalles del vehiculo</h3>
 
 <a class="btn btn-outline-secondary mb-4" href="{{ route('vehiculos.index')}}">Regresar</a>
 

@@ -18,6 +18,8 @@ class LugaresSeeder extends Seeder
         $useradmin=Lugares::create([
             'codigo' => '1',
             'nombre' => 'DISAM',
+            'departamento' => 'San Salvador',
+            'municipio' => 'San Salvador',
             ]);
     }
 }

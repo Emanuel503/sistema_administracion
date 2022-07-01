@@ -34,13 +34,13 @@ die();
                 <td>{{$sala->id}}</td>
                 <td>{{$sala->sala}}</td>
                 <td>
-                    <form action="{{ route('salas.destroy' , ['sala' => $sala->id]) }}" method="POST">
-                        @method('DELETE')
+                    <form action="{{ route('salas.destroy' , ['sala' => $sala->id])}}" method="POST">
                         @csrf
+                        @method('DELETE')
                         <div class="d-grid gap-1 d-md-flex">
                             <a class="btn btn-info btn-sm" href="{{ route('salas.show' , ['sala' => $sala->id])}}">Ver</a>
                             <a class="btn btn-success btn-sm" href="{{ route('salas.edit' , ['sala' => $sala->id])}}">Modificar</a>
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
                         </div>
                     </form>
                 </td>
@@ -50,8 +50,30 @@ die();
     </table>
 </div>
 @else
-<br><span class="badge bg-secondary">No hay salas registradas</span>
+    <br><span class="badge bg-secondary">No hay salas registradas</span>
 @endif
+
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminar" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitulo">Eliminar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEliminar" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    ¿Estas seguro que quieres eliminar el registro?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="modalRegistrar" tabindex="-1" aria-labelledby="modalRegistrar" aria-hidden="true">
     <div class="modal-dialog">
