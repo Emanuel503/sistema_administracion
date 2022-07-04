@@ -2,28 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departamentos;
 use App\Models\Lugares;
+use App\Models\Municipios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class LugaresController extends Controller
 {
+    public function get_municipios(){
+        $id_departamento = filter_input(INPUT_POST, 'id_departamento'); 
+
+        $municipios = DB::select("SELECT * FROM municipios WHERE id_departamento = ?",[$id_departamento,]);
+
+        foreach($municipios as $municipio){
+            echo '<option value"'.$municipio->id.'">'.$municipio->municipio.'</option>';
+        }
+    }
+
     public function index()
     {
         $lugares = Lugares::all();
-        return view('lugares.index-lugares', ['lugares' => $lugares]);
+        $departamentos = Departamentos::all();
+        $municipios = Municipios::all();
+        return view('lugares.index-lugares', ['lugares' => $lugares, 'departamentos' => $departamentos, 'municipios' => $municipios]);
     }
 
     public function show($id)
     {
         $lugares = Lugares::find($id);
-        return view('lugares.show-lugar', ['lugares' => $lugares]);
+        $departamentos = Departamentos::all();
+        $municipios = Municipios::all();
+        return view('lugares.show-lugar', ['lugares' => $lugares, 'departamentos' => $departamentos, 'municipios' => $municipios]);
     }
 
     public function edit($id)
     {
         $lugares = Lugares::find($id);
-        return view('lugares.edit-lugar', ['lugares' => $lugares]);
+        $departamentos = Departamentos::all();
+        $municipios = Municipios::all();
+        return view('lugares.edit-lugar', ['lugares' => $lugares, 'departamentos' => $departamentos, 'municipios' => $municipios]);
     }
 
     public function store(Request $request)

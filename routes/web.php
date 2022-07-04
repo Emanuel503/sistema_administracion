@@ -24,6 +24,7 @@ Route::resource('/solicitudes-transporte', SolicitudesTransporteController::clas
 Route::resource('/dependencias-transporte', DependenciasTransporteController::class)->middleware('auth');
 Route::resource('/vehiculos', VehiculosController::class)->middleware('auth');
 Route::resource('/lugares', LugaresController::class)->middleware('auth');
+Route::get('/get_municipios', [App\Http\Controllers\LugaresController::class, 'get_municipios']);
 Route::resource('/transporte', TransporteController::class)->middleware('auth');
 Route::resource('/solicitud-combustible', SolicitudCombustibleController::class)->middleware('auth');
 Route::resource('/registros-salida', RegistrosSalidasController::class)->middleware('auth');

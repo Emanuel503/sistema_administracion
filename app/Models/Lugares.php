@@ -12,6 +12,16 @@ class Lugares extends Model
 {
     use HasFactory;
 
+    public function Departamentos()
+    {
+        return $this->belongsTo(Departamentos::class, 'id_departamento');
+    }
+
+    public function Municipios()
+    {
+        return $this->belongsTo(Municipios::class, 'id_municipio');
+    }
+
     public function Users()
     {
         return $this->hasMany(User::class);

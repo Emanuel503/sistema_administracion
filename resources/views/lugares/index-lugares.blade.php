@@ -38,8 +38,8 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$lugar->nombre}}</td>
                         <td>{{$lugar->codigo}}</td>
-                        <td>{{$lugar->departamento}}</td>
-                        <td>{{$lugar->municipio}}</td>
+                        <td>{{$lugar->departamentos->departamento}}</td>
+                        <td>{{$lugar->municipios->municipio}}</td>
                         <td>
                             <form action="{{ route('lugares.destroy' , ['lugare' => $lugar->id]) }}" method="POST">
                                 @method('DELETE')
@@ -80,17 +80,19 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="departamento" class="col-form-label">Departamento:</label>
-                            <select name="departamento" id="departamento" class="form-select">
-                                <option value="Ahuachapán">Ahuachapán</option>
-                                <option value="Cabañas">Cabañas</option>
+                            <label for="id_departamento" class="col-form-label">Departamento:</label>
+                            <select name="id_departamento" id="id_departamento" class="form-select">
+                                <option value="0">Selecciones un departamento</option>
+                                @foreach ($departamentos as $departamento)
+                                    <option @selected( old('id_departamento') == $departamento->id ) value="{{ $departamento->id}}">{{$departamento->departamento}}</option>    
+                                @endforeach
                             </select>       
                         </div>
 
                         <div class="mb-3">
-                            <label for="departamento" class="col-form-label">Municipio:</label>
-                            <select name="municipio" id="municipio" class="form-select">
-                                <option>Apopa</option>
+                            <label for="id_municipio" class="col-form-label">Municipio:</label>
+                            <select name="id_municipio" id="id_municipio" class="form-select">
+                                <option value="0">Selecciones un departamento</option>
                             </select>
                         </div>
                 </div>
@@ -117,6 +119,25 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            var municipio = $('#id_municipio');
+            $('#id_departamento').change(function(){
+            var id_departamento = $(this).val();        
+
+                $.ajax({
+                data: {id_departamento:id_departamento}, 
+                dataType: 'html', 
+                type: 'POST', 
+                url: 'get_municipios', 
+
+                }).done(function(data){   
+                    municipio.html(data);       
+                });      
             });
         });
     </script>

@@ -17,12 +17,12 @@
 
     <div class="mb-3">
         <label for="departamento" class="col-form-label">Departamento:</label>
-        <input class="form-control" name="departamento" id="departamento" value="{{$lugares->departamento}}" readonly>
+        <input class="form-control" name="departamento" id="departamento" value="{{$lugares->departamentos->departamento}}" readonly>
     </div>
 
     <div class="mb-3">
         <label for="municipio" class="col-form-label">Municipio:</label>
-        <input class="form-control" name="municipio" id="municipio" value="{{$lugares->municipio}}" readonly>
+        <input class="form-control" name="municipio" id="municipio" value="{{$lugares->municipios->municipio}}" readonly>
     </div>
 
     <div class="mb-3">

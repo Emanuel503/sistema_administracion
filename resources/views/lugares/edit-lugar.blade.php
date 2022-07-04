@@ -28,6 +28,22 @@
             <label for="codigo" class="col-form-label">Codigo:</label>
             <input class="form-control" name="codigo" id="codigo" value="{{$lugares->codigo}}" required>
         </div>
+
+        <div class="mb-3">
+            <label for="id_departamento" class="col-form-label">Departamento:</label>
+            <select name="id_departamento" id="id_departamento" class="form-select">
+                @foreach ($departamentos as $departamento)
+                    <option @selected( $lugares->id_departamento == $departamento->id ) value="{{ $departamento->id}}">{{$departamento->departamento}}</option>    
+                @endforeach
+            </select>       
+        </div>
+
+        <div class="mb-3">
+            <label for="departamento" class="col-form-label">Municipio:</label>
+            <select name="municipio" id="municipio" class="form-select">
+                <option>Apopa</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-success mt-4">Modificar</button>
         <a href="{{route('lugares.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
     </form>
