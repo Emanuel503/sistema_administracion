@@ -29,11 +29,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Catalogos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{url('/users')}}">Usuarios</a></li>
-                            <li><a class="dropdown-item" href="{{url('/salas ')}}">Salas</a></li>
-                            <li><a class="dropdown-item" href="{{url('/lugares ')}}">Lugares</a></li>
-                            <li><a class="dropdown-item" href="{{url('/vehiculos ')}}">Vehiculos</a></li>
-                            <li><a class="dropdown-item" href="{{url('/dependencias-transporte ')}}">Dependencias transporte</a></li>
+                            <li><a class="dropdown-item" href="{{route('users.index')}}">Usuarios</a></li>
+                            <li><a class="dropdown-item" href="{{route('salas.index')}}">Salas</a></li>
+                            <li><a class="dropdown-item" href="{{route('lugares.index')}}">Lugares</a></li>
+                            <li><a class="dropdown-item" href="{{route('vehiculos.index')}}">Vehiculos</a></li>
+                            <li><a class="dropdown-item" href="{{route('dependencias-transporte.index')}}">Dependencias transporte</a></li>
                         </ul>
                     </li>
                     @endif
@@ -48,7 +48,7 @@
                                     <li><a class="dropdown-item" href="{{route('solicitud-combustible.index')}}">Solicitud combustible</a></li>
                                 </ul>
                             </li>
-                            <li><a class="dropdown-item" href="{{url('/solicitudes-sala')}}">Solicitudes de sala</a></li>
+                            <li><a class="dropdown-item" href="{{route('solicitudes-sala.index')}}">Solicitudes de sala</a></li>
                             <li><a class="dropdown-item" href="{{route('registros-salida.index')}}">Registros de salida</a></li>
                         </ul>
                     </li>

@@ -23,7 +23,7 @@ class RegistrosSalidasController extends Controller
         $lugares = Lugares::all();
         $estados = EstadosSalidas::all();
         $usuarios = User::all();
-        return view('registros-salidas', ['salidas'=> $salidas, 'lugares' => $lugares, 'estados' => $estados, 'usuarios' => $usuarios]);
+        return view('registros-salidas.index-registros-salidas', ['salidas'=> $salidas, 'lugares' => $lugares, 'estados' => $estados, 'usuarios' => $usuarios]);
     }
 
     public function show($id)
@@ -32,7 +32,7 @@ class RegistrosSalidasController extends Controller
         $lugares = Lugares::all();
         $estados = EstadosSalidas::all();
         $usuarios = User::all();
-        return view('show-registros-salidas', ['salidas'=> $salidas, 'lugares' => $lugares, 'estados' => $estados, 'usuarios' => $usuarios]);
+        return view('registros-salidas.show-registros-salidas', ['salidas'=> $salidas, 'lugares' => $lugares, 'estados' => $estados, 'usuarios' => $usuarios]);
     }
 
     public function edit($id)
@@ -41,7 +41,7 @@ class RegistrosSalidasController extends Controller
         $lugares = Lugares::all();
         $estados = EstadosSalidas::all();
         $usuarios = User::all();
-        return view('edit-registros-salidas', ['salidas'=> $salidas, 'lugares' => $lugares, 'estados' => $estados, 'usuarios' => $usuarios]);
+        return view('registros-salidas.edit-registros-salidas', ['salidas'=> $salidas, 'lugares' => $lugares, 'estados' => $estados, 'usuarios' => $usuarios]);
     }
 
     public function store(Request $request)

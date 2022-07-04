@@ -18,7 +18,7 @@ class UsersController extends Controller
         $roles = Roles::all();
         $estadosUsuarios = EstadosUsuarios::all();
         $dependencias = Lugares::all();
-        return view('users', ['usuarios' => $usuarios, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
+        return view('users.index-users', ['usuarios' => $usuarios, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
     }
 
     public function show($id)
@@ -27,7 +27,7 @@ class UsersController extends Controller
         $roles = Roles::all();
         $estadosUsuarios = EstadosUsuarios::all();
         $dependencias = Lugares::all();
-        return view('show-user', ['usuario' => $usuario, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
+        return view('users.show-user', ['usuario' => $usuario, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
     }
 
     public function edit($id)
@@ -36,7 +36,7 @@ class UsersController extends Controller
         $roles = Roles::all();
         $estadosUsuarios = EstadosUsuarios::all();
         $dependencias = Lugares::all();
-        return view('edit-user', ['usuario' => $usuario, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
+        return view('users.edit-user', ['usuario' => $usuario, 'roles' => $roles, 'estadosUsuarios' => $estadosUsuarios, 'dependencias' => $dependencias]);
     }
 
     public function store(Request $request)

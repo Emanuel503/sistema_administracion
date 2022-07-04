@@ -27,7 +27,7 @@ class TransporteController extends Controller
         $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
 
-        return view('transporte', ['dependencias' => $dependencias, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'transportes' => $transportes, 'lugares' => $lugares]);
+        return view('transporte.index-transporte', ['dependencias' => $dependencias, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'transportes' => $transportes, 'lugares' => $lugares]);
     }
 
     public function show($id)
@@ -37,7 +37,7 @@ class TransporteController extends Controller
         $conductor = User::all();
         $vehiculos = Vehiculos::all();
 
-        return view('show-transporte', ['dependencia' => $dependencia, 'conductor' => $conductor, 'vehiculos' => $vehiculos, 'transportes' => $transportes]);
+        return view('transporte.show-transporte', ['dependencia' => $dependencia, 'conductor' => $conductor, 'vehiculos' => $vehiculos, 'transportes' => $transportes]);
     }
 
     public function edit($id)
@@ -48,7 +48,7 @@ class TransporteController extends Controller
         $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
 
-        return view('edit-transporte', ['transportes' => $transportes, 'dependencias' => $dependencias, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
+        return view('transporte.edit-transporte', ['transportes' => $transportes, 'dependencias' => $dependencias, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
     }
 
     public function store(Request $request)

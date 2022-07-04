@@ -11,19 +11,19 @@ class SalasController extends Controller
     public function index()
     {
         $salas = Salas::all();
-        return view('sala', ['salas' => $salas]);
+        return view('salas.index-sala', ['salas' => $salas]);
     }
 
     public function show($id)
     {
         $salas = Salas::find($id);
-        return view('show-sala', ['salas' => $salas]);
+        return view('salas.show-sala', ['salas' => $salas]);
     }
 
     public function edit($id)
     {
         $salas = Salas::find($id);
-        return view('edit-sala', ['salas' => $salas]);
+        return view('salas.edit-sala', ['salas' => $salas]);
     }
 
     public function store(Request $request)

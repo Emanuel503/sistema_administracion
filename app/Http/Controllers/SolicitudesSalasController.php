@@ -19,7 +19,7 @@ class SolicitudesSalasController extends Controller
         $salas = Salas::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('solicitudes-salas', ['solicitudesSalas' => $solicitudesSalas, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        return view('solicitud-sala.index-solicitudes-salas', ['solicitudesSalas' => $solicitudesSalas, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
     public function show($id)
@@ -28,7 +28,7 @@ class SolicitudesSalasController extends Controller
         $salas = Salas::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('show-solicitud-sala', ['solicitudesSala' => $solicitudesSala, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        return view('solicitud-sala.show-solicitud-sala', ['solicitudesSala' => $solicitudesSala, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
     public function edit($id)
@@ -37,7 +37,7 @@ class SolicitudesSalasController extends Controller
         $salas = Salas::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
-        return view('edit-solicitud-sala', ['solicitudesSala' => $solicitudesSala, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
+        return view('solicitud-sala.edit-solicitud-sala', ['solicitudesSala' => $solicitudesSala, 'salas' => $salas, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios]);
     }
 
     public function store(Request $request)

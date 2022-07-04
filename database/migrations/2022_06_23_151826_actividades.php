@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('actividades', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_usuario')->constrained('users', 'id');
             $table->foreignId('id_organizador')->constrained('lugares', 'id');
             $table->foreignId('id_lugar')->constrained('lugares', 'id');
             $table->foreignId('id_coordinador')->constrained('users', 'id');

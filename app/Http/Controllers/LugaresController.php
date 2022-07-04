@@ -11,19 +11,19 @@ class LugaresController extends Controller
     public function index()
     {
         $lugares = Lugares::all();
-        return view('lugares', ['lugares' => $lugares]);
+        return view('lugares.index-lugares', ['lugares' => $lugares]);
     }
 
     public function show($id)
     {
         $lugares = Lugares::find($id);
-        return view('show-lugar', ['lugares' => $lugares]);
+        return view('lugares.show-lugar', ['lugares' => $lugares]);
     }
 
     public function edit($id)
     {
         $lugares = Lugares::find($id);
-        return view('edit-lugar', ['lugares' => $lugares]);
+        return view('lugares.edit-lugar', ['lugares' => $lugares]);
     }
 
     public function store(Request $request)

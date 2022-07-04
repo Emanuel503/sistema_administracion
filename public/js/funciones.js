@@ -5,6 +5,14 @@ window.setTimeout(function () {
     })
 }, 1500);
 
+//Funciones para departamentos y municipios
+// var departamento = document.getElementById('departamento');
+// var municipios = document.getElementById('municipios');
+
+// if(departamento.value == "San Salvador"){
+//     municipios.add
+// }
+
 //Funciones para el menu
 document.addEventListener("DOMContentLoaded", function(){
     document.querySelectorAll('.dropdown-menu').forEach(function(element){

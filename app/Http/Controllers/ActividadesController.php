@@ -7,6 +7,7 @@ use App\Models\EstadosActividades;
 use App\Models\Lugares;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActividadesController extends Controller
 {
@@ -29,18 +30,19 @@ class ActividadesController extends Controller
         $organizadores = Lugares::all();
         $estados = EstadosActividades::all();
 
-        return view('actividades', ['actividades' => $actividades, 'usuarios' => $usuarios, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
+        return view('actividades.index-actividades', ['actividades' => $actividades, 'usuarios' => $usuarios, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
     }
 
     public function show($id)
     {
         $actividades = Actividades::find($id);
         $coordinadores = User::all();
+        $usuarios = User::all();
         $lugares = Lugares::all();
         $organizadores = Lugares::all();
         $estados = EstadosActividades::all();
 
-        return view('show-actividad', ['actividades' => $actividades, 'coordinadores' => $coordinadores, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
+        return view('actividades.show-actividad', ['actividades' => $actividades, 'usuarios' => $usuarios, 'coordinadores' => $coordinadores, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
     }
 
     public function edit($id)
@@ -51,7 +53,7 @@ class ActividadesController extends Controller
         $organizadores = Lugares::all();
         $estados = EstadosActividades::all();
 
-        return view('edit-actividad', ['actividades' => $actividades, 'coordinadores' => $coordinadores, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
+        return view('actividades.edit-actividad', ['actividades' => $actividades, 'coordinadores' => $coordinadores, 'lugares' => $lugares, 'organizadores' => $organizadores, 'estados' => $estados]);
     }
 
     public function store(Request $request)
@@ -80,6 +82,7 @@ class ActividadesController extends Controller
         }
 
         $actividad = new Actividades();
+        $actividad->id_usuario = Auth::user()->id;
         $actividad->id_organizador = $request->id_organizador;
         $actividad->id_lugar = $request->id_lugar;
         $actividad->id_coordinador = $request->id_coordinador;

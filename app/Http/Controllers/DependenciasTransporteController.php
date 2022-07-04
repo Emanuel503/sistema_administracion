@@ -11,19 +11,19 @@ class DependenciasTransporteController extends Controller
     public function index()
     {
         $dependencias = DependenciasTransporte::all();
-        return view('dependencias-transporte', ['dependencias' => $dependencias]);
+        return view('dependencias-transporte.index-dependencias-transporte', ['dependencias' => $dependencias]);
     }
 
     public function show($id)
     {
         $dependencias = DependenciasTransporte::find($id);
-        return view('show-dependencias-transporte', ['dependencias' => $dependencias]);
+        return view('dependencias-transporte.show-dependencias-transporte', ['dependencias' => $dependencias]);
     }
 
     public function edit($id)
     {
         $dependencias = DependenciasTransporte::find($id);
-        return view('edit-dependencias-transporte', ['dependencias' => $dependencias]);
+        return view('dependencias-transporte.edit-dependencias-transporte', ['dependencias' => $dependencias]);
     }
 
     public function store(Request $request)

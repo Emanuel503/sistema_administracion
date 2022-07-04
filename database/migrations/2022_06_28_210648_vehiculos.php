@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->id();
             $table->string('placa')->unique();
+            $table->string('marca');
+            $table->string('modelo');
+            $table->string('color');
+            $table->string('year');
             $table->string('kilometraje');
             $table->timestamps();
         });

@@ -5,37 +5,44 @@ namespace App\Http\Controllers;
 use App\Models\Vehiculos;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class VehiculosController extends Controller
 {
     public function index()
     {
         $vehiculos = Vehiculos::all();
-        return view('vehiculos', ['vehiculos' => $vehiculos]);
+        return view('vehiculos.index-vehiculos', ['vehiculos' => $vehiculos]);
     }
 
     public function show($id)
     {
         $vehiculos = Vehiculos::find($id);
-        return view('show-vehiculos', ['vehiculos' => $vehiculos]);
+        return view('vehiculos.show-vehiculos', ['vehiculos' => $vehiculos]);
     }
 
     public function edit($id)
     {
         $vehiculos = Vehiculos::find($id);
-        return view('edit-vehiculos', ['vehiculos' => $vehiculos]);
+        return view('vehiculos.edit-vehiculos', ['vehiculos' => $vehiculos]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'placa' => 'required|unique:vehiculos,placa',
+            'marca' => 'required|min:2',
+            'modelo' => 'required|min:2',
+            'color' => 'required|min:2',
+            'year' => 'required|numeric|min:1000',
             'km' => 'required|numeric|min:0'
         ]);
 
         $vehiculos = new Vehiculos();
         $vehiculos->placa = $request->placa;
+        $vehiculos->marca = $request->marca;
+        $vehiculos->modelo = $request->modelo;
+        $vehiculos->color = $request->color;
+        $vehiculos->year = $request->year;
         $vehiculos->kilometraje = $request->km;
 
         $vehiculos->save();
@@ -47,13 +54,21 @@ class VehiculosController extends Controller
     {
         $request->validate([
             'placa' => 'required|unique:vehiculos,placa,' . $id,
+            'marca' => 'required|min:2',
+            'modelo' => 'required|min:2',
+            'color' => 'required|min:2',
+            'year' => 'required|numeric|min:1000',
             'km' => 'required|numeric|min:0'
         ]);
 
-        $placas = Vehiculos::find($id);
-        $placas->placa = $request->placa;
-        $placas->kilometraje = $request->km;
-        $placas->save();
+        $vehiculos = Vehiculos::find($id);
+        $vehiculos->placa = $request->placa;
+        $vehiculos->marca = $request->marca;
+        $vehiculos->modelo = $request->modelo;
+        $vehiculos->color = $request->color;
+        $vehiculos->year = $request->year;
+        $vehiculos->kilometraje = $request->km;
+        $vehiculos->save();
 
         return redirect()->route('vehiculos.index')->with('success', 'Vehiculo actualizado correctamente');
     }

@@ -18,7 +18,7 @@ class SolicitudCombustibleController extends Controller
         $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
 
-        return view('solicitud-combustible', ['solicitudes' => $solicitudes, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
+        return view('solicitud-combustible.index-solicitud-combustible', ['solicitudes' => $solicitudes, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
     }
 
     public function show($id)
@@ -28,7 +28,7 @@ class SolicitudCombustibleController extends Controller
         $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
 
-        return view('show-solicitud-combustible', ['solicitudes' => $solicitudes, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
+        return view('solicitud-combustible.show-solicitud-combustible', ['solicitudes' => $solicitudes, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
     }
 
     public function edit($id)
@@ -38,7 +38,7 @@ class SolicitudCombustibleController extends Controller
         $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
 
-        return view('edit-solicitud-combustible', ['solicitudes' => $solicitudes, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
+        return view('solicitud-combustible.edit-solicitud-combustible', ['solicitudes' => $solicitudes, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'lugares' => $lugares]);
     }
 
     public function store(Request $request)

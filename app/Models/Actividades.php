@@ -9,6 +9,11 @@ class Actividades extends Model
 {
     use HasFactory;
 
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
+    }
+
     public function organizador()
     {
         return $this->belongsTo(Lugares::class, 'id_organizador');

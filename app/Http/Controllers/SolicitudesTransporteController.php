@@ -22,7 +22,7 @@ class SolicitudesTransporteController extends Controller
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
         $vehiculos = Vehiculos::all();
-        return view('solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
+        return view('solicitud-transporte.index-solicitudes-transportes', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function show($id)
@@ -33,7 +33,7 @@ class SolicitudesTransporteController extends Controller
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
         $vehiculos = Vehiculos::all();
-        return view('show-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
+        return view('solicitud-transporte.show-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function edit($id)
@@ -44,7 +44,7 @@ class SolicitudesTransporteController extends Controller
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
         $vehiculos = Vehiculos::all();
-        return view('edit-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
+        return view('solicitud-transporte.edit-solicitud-transporte', ['solicitudesTransportes' => $solicitudesTransportes, 'dependencias' => $dependencias, 'lugares' => $lugares, 'autorizaciones' => $autorizaciones, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos]);
     }
 
     public function store(Request $request)
