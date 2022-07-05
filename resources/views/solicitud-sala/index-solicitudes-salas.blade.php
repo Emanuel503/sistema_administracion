@@ -17,7 +17,6 @@
             <table id="solicitudes-salas" class="table table-striped table-hover table-bordered table-sm shadow">
                 <thead>
                     <tr class="table-dark">
-                        <th>#</th>
                         <th>Fecha</th>
                         <th>Sala</th>
                         <th>Actividad</th>
@@ -29,9 +28,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($solicitudesSalas->reverse() as $solicitud)
+                    @foreach ($solicitudesSalas as $solicitud)
                     <tr>
-                        <td>{{$loop->iteration}}</td>
                         <td>{{$solicitud->fecha}}</td>
                         <td>{{$solicitud->sala->sala}}</td>
                         <td>{{$solicitud->actividad}}</td>
@@ -128,7 +126,10 @@
             $('#solicitudes-salas').DataTable({
                 language: {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                }
+                },
+                order: [
+                    [1, 'desc']
+                ],
             });
         });
     </script>

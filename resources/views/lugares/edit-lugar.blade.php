@@ -39,11 +39,14 @@
         </div>
 
         <div class="mb-3">
-            <label for="departamento" class="col-form-label">Municipio:</label>
-            <select name="municipio" id="municipio" class="form-select">
-                <option>Apopa</option>
-            </select>
+            <label for="id_municipio" class="col-form-label">Municipio:</label>
+            <select name="id_municipio" id="id_municipio" class="form-select">
+                @foreach ($municipios as $municipio)
+                    <option @selected( $lugares->id_municipio == $municipio->id ) value="{{ $municipio->id}}">{{$municipio->municipio}}</option>    
+                @endforeach
+            </select>       
         </div>
+
         <button type="submit" class="btn btn-success mt-4">Modificar</button>
         <a href="{{route('lugares.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
     </form>

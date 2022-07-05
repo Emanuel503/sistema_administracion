@@ -82,7 +82,6 @@
                         <div class="mb-3">
                             <label for="id_departamento" class="col-form-label">Departamento:</label>
                             <select name="id_departamento" id="id_departamento" class="form-select">
-                                <option value="0">Selecciones un departamento</option>
                                 @foreach ($departamentos as $departamento)
                                     <option @selected( old('id_departamento') == $departamento->id ) value="{{ $departamento->id}}">{{$departamento->departamento}}</option>    
                                 @endforeach
@@ -92,8 +91,10 @@
                         <div class="mb-3">
                             <label for="id_municipio" class="col-form-label">Municipio:</label>
                             <select name="id_municipio" id="id_municipio" class="form-select">
-                                <option value="0">Selecciones un departamento</option>
-                            </select>
+                                @foreach ($municipios as $municipio)
+                                    <option @selected( old('id_municipio') == $municipio->id ) value="{{ $municipio->id}}">{{$municipio->municipio}}</option>    
+                                @endforeach
+                            </select>       
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -119,25 +120,6 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 }
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function(){
-            var municipio = $('#id_municipio');
-            $('#id_departamento').change(function(){
-            var id_departamento = $(this).val();        
-
-                $.ajax({
-                data: {id_departamento:id_departamento}, 
-                dataType: 'html', 
-                type: 'POST', 
-                url: 'get_municipios', 
-
-                }).done(function(data){   
-                    municipio.html(data);       
-                });      
             });
         });
     </script>

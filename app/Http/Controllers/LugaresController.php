@@ -6,21 +6,10 @@ use App\Models\Departamentos;
 use App\Models\Lugares;
 use App\Models\Municipios;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Exception;
 
 class LugaresController extends Controller
 {
-    public function get_municipios(){
-        $id_departamento = filter_input(INPUT_POST, 'id_departamento'); 
-
-        $municipios = DB::select("SELECT * FROM municipios WHERE id_departamento = ?",[$id_departamento,]);
-
-        foreach($municipios as $municipio){
-            echo '<option value"'.$municipio->id.'">'.$municipio->municipio.'</option>';
-        }
-    }
-
     public function index()
     {
         $lugares = Lugares::all();
@@ -50,15 +39,15 @@ class LugaresController extends Controller
         $request->validate([
             'nombre' => 'required|min:3',
             'codigo' => 'required|numeric|unique:lugares,codigo,',
-            'departamento' => 'required',
-            'municipio' => 'required',
+            'id_departamento' => 'required',
+            'id_municipio' => 'required',
         ]);
 
         $lugar = new Lugares();
         $lugar->nombre = $request->nombre;
         $lugar->codigo = $request->codigo;
-        $lugar->departamento = $request->departamento;
-        $lugar->municipio = $request->municipio;
+        $lugar->id_departamento = $request->id_departamento;
+        $lugar->id_municipio = $request->id_municipio;
 
         $lugar->save();
 
@@ -70,15 +59,15 @@ class LugaresController extends Controller
         $request->validate([
             'nombre' => 'required|min:3',
             'codigo' => 'required|numeric|unique:lugares,codigo, ' . $id,
-            'departamento' => 'required',
-            'municipio' => 'required',
+            'id_departamento' => 'required',
+            'id_municipio' => 'required',
         ]);
 
         $lugar = Lugares::find($id);
         $lugar->nombre = $request->nombre;
         $lugar->codigo = $request->codigo;
-        $lugar->departamento = $request->departamento;
-        $lugar->municipio = $request->municipio;
+        $lugar->id_departamento = $request->id_departamento;
+        $lugar->id_municipio = $request->id_municipio;
 
         $lugar->save();
 
