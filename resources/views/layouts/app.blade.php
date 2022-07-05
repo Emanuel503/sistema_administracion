@@ -85,6 +85,7 @@
     @yield('js-fullcalendar')
     @yield('js-data-table')
     @yield('js-solicitud-transporte')
+    @yield('js-lugares')
 </body>
 
 </html>

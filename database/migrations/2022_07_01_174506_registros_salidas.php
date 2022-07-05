@@ -22,6 +22,9 @@ return new class extends Migration
             $table->time('hora_inicio');
             $table->time('hora_final');
             $table->string('objetivo');
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
         });
     }

@@ -68,6 +68,9 @@ class RegistrosSalidasController extends Controller
         $salidas->hora_inicio = $request->hora_inicio;
         $salidas->hora_final = $request->hora_final;
         $salidas->objetivo = $request->objetivo;
+        $salidas->title = "Registro de salida";
+        $salidas->start = $request->fecha . ' ' . $request->hora_inicio;;
+        $salidas->end = $request->fecha . ' ' . $request->hora_final;
 
         $salidas->save();
 
@@ -98,6 +101,8 @@ class RegistrosSalidasController extends Controller
         $salidas->hora_inicio = $request->hora_inicio;
         $salidas->hora_final = $request->hora_final;
         $salidas->objetivo = $request->objetivo;
+        $salidas->start = $request->fecha . ' ' . $request->hora_inicio;;
+        $salidas->end = $request->fecha . ' ' . $request->hora_final;
         $salidas->save();
 
         return redirect()->route('registros-salida.index')->with('success', 'Registro de salida actualizada correctamente');

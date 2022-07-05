@@ -124,3 +124,7 @@
         });
     </script>
 @endsection
+
+@section('js-lugares')
+    
+@endsection
