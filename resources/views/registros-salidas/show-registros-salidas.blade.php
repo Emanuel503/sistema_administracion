@@ -9,15 +9,6 @@
         <label for="id_lugar" class="col-form-label">Lugar:</label>
         <input class="form-control" name="id_lugar" id="id_lugar" value="{{ $salidas->lugar->nombre }}" readonly>
     </div>
-    <div class="mb-3">
-        <label for="departamento" class="col-form-label">Departamento:</label>
-        <input type="text" class="form-control" name="departamento" id="departamento" value="{{ $salidas->lugar->departamento}}" readonly>
-    </div>
-
-    <div class="mb-3">
-        <label for="municipio" class="col-form-label">Municipio:</label>
-        <input type="text" class="form-control" name="municipio" id="municipio" value="{{ $salidas->lugar->municipio}}" readonly>
-    </div>
 
     <div class="mb-3">
         <label for="usuario" class="col-form-label">Usuario:</label>

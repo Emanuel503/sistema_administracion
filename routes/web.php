@@ -28,4 +28,5 @@ Route::resource('/transporte', TransporteController::class)->middleware('auth');
 Route::resource('/solicitud-combustible', SolicitudCombustibleController::class)->middleware('auth');
 Route::resource('/registros-salida', RegistrosSalidasController::class)->middleware('auth');
 Route::get('/calendario', [App\Http\Controllers\CalendarioController::class, 'calendar']);
-Route::post('/calendario/edit/{id}', [App\Http\Controllers\CalendarioController::class, 'edit']);
+Route::post('/calendario/actividad/{id}', [App\Http\Controllers\CalendarioController::class, 'actividad']);
+Route::post('/calendario/salida/{id}', [App\Http\Controllers\CalendarioController::class, 'salida']);

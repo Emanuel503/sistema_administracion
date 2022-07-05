@@ -15,9 +15,15 @@ class CalendarioController extends Controller
         return response()->json($datos);
     }
 
-    public function edit($id)
+    public function actividad($id)
     {
         $actividades = Actividades::find($id);
         return response()->json($actividades);
+    }
+
+    public function salida($id)
+    {
+        $salidas = RegistrosSalidas::find($id);
+        return response()->json($salidas);
     }
 }

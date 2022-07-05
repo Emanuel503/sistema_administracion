@@ -76,7 +76,7 @@
         <input type="text" class="form-control" name="fecha_modificacion" id="fecha_modificacion" value="{{$actividades->updated_at}}" readonly>
     </div>
 
-    @if ($actividad->id_usuario == Auth::user()->id)
+    @if ($actividades->id_usuario == Auth::user()->id)
         <form action="{{ route('actividades.destroy' , ['actividade' => $actividades->id]) }}" method="POST">
             @method('DELETE')
             @csrf

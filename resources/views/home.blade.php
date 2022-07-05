@@ -20,7 +20,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" name="formulario">
+                <form action="" name="formularioActividad">
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <input type="hidden" name="id" id="id" class="form-control" readonly>
@@ -48,26 +48,41 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a href="#" rel="nofollow" id="enlace" class="btn btn-primary">Ver más detalles</a>
+                <a href="#" rel="nofollow" id="enlaceActividad" class="btn btn-primary">Ver más detalles</a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
-
-<div class="modal fade" id="salida" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="salida" tabindex="-1" aria-labelledby="salidaLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registro de salida</h5>
+                <h5 class="modal-title" id="salidaLabel">Registro de salida</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" name="formulario2">
+                <form action="" name="formularioSalida">
                     {!! csrf_field() !!}
                     <div class="form-group">
                         <input type="hidden" name="id" id="id" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="form-label">Titulo:</label>
+                        <input type="text" name="title" id="title" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha" class="form-label">Fecha:</label>
+                        <input type="text" name="fecha" id="fecha" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora_inicio" class="form-label">Hora de inicio:</label>
+                        <input type="text" name="hora_inicio" id="hora_inicio" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora_final" class="form-label">Hora final:</label>
+                        <input type="text" name="hora_final" id="hora_final" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="objetivo" class="form-label">Objetivo:</label>
@@ -76,7 +91,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <a href="#" rel="nofollow" id="enlace" class="btn btn-primary">Ver más detalles</a>
+                <a href="#" rel="nofollow" id="enlaceSalida" class="btn btn-primary">Ver más detalles</a>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>

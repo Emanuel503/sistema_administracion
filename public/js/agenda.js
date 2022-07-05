@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    //var formulario = document.querySelector("form");
-
     var loc = window.location;
     var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
     var $ruta = loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
@@ -21,36 +19,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
         events: $ruta + "calendario",
 
-        dateClick: function (info) {
-            $("#actividad").modal("show");
-        },
-
         eventClick: function (info) {
-            var actividad = info.event;
-            console.log(actividad);
 
-            axios.post($ruta + "calendario/edit/" + info.event.id).
+            if(info.event.title == "Registro de salida"){
+                $("#salida").modal("show");
+                axios.post($ruta + "calendario/salida/" + info.event.id).
                 then(
                     (respuesta) => {
-                        document.formulario.id.value = respuesta.data.id;
-                        document.formulario.title.value = respuesta.data.title;
-                        document.formulario.fecha.value = respuesta.data.fecha_inicio + ' - ' + respuesta.data.fecha_finalizacion;
-                        document.formulario.hora.value = respuesta.data.hora_inicio + ' - ' + respuesta.data.hora_finalizacion;
-                        document.formulario.objetivo.value = respuesta.data.objetivo;
-                        document.formulario.observaciones.value = respuesta.data.observaciones;
-
-                        document.getElementById('enlace').setAttribute('href', $ruta + 'actividades/' + respuesta.data.id);
-
-                        //console.log(respuesta.data.hora_inicio);
-                        $("#actividad").modal("show");
-                    }
-                ).catch(
-                    error => {
-                        if (error.response) {
-                            console.log(error.response.data);
-                        }
+                        document.formularioSalida.id.value = respuesta.data.id;
+                        document.formularioSalida.title.value = respuesta.data.title;
+                        document.formularioSalida.fecha.value = respuesta.data.fecha;
+                        document.formularioSalida.hora_inicio.value = respuesta.data.hora_inicio;
+                        document.formularioSalida.hora_final.value = respuesta.data.hora_final;
+                        document.formularioSalida.objetivo.value = respuesta.data.objetivo;
+                        document.getElementById('enlaceSalida').setAttribute('href', $ruta + 'registros-salida/' + respuesta.data.id);
                     }
                 )
+            }else{
+                $("#actividad").modal("show");
+                axios.post($ruta + "calendario/actividad/" + info.event.id).
+                then(
+                    (respuesta) => {
+                        document.formularioActividad.id.value = respuesta.data.id;
+                        document.formularioActividad.title.value = respuesta.data.title;
+                        document.formularioActividad.fecha.value = respuesta.data.fecha_inicio + ' - ' + respuesta.data.fecha_finalizacion;
+                        document.formularioActividad.hora.value = respuesta.data.hora_inicio + ' - ' + respuesta.data.hora_finalizacion;
+                        document.formularioActividad.objetivo.value = respuesta.data.objetivo;
+                        document.formularioActividad.observaciones.value = respuesta.data.observaciones;
+                        document.getElementById('enlaceActividad').setAttribute('href', $ruta + 'actividades/' + respuesta.data.id);
+                    }
+                )
+            }
         }
     });
     calendar.render();
