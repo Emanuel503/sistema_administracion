@@ -86,6 +86,7 @@
     @yield('js-data-table')
     @yield('js-solicitud-transporte')
     @yield('js-lugares')
+    @yield('js-alert-delete')
 </body>
 
 </html>
