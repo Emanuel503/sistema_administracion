@@ -94,6 +94,13 @@
                             <label for="km" class="col-form-label">Kilometraje:</label>
                             <input type="number" min="0" class="form-control" name="km" id="km" value="{{ old('km') }}" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="tipo_combustible" class="col-form-label">Tipo de combustible:</label>
+                            <select class="form-select" name="tipo_combustible" id="tipo_combustible">
+                                <option value="Gasolina">Gasolina</option>
+                                <option value="Diesel">Diesel</option>
+                            </select>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -36,6 +36,11 @@
     </div>
 
     <div class="mb-3">
+        <label for="tipo_combustible" class="col-form-label">Tipo de combustible:</label>
+        <input type="text" class="form-control" name="tipo_combustible" id="tipo_combustible" value="{{$vehiculos->tipo_combustible}}" readonly>
+    </div>
+
+    <div class="mb-3">
         <label for="fecha_registro" class="col-form-label">Fecha de registro:</label>
         <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$vehiculos->created_at}}" readonly>
     </div>

@@ -34,7 +34,8 @@ class VehiculosController extends Controller
             'modelo' => 'required|min:2',
             'color' => 'required|min:2',
             'year' => 'required|numeric|min:1000',
-            'km' => 'required|numeric|min:0'
+            'km' => 'required|numeric|min:0',
+            'tipo_combustible' => 'required'
         ]);
 
         $vehiculos = new Vehiculos();
@@ -44,6 +45,7 @@ class VehiculosController extends Controller
         $vehiculos->color = $request->color;
         $vehiculos->year = $request->year;
         $vehiculos->kilometraje = $request->km;
+        $vehiculos->tipo_combustible = $request->tipo_combustible;
 
         $vehiculos->save();
 
@@ -58,7 +60,8 @@ class VehiculosController extends Controller
             'modelo' => 'required|min:2',
             'color' => 'required|min:2',
             'year' => 'required|numeric|min:1000',
-            'km' => 'required|numeric|min:0'
+            'km' => 'required|numeric|min:0',
+            'tipo_combustible' => 'required'
         ]);
 
         $vehiculos = Vehiculos::find($id);
@@ -68,6 +71,8 @@ class VehiculosController extends Controller
         $vehiculos->color = $request->color;
         $vehiculos->year = $request->year;
         $vehiculos->kilometraje = $request->km;
+        $vehiculos->tipo_combustible = $request->tipo_combustible;
+
         $vehiculos->save();
 
         return redirect()->route('vehiculos.index')->with('success', 'Vehiculo actualizado correctamente');

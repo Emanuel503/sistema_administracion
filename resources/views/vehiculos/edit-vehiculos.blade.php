@@ -49,6 +49,14 @@
             <input type="number" min="0" class="form-control" name="km" id="km" value="{{$vehiculos->kilometraje}}" required>
         </div>
 
+        <div class="mb-3">
+            <label for="tipo_combustible" class="col-form-label">Tipo de combustible:</label>
+            <select class="form-select" name="tipo_combustible" id="tipo_combustible">
+                <option @selected($vehiculos->tipo_combustible == "Gasolina") value="Gasolina">Gasolina</option>
+                <option @selected($vehiculos->tipo_combustible == "Diesel") value="Diesel">Diesel</option>
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-success mt-4">Modificar</button>
         <a href="{{route('vehiculos.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
     </form>

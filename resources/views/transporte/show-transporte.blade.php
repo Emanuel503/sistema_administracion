@@ -4,6 +4,8 @@
 
     <h3 class="my-4">Detalles de transporte</h3>
 
+    <a target="_blank" class="btn btn-danger float-end" href="{{route('transporte.pdf', ['id' => $transportes->id])}}">PDF</a>
+
     <a class="btn btn-outline-secondary mb-4" href="{{ route('transporte.index')}}">Regresar</a>
 
     <h5>Datos de la hoja de Control de trasnporte</h5>

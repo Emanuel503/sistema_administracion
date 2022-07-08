@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('color');
             $table->string('year');
             $table->string('kilometraje');
+            $table->string('tipo_combustible');
             $table->timestamps();
         });
     }

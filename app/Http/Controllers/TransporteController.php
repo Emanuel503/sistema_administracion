@@ -9,9 +9,29 @@ use App\Models\User;
 use App\Models\Vehiculos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;    
 
 class TransporteController extends Controller
 {
+
+    public function pdf($id){
+
+        $pdf = App::make('dompdf.wrapper');
+        $dependencias = DependenciasTransporte::all();
+        $usuarios = User::all();
+        $vehiculos = Vehiculos::all();
+        $lugares = Lugares::all();
+
+        if($id == 0){
+            $transportes = Transporte::all();
+            $pdf->loadView('transporte.all-pdf', ['dependencias' => $dependencias, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'transportes' => $transportes, 'lugares' => $lugares]);
+        }else{
+            $transportes = Transporte::find($id);
+            $pdf->loadView('transporte.one-pdf', ['dependencias' => $dependencias, 'usuarios' => $usuarios, 'vehiculos' => $vehiculos, 'transportes' => $transportes, 'lugares' => $lugares]);
+        }
+        return $pdf->stream();
+    }
+
     public function comprobarHoras($hora_salida, $hora_destino)
     {
         if (strtotime($hora_destino) <= strtotime($hora_salida)) {
@@ -113,6 +133,7 @@ class TransporteController extends Controller
         $transporte->combustible = $request->combustible;
         $transporte->tipo_combustible = $request->tipo_combustible;
         $transporte->pasajero = $request->pasajero;
+        $transporte->correlativo = "";
 
         $transporte->save();
         DB::update("UPDATE vehiculos SET kilometraje= ? WHERE id = ?", [$request->km_destino, $request->id_placa]);

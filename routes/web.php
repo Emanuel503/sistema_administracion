@@ -24,7 +24,10 @@ Route::resource('/solicitudes-transporte', SolicitudesTransporteController::clas
 Route::resource('/dependencias-transporte', DependenciasTransporteController::class)->middleware('auth');
 Route::resource('/vehiculos', VehiculosController::class)->middleware('auth');
 Route::resource('/lugares', LugaresController::class)->middleware('auth');
+
+Route::get('/transporte/pdf/{id}', [App\Http\Controllers\TransporteController::class, 'pdf'])->name('transporte.pdf')->middleware('auth');
 Route::resource('/transporte', TransporteController::class)->middleware('auth');
+
 Route::resource('/solicitud-combustible', SolicitudCombustibleController::class)->middleware('auth');
 Route::resource('/registros-salida', RegistrosSalidasController::class)->middleware('auth');
 Route::get('/calendario', [App\Http\Controllers\CalendarioController::class, 'calendar']);
