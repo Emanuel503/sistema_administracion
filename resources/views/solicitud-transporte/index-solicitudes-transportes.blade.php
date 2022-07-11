@@ -51,7 +51,8 @@
                                         @method('DELETE')
                                         @csrf
                                         <a class="btn btn-success btn-sm" href="{{ route('solicitudes-transporte.edit' , ['solicitudes_transporte' => $solicitud->id])}}">Modificar</a>
-                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                        <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                                     </form>
                                 @endif
                             </div>
@@ -142,6 +143,29 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 }
             });
+        });
+    </script>
+@endsection
+
+@section('js-alert-delete')
+    <script src="{{ asset('js/alert-delete.js') }}"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `¿Seguro que desea borrar este registro?`,
+                    text: "Si elimina este registro no se podra recuperar.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
         });
     </script>
 @endsection

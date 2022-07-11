@@ -17,13 +17,12 @@
             <table id="transporte" class="table table-striped table-hover table-bordered table-sm shadow">
                 <thead>
                     <tr class="table-dark">
+                        <th>Numero</th>
                         <th>Fecha</th>
                         <th>Conductor</th>
                         <th>Pasajero</th>
                         <th>Lugar destino</th>
                         <th>Vehiculo</th>
-                        <th>Km salida</th>
-                        <th>Km llegada</th>
                         <th>Distancia</th>
                         <th>Combustible</th>
                         <th>Opciones</th>
@@ -32,13 +31,12 @@
                 <tbody>
                     @foreach ($transportes->reverse() as $transporte)
                     <tr>
+                        <td>{{$transporte->correlativo}}</td>
                         <td>{{$transporte->fecha}}</td>
                         <td>{{$transporte->conductor->nombres}} {{$transporte->conductor->apellidos}}</td>
                         <td>{{$transporte->pasajeros->nombres}} {{$transporte->pasajeros->apellidos}}</td>
                         <td>{{$transporte->lugar_d->nombre}}</td>
                         <td>{{$transporte->vehiculo->placa}}</td>
-                        <td>{{$transporte->km_salida}}</td>
-                        <td>{{$transporte->km_destino}}</td>
                         <td>{{$transporte->distancia_recorrida}} km</td>
                         <td>{{$transporte->combustible}} gal.</td>
                         <td>
@@ -48,7 +46,8 @@
                                     @method('DELETE')
                                     @csrf
                                     <a class="btn btn-success btn-sm" href="{{ route('transporte.edit' , ['transporte' => $transporte->id])}}">Modificar</a>
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
+                                    <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                                 </form>
                             </div>
                         </td>
@@ -203,6 +202,29 @@
                     [0, 'desc']
                 ],
             });
+        });
+    </script>
+@endsection
+
+@section('js-alert-delete')
+    <script src="{{ asset('js/alert-delete.js') }}"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `¿Seguro que desea borrar este registro?`,
+                    text: "Si elimina este registro no se podra recuperar.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
         });
     </script>
 @endsection

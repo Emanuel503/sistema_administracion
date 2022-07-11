@@ -42,7 +42,7 @@ die();
                             <a class="btn btn-info btn-sm" href="{{ route('salas.show' , ['sala' => $sala->id])}}">Ver</a>
                             <a class="btn btn-success btn-sm" href="{{ route('salas.edit' , ['sala' => $sala->id])}}">Modificar</a>
                             <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
-                            <button type="submit" class="btn btn btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                         </div>
                     </form>
                 </td>
@@ -96,4 +96,27 @@ die();
         });
     });
 </script>
+@endsection
+
+@section('js-alert-delete')
+    <script src="{{ asset('js/alert-delete.js') }}"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `¿Seguro que desea borrar este registro?`,
+                    text: "Si elimina este registro no se podra recuperar.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
 @endsection

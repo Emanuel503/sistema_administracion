@@ -48,7 +48,7 @@ die();
                             <a class="btn btn-info btn-sm" href="{{ route('lugares.show' , ['lugare' => $lugar->id])}}">Ver</a>
                             <a class="btn btn-success btn-sm" href="{{ route('lugares.edit' , ['lugare' => $lugar->id])}}">Modificar</a>
                             <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
-                            <button type="submit" class="btn btn btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                         </div>
                     </form>
                 </td>
@@ -109,68 +109,64 @@ die();
     </div>
 </div>
 
-<script>
-    document.getElementById("id_departamento").onchange = function() {
+    <script>
+        document.getElementById("id_departamento").onchange = function() {
 
-        let selector = document.getElementById('id_departamento');
-        let value = selector[selector.selectedIndex].value;
+            let selector = document.getElementById('id_departamento');
+            let value = selector[selector.selectedIndex].value;
 
-        let nodeList = document.getElementById("id_municipio").querySelectorAll("option");
+            let nodeList = document.getElementById("id_municipio").querySelectorAll("option");
 
-        nodeList.forEach(function(option) {
+            nodeList.forEach(function(option) {
 
-            if (option.classList.contains(value)) {
-                option.style.display = "block";
-            } else {
-                option.style.display = "none";
-            }
+                if (option.classList.contains(value)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
 
-        });
-    }
-</script>
+            });
+        }
+    </script>
 @endsection
 
 @section('js-data-table')
-<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('#lugares tbody').on('click', 'tr', function() {
-            $(this).toggleClass('selected');
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#lugares tbody').on('click', 'tr', function() {
+                $(this).toggleClass('selected');
+            });
+
+            $('#lugares').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
+            });
         });
-
-        $('#lugares').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-            }
-        });
-    });
-</script>
-@endsection
-
-@section('js-lugares')
-
+    </script>
 @endsection
 
 @section('js-alert-delete')
-<script src="{{ asset('js/alert-delete.js') }}"></script>
-<script type="text/javascript">
-    $('.show_confirm').click(function(event) {
-        var form = $(this).closest("form");
-        var name = $(this).data("name");
-        event.preventDefault();
-        swal({
-                title: `¿Seguro que desea borrar este registro?`,
-                text: "Si elimina este registro no se podra recuperar.",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    form.submit();
-                }
-            });
-    });
-</script>
+    <script src="{{ asset('js/alert-delete.js') }}"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `¿Seguro que desea borrar este registro?`,
+                    text: "Si elimina este registro no se podra recuperar.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
 @endsection

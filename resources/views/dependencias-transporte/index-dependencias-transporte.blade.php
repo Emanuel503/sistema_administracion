@@ -42,7 +42,7 @@ die();
                             <a class="btn btn-info btn-sm" href="{{ route('dependencias-transporte.show' , ['dependencias_transporte' => $dependencia->id])}}">Ver</a>
                             <a class="btn btn-success btn-sm" href="{{ route('dependencias-transporte.edit' , ['dependencias_transporte' => $dependencia->id])}}">Modificar</a>
                             <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
-                            <button type="submit" class="btn btn btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
+                            <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                         </div>
                     </form>
                 </td>

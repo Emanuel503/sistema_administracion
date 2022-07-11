@@ -82,7 +82,7 @@
     @csrf
     <a class="btn btn-success" href="{{ route('actividades.edit' , ['actividade' => $actividades->id])}}">Modificar</a>
     <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
-                            <button type="submit" class="btn btn btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
+    <button type="submit" class="btn btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
 </form>
 @endif
 @endsection
