@@ -84,7 +84,7 @@
             margin-bottom: 0;
         }
         .leyenda{
-            font-size: 10px;
+            font-size: 8px;
             position: absolute;
             float: right;
             margin-top: 0;
@@ -102,7 +102,7 @@
 @endphp
 <body>
     <center><img src="{{env('APP_URL')}}/sistema_disam/public/img/logo.jpg"></center>
-    <h4 class="memorandum">MEMORANDUM </h4>
+    <h4 class="memorandum">MEMORANDUM {{$transportes->correlativo}}</h4>
     
     <p class>Para: Ing. Oscar Vargas</p>
     <P class="fecha">Fecha: {{$fechaActual}}</P>
@@ -114,7 +114,7 @@
     <p class="texto">
         Por este medio, autorizo la salida del vehículo Placas: {{$transportes->vehiculo->placa}}, combustible tipo: {{$transportes->vehiculo->tipo_combustible}},
         el cuál sera conducido por el Sr. {{$transportes->conductor->nombres}} {{$transportes->conductor->apellidos}}, con destino a: {{$transportes->lugar_s->nombre}} el día: {{$transportes->fecha}}, Hora salida: 
-        {{$transportes->hora_salida}}, objetivo de la Misión:
+        {{$transportes->hora_salida}}, objetivo de la Misión: {{$transportes->objetivo}}
     </p>
     <div class="atte">
         <label>Atte:</label>

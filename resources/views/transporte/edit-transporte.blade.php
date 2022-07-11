@@ -115,6 +115,12 @@
                 @endforeach
             </select>
         </div>
+
+        <div class="mb-3">
+            <label for="objetivo" class="col-form-label">Objetivo:</label>
+            <textarea required class="form-control" name="objetivo" id="objetivo">{{$transportes->objetivo}}</textarea>
+        </div>
+
         <button type="submit" class="btn btn-success mt-4">Modificar</button>
         <a href="{{route('transporte.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
     </form>

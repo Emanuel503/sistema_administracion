@@ -170,6 +170,11 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="objetivo" class="col-form-label">Objetivo:</label>
+                            <textarea required class="form-control" name="objetivo" id="objetivo">{{old('objetivo')}}</textarea>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

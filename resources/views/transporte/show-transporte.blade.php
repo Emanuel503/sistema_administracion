@@ -82,6 +82,16 @@
     </div>
 
     <div class="mb-3">
+        <label for="objetivo" class="col-form-label">Objetivo:</label>
+        <textarea readonly class="form-control" name="objetivo" id="objetivo">{{$transportes->objetivo}}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="numero" class="col-form-label">Numero:</label>
+        <textarea readonly class="form-control" name="numero" id="numero">{{$transportes->correlativo}}</textarea>
+    </div>
+
+    <div class="mb-3">
         <label for="fecha_registro" class="col-form-label">Fecha de registro:</label>
         <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$transportes->created_at}}" readonly>
     </div>

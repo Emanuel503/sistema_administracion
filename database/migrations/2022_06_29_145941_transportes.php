@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('combustible');
             $table->string('tipo_combustible');
             $table->foreignId('pasajero')->constrained('users', 'id');
+            $table->string('objetivo');
             $table->string('correlativo');
             $table->timestamps();
         });

@@ -89,7 +89,8 @@ class TransporteController extends Controller
             //Otros            
             'combustible' => 'required|numeric|min:0',
             'tipo_combustible' => 'required',
-            'pasajero' => 'required'
+            'pasajero' => 'required',
+            'objetivo' => 'required|min:2'
         ]);
 
         $validacionKm = DB::select(
@@ -133,9 +134,23 @@ class TransporteController extends Controller
         $transporte->combustible = $request->combustible;
         $transporte->tipo_combustible = $request->tipo_combustible;
         $transporte->pasajero = $request->pasajero;
-        $transporte->correlativo = "";
+        $transporte->objetivo = $request->objetivo;
+       
+        $añoActual = date('Y');
+        $registros =  DB::select("SELECT correlativo FROM transportes");
+        $contador = 0;
+        foreach($registros as $registro){
+            $numero = explode("-", $registro->correlativo);
+
+            if($añoActual == $numero[0]){
+                $contador++;
+            }
+        }
+        $contador++;
+        $transporte->correlativo = $añoActual . "-".$contador."-ADMON";
 
         $transporte->save();
+
         DB::update("UPDATE vehiculos SET kilometraje= ? WHERE id = ?", [$request->km_destino, $request->id_placa]);
 
         return redirect()->route('transporte.index')->with('success', 'Transporte guardado correctamente.');
@@ -159,7 +174,8 @@ class TransporteController extends Controller
             //Otros
             'combustible' => 'required|numeric|min:0',
             'tipo_combustible' => 'required',
-            'pasajero' => 'required'
+            'pasajero' => 'required',
+            'objetivo' => 'required|min:2'
         ]);
 
         DB::update("UPDATE vehiculos SET kilometraje= ? WHERE id = ?", [$request->km_salida, $request->id_placa]);
@@ -206,6 +222,7 @@ class TransporteController extends Controller
         $transporte->combustible = $request->combustible;
         $transporte->tipo_combustible = $request->tipo_combustible;
         $transporte->pasajero = $request->pasajero;
+        $transporte->objetivo = $request->objetivo;
 
         $transporte->save();
         DB::update("UPDATE vehiculos SET kilometraje= ? WHERE id = ?", [$request->km_destino, $request->id_placa]);
