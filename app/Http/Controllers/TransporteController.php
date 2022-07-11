@@ -136,18 +136,22 @@ class TransporteController extends Controller
         $transporte->pasajero = $request->pasajero;
         $transporte->objetivo = $request->objetivo;
        
-        $añoActual = date('Y');
+        $yearActual = date('Y');
         $registros =  DB::select("SELECT correlativo FROM transportes");
         $contador = 0;
-        foreach($registros as $registro){
-            $numero = explode("-", $registro->correlativo);
 
-            if($añoActual == $numero[0]){
-                $contador++;
+        foreach($registros as $registro){
+            list($yearRegistro, $numero, $admon) = explode("-", $registro->correlativo);
+            if($yearActual == $yearRegistro){
+
+                if($numero > $contador){
+                    $contador = $numero;
+                }
             }
         }
+
         $contador++;
-        $transporte->correlativo = $añoActual . "-".$contador."-ADMON";
+        $transporte->correlativo = $yearActual . "-".$contador."-ADMON";
 
         $transporte->save();
 
