@@ -34,6 +34,7 @@ return new class extends Migration
             $table->foreignId('pasajero')->constrained('users', 'id');
             $table->string('objetivo');
             $table->string('correlativo');
+            $table->string('nivel_tanque');
             $table->timestamps();
         });
     }

@@ -36,4 +36,9 @@ class Lugares extends Model
     {
         return $this->hasMany(RegistrosSalidas::class);
     }
+
+    public function Transporte()
+    {
+        return $this->hasMany(Transporte::class);
+    }
 }

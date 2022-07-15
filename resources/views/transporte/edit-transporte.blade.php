@@ -86,7 +86,7 @@
             <label for="lugar_destino" class="col-form-label">Lugar destino:</label>
             <select id="lugar_destino" class="form-select" name="lugar_destino" value="{{$transportes->lugar_destino}}" required>
                 @foreach ($lugares as $lugar )
-                    <option value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+                    <option @selected($transportes->lugar_destino == $lugar->id ) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
                 @endforeach
             </select>
         </div>
@@ -101,8 +101,8 @@
         <div class="mb-3">
             <label for="combustible" class="col-form-label">Combustible GLS de</label>
             <select name="tipo_combustible" id="tipo_combustible" class="form-select">
-                <option value="Salud">Salud</option>
-                <option value="Otros">Otros</option>
+                <option @selected($transportes->tipo_combustible == "Salud") value="Salud">Salud</option>
+                <option @selected($transportes->tipo_combustible == "Otros") value="Otros">Otros</option>
             </select>
             <input type="number" min="0" class="form-control" name="combustible" id="combustible" value="{{$transportes->combustible}}" required>
         </div>
@@ -119,6 +119,15 @@
         <div class="mb-3">
             <label for="objetivo" class="col-form-label">Objetivo:</label>
             <textarea required class="form-control" name="objetivo" id="objetivo">{{$transportes->objetivo}}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="nivel_tanque" class="col-form-label">Nivel en tanque:</label>
+            <select id="nivel_tanque" class="form-select" name="nivel_tanque">
+                <option @selected($transportes->nivel_tanque == "3/4") value="3/4">3/4</option>
+                <option @selected($transportes->nivel_tanque == "1/2") value="1/2">1/2</option>
+                <option @selected($transportes->nivel_tanque == "1/4") value="1/4">1/4</option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-success mt-4">Modificar</button>

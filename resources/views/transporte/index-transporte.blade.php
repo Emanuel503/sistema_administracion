@@ -174,6 +174,15 @@
                             <label for="objetivo" class="col-form-label">Objetivo:</label>
                             <textarea required class="form-control" name="objetivo" id="objetivo">{{old('objetivo')}}</textarea>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="nivel_tanque" class="col-form-label">Nivel en tanque:</label>
+                            <select id="nivel_tanque" class="form-select" name="nivel_tanque">
+                                <option value="3/4">3/4</option>
+                                <option value="1/2">1/2</option>
+                                <option value="1/4">1/4</option>
+                            </select>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

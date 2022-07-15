@@ -92,6 +92,11 @@
     </div>
 
     <div class="mb-3">
+        <label for="nivel_tanque" class="col-form-label">Nivel en tanque:</label>
+        <input readonly class="form-control" name="nivel_tanque" id="nivel_tanque" value="{{$transportes->nivel_tanque}}">
+    </div>
+
+    <div class="mb-3">
         <label for="fecha_registro" class="col-form-label">Fecha de registro:</label>
         <input type="text" class="form-control" name="fecha_registro" id="fecha_registro" value="{{$transportes->created_at}}" readonly>
     </div>

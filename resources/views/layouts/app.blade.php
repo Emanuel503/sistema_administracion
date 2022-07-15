@@ -41,7 +41,7 @@
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ingreso de datos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{url('/actividades')}}">Actividades</a></li>
-                            <li><a class="dropdown-item" href="#"> Transporte &raquo; </a>
+                            <li><a class="dropdown-item" href=""> Transporte &raquo; </a>
                                 <ul class="submenu dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="{{route('solicitudes-transporte.index')}}">Solicitud de transporte</a></li>
                                     <li><a class="dropdown-item" href="{{route('transporte.index')}}">Control de transporte</a></li>
@@ -50,6 +50,13 @@
                             </li>
                             <li><a class="dropdown-item" href="{{route('solicitudes-sala.index')}}">Solicitudes de sala</a></li>
                             <li><a class="dropdown-item" href="{{route('registros-salida.index')}}">Registros de salida</a></li>
+                            <li><a class="dropdown-item" href="{{route('permisos.index')}}">Permisos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Reportes</a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="{{route('transporte.reporte')}}">Control de transporte</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -6,6 +6,7 @@ use App\Http\Controllers\SolicitudesSalasController;
 use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\DependenciasTransporteController;
 use App\Http\Controllers\LugaresController;
+use App\Http\Controllers\Permisos;
 use App\Http\Controllers\VehiculosController;
 use App\Http\Controllers\SalasController;
 use App\Http\Controllers\RegistrosSalidasController;
@@ -24,6 +25,10 @@ Route::resource('/solicitudes-transporte', SolicitudesTransporteController::clas
 Route::resource('/dependencias-transporte', DependenciasTransporteController::class)->middleware('auth');
 Route::resource('/vehiculos', VehiculosController::class)->middleware('auth');
 Route::resource('/lugares', LugaresController::class)->middleware('auth');
+Route::resource('/permisos', Permisos::class)->middleware('auth');
+
+Route::get('/transporte/reporte/', [App\Http\Controllers\TransporteController::class, 'reporte'])->name('transporte.reporte')->middleware('auth');
+Route::post('/transporte/reporte/', [App\Http\Controllers\TransporteController::class, 'vehiculoPdf'])->name('transporte.vehiculoPdf')->middleware('auth');
 
 Route::get('/transporte/pdf/{id}', [App\Http\Controllers\TransporteController::class, 'pdf'])->name('transporte.pdf')->middleware('auth');
 Route::resource('/transporte', TransporteController::class)->middleware('auth');

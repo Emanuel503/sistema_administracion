@@ -24,5 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AutorizacionesSeeder::class);
         $this->call(EstadosActividadesSeeder::class);
         $this->call(EstadosRegistrosSalidasSeeder::class);
+        $this->call(TipoPermisoSeeder::class);
+        $this->call(TiposCoordinacionesSeeder::class);
+        $this->call(MotivosPermisosSeeder::class);
     }
 }
