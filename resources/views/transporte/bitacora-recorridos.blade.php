@@ -13,10 +13,10 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content bg-secondary bg-opacity-25 shadow">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Complete los campos</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Generar reporte</h5>
             </div>
             <div class="modal-body">
-              <form action="{{route('transporte.vehiculoPdf')}}" method="POST">
+              <form action="{{route('transporte.bitacoraRecorridosPdf')}}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="id_dependencia" class="col-form-label">Dependencia de transporte:</label>

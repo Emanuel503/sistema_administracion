@@ -27,7 +27,7 @@
                     <li class="nav-item active"> <a class="nav-link" href="{{url('/home')}}">Agenda</a> </li>
                     @if ( Auth::user()->rol->id == "1")
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Catalogos</a>
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Catálogos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{route('users.index')}}">Usuarios</a></li>
                             <li><a class="dropdown-item" href="{{route('salas.index')}}">Salas</a></li>
@@ -40,7 +40,7 @@
                     <li class="nav-item dropdown dropdown-dark">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ingreso de datos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{url('/actividades')}}">Actividades</a></li>
+                            <li><a class="dropdown-item" href="{{route('actividades.index')}}">Actividades</a></li>
                             <li><a class="dropdown-item" href=""> Transporte &raquo; </a>
                                 <ul class="submenu dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="{{route('solicitudes-transporte.index')}}">Solicitud de transporte</a></li>
@@ -53,10 +53,16 @@
                             <li><a class="dropdown-item" href="{{route('permisos.index')}}">Permisos</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Reportes</a>
+
+                    <li class="nav-item dropdown dropdown-dark">
+                        <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown">Reportes</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{route('transporte.reporte')}}">Control de transporte</a></li>
+                            <li><a class="dropdown-item" href="">Control de Transporte &raquo; </a>
+                                <ul class="submenu dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="{{route('transporte.bitacoraRecorridos')}}">Bitacora de recorridos</a></li>
+                                    <li><a class="dropdown-item" href="{{route('transporte.comsumoCombustible')}}">Consumo de combustible</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>

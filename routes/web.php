@@ -26,13 +26,12 @@ Route::resource('/dependencias-transporte', DependenciasTransporteController::cl
 Route::resource('/vehiculos', VehiculosController::class)->middleware('auth');
 Route::resource('/lugares', LugaresController::class)->middleware('auth');
 Route::resource('/permisos', Permisos::class)->middleware('auth');
-
-Route::get('/transporte/reporte/', [App\Http\Controllers\TransporteController::class, 'reporte'])->name('transporte.reporte')->middleware('auth');
-Route::post('/transporte/reporte/', [App\Http\Controllers\TransporteController::class, 'vehiculoPdf'])->name('transporte.vehiculoPdf')->middleware('auth');
-
+Route::get('/transporte/comsumo-combustible/', [App\Http\Controllers\TransporteController::class, 'comsumoCombustible'])->name('transporte.comsumoCombustible')->middleware('auth');
+Route::post('/transporte/comsumo-combustible/', [App\Http\Controllers\TransporteController::class, 'comsumoCombustiblePdf'])->name('transporte.comsumoCombustiblePdf')->middleware('auth');
+Route::get('/transporte/bitacora-recorridos/', [App\Http\Controllers\TransporteController::class, 'bitacoraRecorridos'])->name('transporte.bitacoraRecorridos')->middleware('auth');
+Route::post('/transporte/bitacora-recorridos/', [App\Http\Controllers\TransporteController::class, 'bitacoraRecorridosPdf'])->name('transporte.bitacoraRecorridosPdf')->middleware('auth');
 Route::get('/transporte/pdf/{id}', [App\Http\Controllers\TransporteController::class, 'pdf'])->name('transporte.pdf')->middleware('auth');
 Route::resource('/transporte', TransporteController::class)->middleware('auth');
-
 Route::resource('/solicitud-combustible', SolicitudCombustibleController::class)->middleware('auth');
 Route::resource('/registros-salida', RegistrosSalidasController::class)->middleware('auth');
 Route::get('/calendario', [App\Http\Controllers\CalendarioController::class, 'calendar']);
