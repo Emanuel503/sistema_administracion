@@ -98,11 +98,11 @@ die();
 <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('#dependencia tbody').on('click', 'tr', function() {
+        $('#coordinador tbody').on('click', 'tr', function() {
             $(this).toggleClass('selected');
         });
 
-        $('#dependencia').DataTable({
+        $('#coordinador').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             }
