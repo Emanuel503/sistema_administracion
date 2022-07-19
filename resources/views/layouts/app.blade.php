@@ -29,7 +29,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Catálogos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{route('users.index')}}">Usuarios</a></li>
+                            <li><a class="dropdown-item" href="#">Usuarios &raquo;</a>
+                                <ul class="submenu dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="{{route('users.index')}}">Registrar usuarios</a></li>
+                                    <li><a class="dropdown-item" href="{{route('coordinadores.index')}}">Asignar coordinador</a></li>
+                                </ul>
+                            </li>
                             <li><a class="dropdown-item" href="{{route('salas.index')}}">Salas</a></li>
                             <li><a class="dropdown-item" href="{{route('lugares.index')}}">Lugares</a></li>
                             <li><a class="dropdown-item" href="{{route('vehiculos.index')}}">Vehiculos</a></li>
@@ -41,7 +46,7 @@
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Ingreso de datos</a>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{route('actividades.index')}}">Actividades</a></li>
-                            <li><a class="dropdown-item" href=""> Transporte &raquo; </a>
+                            <li><a class="dropdown-item" href="#"> Transporte &raquo; </a>
                                 <ul class="submenu dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="{{route('solicitudes-transporte.index')}}">Solicitud de transporte</a></li>
                                     <li><a class="dropdown-item" href="{{route('transporte.index')}}">Control de transporte</a></li>

@@ -4,15 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SolicitudesSalasController;
 use App\Http\Controllers\ActividadesController;
+use App\Http\Controllers\CoordinadoresController;
 use App\Http\Controllers\DependenciasTransporteController;
 use App\Http\Controllers\LugaresController;
 use App\Http\Controllers\Permisos;
+use App\Http\Controllers\PermisosController;
 use App\Http\Controllers\VehiculosController;
 use App\Http\Controllers\SalasController;
 use App\Http\Controllers\RegistrosSalidasController;
 use App\Http\Controllers\SolicitudesTransporteController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\SolicitudCombustibleController;
+use App\Models\Coordinadores;
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -25,7 +28,8 @@ Route::resource('/solicitudes-transporte', SolicitudesTransporteController::clas
 Route::resource('/dependencias-transporte', DependenciasTransporteController::class)->middleware('auth');
 Route::resource('/vehiculos', VehiculosController::class)->middleware('auth');
 Route::resource('/lugares', LugaresController::class)->middleware('auth');
-Route::resource('/permisos', Permisos::class)->middleware('auth');
+Route::resource('/permisos', PermisosController::class)->middleware('auth');
+Route::resource('/coordinadores', CoordinadoresController::class)->middleware('auth');
 Route::get('/transporte/comsumo-combustible/', [App\Http\Controllers\TransporteController::class, 'comsumoCombustible'])->name('transporte.comsumoCombustible')->middleware('auth');
 Route::post('/transporte/comsumo-combustible/', [App\Http\Controllers\TransporteController::class, 'comsumoCombustiblePdf'])->name('transporte.comsumoCombustiblePdf')->middleware('auth');
 Route::get('/transporte/bitacora-recorridos/', [App\Http\Controllers\TransporteController::class, 'bitacoraRecorridos'])->name('transporte.bitacoraRecorridos')->middleware('auth');
