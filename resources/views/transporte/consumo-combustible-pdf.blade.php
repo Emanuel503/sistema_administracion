@@ -46,7 +46,7 @@
             $total_km_salida =  $total_km_salida + $transporte->km_salida;
             $total_km_destino =  $total_km_destino + $transporte->km_destino;
             $total_km_recorrido = $total_km_recorrido + $transporte->distancia_recorrida;
-            $promedio_combustible = $total_km_recorrido / $total_combustible;
+            $promedio_combustible = number_format($total_km_recorrido / $total_combustible,2);
         }
     @endphp
 
