@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('id_dependencia')->constrained('dependencias', 'id');
             $table->foreignId('id_licencia')->constrained('tipos_permisos', 'id');
             $table->foreignId('id_motivo')->constrained('motivos_permisos', 'id');
-            $table->foreignId('id_usuario_autoriza')->constrained('users', 'id');
+            $table->foreignId('id_usuario_autoriza')->constrained('coordinadores', 'id_tecnico');
             $table->foreignId('id_estado')->constrained('estados_permisos', 'id');
             $table->foreignId('id_usuario_adiciono')->constrained('users', 'id');
             $table->date('fecha_entrada');

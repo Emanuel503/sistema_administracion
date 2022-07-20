@@ -1,10 +1,3 @@
-@php
-if (Auth::user()->rol->rol != "Administrador"){
-header("Location: home");
-die();
-}
-@endphp
-
 @extends('layouts.app')
 
 @section('content')
@@ -32,8 +25,8 @@ die();
     <div class="mb-3">
         <label for="dependencia" class="col-form-label">Dependencia:</label>
         <select id="dependencia" class="form-select" name="dependencia">
-            @foreach ($lugares as $lugar )
-            <option @selected($permisos->id_dependencia == $lugar->id ) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+            @foreach ($dependencias as $depen )
+            <option @selected($permisos->id_dependencia == $depen->id ) value="{{$depen->id}}">{{$depen->nombre}}</option>
             @endforeach
         </select>
     </div>
@@ -68,16 +61,6 @@ die();
     </div>
 
     <div class="mb-3">
-        <label for="usuario_adiciono" class="col-form-label">Usuario adiciono:</label>
-        <input type="text" class="form-control" name="usuario_adiciono" id="usuario_adiciono" value="{{$permisos->usuarioAdi->nombres}} {{$permisos->usuarioAdi->apellidos}}" readonly>
-    </div>
-
-    <div class="mb-3">
-        <label for="estado" class="col-form-label">Estado:</label>
-        <input type="text" class="form-control" name="estado" id="estado" value="{{$permisos->estado->estado}}" readonly>
-    </div>
-
-    <div class="mb-3">
         <label for="fecha_entrada" class="col-form-label">Fecha entrada:</label>
         <input type="date" class="form-control" name="fecha_entrada" id="fecha_entrada" value="{{$permisos->fecha_entrada}}" required>
     </div>
@@ -98,18 +81,18 @@ die();
     </div>
 
     <div class="mb-3">
-        <label for="dia" class="col-form-label">Día:</label>
-        <input type="text" class="form-control" name="dia" id="dia" value="{{$permisos->tiempo_dia}}" readonly>
+        <label for="tiempo_dia" class="col-form-label">Día:</label>
+        <input type="text" class="form-control" name="tiempo_dia" id="tiempo_dia" value="{{$permisos->tiempo_dia}}" required>
     </div>
 
     <div class="mb-3">
-        <label for="horas" class="col-form-label">Horas:</label>
-        <input type="text" class="form-control" name="horas" id="horas" value="{{$permisos->tiempo_horas}}" readonly>
+        <label for="tiempo_horas" class="col-form-label">Horas:</label>
+        <input type="text" class="form-control" name="tiempo_horas" id="tiempo_horas" value="{{$permisos->tiempo_horas}}" required>
     </div>
 
     <div class="mb-3">
-        <label for="minutos" class="col-form-label">Minutos:</label>
-        <input type="text" class="form-control" name="minutos" id="minutos" value="{{$permisos->tiempo_minutos}}" readonly>
+        <label for="tiempo_minutos" class="col-form-label">Minutos:</label>
+        <input type="text" class="form-control" name="tiempo_minutos" id="tiempo_minutos" value="{{$permisos->tiempo_minutos}}" required>
     </div>
 
     <div class="mb-3">
@@ -117,8 +100,23 @@ die();
         <input type="date" class="form-control" name="fecha_permiso" id="fecha_permiso" value="{{$permisos->fecha_permiso}}" required>
     </div>
 
+
+    <div class="mb-3">
+        <label for="estado" class="col-form-label">Estado:</label>
+        <select id="estado" class="form-select" name="estado">
+            @if ($permisos->id_usuario_autoriza != Auth::user()->id)
+            <option value="{{$permisos->estado->id}}">{{$permisos->estado->estado}}</option>
+            @else
+            @foreach ($estados as $estado)
+            <option @selected($permisos->id_estado == $estado->id) value="{{$estado->id}}">{{$estado->estado}}</option>
+            @endforeach
+            @endif
+        </select>
+    </div>
+
+
     <button type="submit" class="btn btn-success mt-4">Modificar</button>
-    <a href="{{route('lugares.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
+    <a href="{{route('permisos.index')}}" class="btn btn-secondary mt-4">Cancelar</a>
 </form>
 
 <script>

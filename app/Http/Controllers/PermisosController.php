@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coordinadores;
+use App\Models\Dependencias;
 use App\Models\EstadosPermisos;
 use App\Models\Lugares;
 use App\Models\MotivosPermisos;
@@ -20,13 +21,13 @@ class PermisosController extends Controller
         $permisos = Permisos::all();
         $usuarios = User::all();
         $coordinadores = Coordinadores::all();
-        $lugares = Lugares::all();
+        $dependencias = Dependencias::all();
         $estados = EstadosPermisos::all();
         $motivos = MotivosPermisos::all();
         $tipos = TiposPermisos::all();
 
         return view('permisos.index-permisos', [
-            'permisos' => $permisos, 'usuarios' => $usuarios, 'lugares' => $lugares,
+            'permisos' => $permisos, 'usuarios' => $usuarios, 'dependencias' => $dependencias,
             'estados' => $estados, 'motivos' => $motivos, 'tipos' => $tipos, 'coordinadores' => $coordinadores
         ]);
     }
@@ -42,14 +43,14 @@ class PermisosController extends Controller
         $permisos = Permisos::find($id);
         $usuarios = User::all();
         $coordinadores = DB::select("SELECT u.nombres, u.apellidos, c.id, c.id_tecnico FROM coordinadores c INNER JOIN users u ON u.id = c.id_tecnico");
-        $lugares = Lugares::all();
+        $dependencias = Dependencias::all();
         $estados = EstadosPermisos::all();
         $motivos = MotivosPermisos::all();
         $tipos = TiposPermisos::all();
 
         return view('permisos.edit-permiso', [
             'permisos' => $permisos, 'usuarios' => $usuarios, 'coordinadores' => $coordinadores,
-            'lugares' => $lugares, 'estados' => $estados, 'motivos' => $motivos, 'tipos' => $tipos
+            'dependencias' => $dependencias, 'estados' => $estados, 'motivos' => $motivos, 'tipos' => $tipos
         ]);
     }
 
@@ -65,7 +66,10 @@ class PermisosController extends Controller
             'hora_entrada' => 'required',
             'fecha_salida' => 'required',
             'hora_salida' => 'required',
-            'fecha_permiso' => 'required'
+            'fecha_permiso' => 'required',
+            'tiempo_dia' => 'required',
+            'tiempo_horas' => 'required',
+            'tiempo_minutos' => 'required'
         ]);
 
         $permiso = new Permisos();
@@ -84,9 +88,9 @@ class PermisosController extends Controller
         $permiso->hora_salida = $request->hora_salida;
         $permiso->fecha_permiso = $request->fecha_permiso;
 
-        $permiso->tiempo_dia = 1;
-        $permiso->tiempo_horas = 1;
-        $permiso->tiempo_minutos = 1;
+        $permiso->tiempo_dia = $request->tiempo_dia;
+        $permiso->tiempo_horas = $request->tiempo_horas;
+        $permiso->tiempo_minutos = $request->tiempo_minutos;
 
         $permiso->save();
 
@@ -105,7 +109,10 @@ class PermisosController extends Controller
             'hora_entrada' => 'required',
             'fecha_salida' => 'required',
             'hora_salida' => 'required',
-            'fecha_permiso' => 'required'
+            'fecha_permiso' => 'required',
+            'tiempo_dia' => 'required',
+            'tiempo_horas' => 'required',
+            'tiempo_minutos' => 'required'
         ]);
 
         $permiso = Permisos::find($id);
@@ -115,7 +122,7 @@ class PermisosController extends Controller
         $permiso->id_licencia = $request->licencia;
         $permiso->id_motivo = $request->motivo;
         $permiso->id_usuario_autoriza = $request->usuario_autoriza;
-        $permiso->id_estado = 3;
+        $permiso->id_estado = $request->estado;
         $permiso->id_usuario_adiciono = Auth::user()->id;
 
         $permiso->fecha_entrada = $request->fecha_entrada;
@@ -124,9 +131,9 @@ class PermisosController extends Controller
         $permiso->hora_salida = $request->hora_salida;
         $permiso->fecha_permiso = $request->fecha_permiso;
 
-        $permiso->tiempo_dia = 1;
-        $permiso->tiempo_horas = 1;
-        $permiso->tiempo_minutos = 1;
+        $permiso->tiempo_dia = $request->tiempo_dia;
+        $permiso->tiempo_horas = $request->tiempo_horas;
+        $permiso->tiempo_minutos = $request->tiempo_minutos;
 
         $permiso->save();
 

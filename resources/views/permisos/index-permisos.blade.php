@@ -1,10 +1,3 @@
-@php
-if (Auth::user()->rol->rol != "Administrador"){
-header("Location: home");
-die();
-}
-@endphp
-
 @section('css-data-table')
 <link href="{{ asset('css/DataTables.css') }}" rel="stylesheet">
 @endsection
@@ -60,7 +53,7 @@ die();
                 <td>
                     <div class="d-grid gap-1 d-md-flex">
                         <a class="btn btn-info btn-sm" href="{{ route('permisos.show' , ['permiso' => $permiso->id])}}">Ver</a>
-                        @if ($permiso->id_usuario_adiciono == Auth::user()->id)
+                        @if ($permiso->id_usuario_adiciono == Auth::user()->id || $permiso->id_usuario_autoriza == Auth::user()->id)
                         <form action="{{ route('permisos.destroy' , ['permiso' => $permiso->id]) }}" method="POST">
                             @method('DELETE')
                             @csrf
@@ -102,8 +95,8 @@ die();
                     <div class="mb-3">
                         <label for="dependencia" class="col-form-label">Dependencia:</label>
                         <select id="dependencia" class="form-select" name="dependencia">
-                            @foreach ($lugares as $lugar )
-                            <option @selected( old('dependencia')==$lugar->id ) value="{{$lugar->id}}">{{$lugar->nombre}}</option>
+                            @foreach ($dependencias as $depen )
+                            <option @selected( old('dependencia')==$depen->id ) value="{{$depen->id}}">{{$depen->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -130,7 +123,7 @@ die();
                         <label for="usuario_autoriza" class="col-form-label">Usuario autoriza:</label>
                         <select id="usuario_autoriza" class="form-select" name="usuario_autoriza">
                             @foreach ($coordinadores as $coordinador )
-                            <option @selected( old('usuario_autoriza')==$coordinador->id ) value="{{$coordinador->id}}">{{$coordinador->usuario->nombres}} {{$coordinador->usuario->apellidos}}</option>
+                            <option @selected( old('usuario_autoriza')==$coordinador->id ) value="{{$coordinador->id_tecnico}}">{{$coordinador->usuario->nombres}} {{$coordinador->usuario->apellidos}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -155,6 +148,23 @@ die();
                         <input type="time" class="form-control" name="hora_salida" id="hora_salida" value="{{ old('hora_salida') }}" required>
                     </div>
 
+                    <h4>Total tiempo:</h4>
+
+                    <div class="mb-3">
+                        <label for="tiempo_dia" class="col-form-label">Día:</label>
+                        <input type="number" class="form-control" name="tiempo_dia" id="tiempo_dia" value="{{ old('tiempo_dia') }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tiempo_horas" class="col-form-label">Horas:</label>
+                        <input type="number" class="form-control" name="tiempo_horas" id="tiempo_horas" value="{{ old('tiempo_horas') }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tiempo_minutos" class="col-form-label">Minutos:</label>
+                        <input type="number" class="form-control" name="tiempo_minutos" id="tiempo_minutos" value="{{ old('tiempo_minutos') }}" required>
+                    </div>
+
                     <div class="mb-3">
                         <label for="fecha_permiso" class="col-form-label">Fecha permiso:</label>
                         <input type="date" class="form-control" name="fecha_permiso" id="fecha_permiso" value="{{ old('fecha_permiso') }}" required>
@@ -176,11 +186,11 @@ die();
 <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $('#lugares tbody').on('click', 'tr', function() {
+        $('#permisos tbody').on('click', 'tr', function() {
             $(this).toggleClass('selected');
         });
 
-        $('#lugares').DataTable({
+        $('#permisos').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             }

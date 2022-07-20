@@ -26,7 +26,7 @@ class Permisos extends Model
 
     public function depen()
     {
-        return $this->belongsTo(Lugares::class, 'id_dependencia');
+        return $this->belongsTo(Dependencias::class, 'id_dependencia');
     }
 
     public function licencia()
