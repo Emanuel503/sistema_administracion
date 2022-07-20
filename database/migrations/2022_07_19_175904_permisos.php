@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('permisos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_usuario')->constrained('users', 'id');
-            $table->foreignId('id_dependencia')->constrained('lugares', 'id');
+            $table->foreignId('id_dependencia')->constrained('dependencias', 'id');
             $table->foreignId('id_licencia')->constrained('tipos_permisos', 'id');
             $table->foreignId('id_motivo')->constrained('motivos_permisos', 'id');
             $table->foreignId('id_usuario_autoriza')->constrained('users', 'id');

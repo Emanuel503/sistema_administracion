@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SolicitudesTransportes;
 
-class DependenciasTransporte extends Model
+class Dependencias extends Model
 {
     use HasFactory;
 

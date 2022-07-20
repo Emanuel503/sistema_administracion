@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DependenciasTransporte;
+use App\Models\Dependencias;
 use App\Models\Lugares;
 use App\Models\Transporte;
 use App\Models\User;
@@ -52,14 +52,14 @@ class TransporteController extends Controller
     }
 
     public function bitacoraRecorridos(){
-        $dependencias = DependenciasTransporte::all();
+        $dependencias = Dependencias::all();
         $vehiculos = Vehiculos::all();
         return view('transporte.bitacora-recorridos', ['dependencias' => $dependencias, 'vehiculos' => $vehiculos]); 
     }
 
     public function bitacoraRecorridosPdf(Request $request){
         $pdf = App::make('dompdf.wrapper');
-        $transportes = DB::select("SELECT d.nombre AS 'dependencia', v.placa, t.fecha, t.hora_salida, t.km_salida, ls.nombre as 'lugar_s', t.hora_destino, t.km_destino, ld.nombre as 'lugar_d', t.distancia_recorrida, CONCAT(c.nombres,' ',c.apellidos) as 'conductor', CONCAT(p.nombres,' ',p.apellidos) as 'pasajero' , t.tipo_combustible, t.combustible, t.nivel_tanque FROM transportes t INNER JOIN lugares ls ON t.lugar_salida = ls.id INNER JOIN lugares ld ON t.lugar_destino = ld.id INNER JOIN users c ON t.id_conductor = c.id INNER JOIN users p ON t.pasajero = p.id INNER JOIN dependencias_transportes d ON t.id_dependencia = d.id INNER JOIN vehiculos v ON t.id_placa = v.id WHERE t.id_placa = ? AND t.id_dependencia = ? AND t.fecha LIKE ?" , [$request->id_vehiculo, $request->id_dependencia, $request->fecha.'%']);
+        $transportes = DB::select("SELECT d.nombre AS 'dependencia', v.placa, t.fecha, t.hora_salida, t.km_salida, ls.nombre as 'lugar_s', t.hora_destino, t.km_destino, ld.nombre as 'lugar_d', t.distancia_recorrida, CONCAT(c.nombres,' ',c.apellidos) as 'conductor', CONCAT(p.nombres,' ',p.apellidos) as 'pasajero' , t.tipo_combustible, t.combustible, t.nivel_tanque FROM transportes t INNER JOIN lugares ls ON t.lugar_salida = ls.id INNER JOIN lugares ld ON t.lugar_destino = ld.id INNER JOIN users c ON t.id_conductor = c.id INNER JOIN users p ON t.pasajero = p.id INNER JOIN Dependencias d ON t.id_dependencia = d.id INNER JOIN vehiculos v ON t.id_placa = v.id WHERE t.id_placa = ? AND t.id_dependencia = ? AND t.fecha LIKE ?" , [$request->id_vehiculo, $request->id_dependencia, $request->fecha.'%']);
 
         if(sizeof($transportes) > 0){
             $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
@@ -77,7 +77,7 @@ class TransporteController extends Controller
     public function pdf($id){
 
         $pdf = App::make('dompdf.wrapper');
-        $dependencias = DependenciasTransporte::all();
+        $dependencias = Dependencias::all();
         $usuarios = User::all();
         $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
@@ -98,7 +98,7 @@ class TransporteController extends Controller
     public function index()
     {
         $transportes = Transporte::all();
-        $dependencias = DependenciasTransporte::all();
+        $dependencias = Dependencias::all();
         $usuarios = User::all();
         $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();
@@ -109,7 +109,7 @@ class TransporteController extends Controller
     public function show($id)
     {
         $transportes = Transporte::find($id);
-        $dependencia = DependenciasTransporte::all();
+        $dependencia = Dependencias::all();
         $conductor = User::all();
         $vehiculos = Vehiculos::all();
 
@@ -119,7 +119,7 @@ class TransporteController extends Controller
     public function edit($id)
     {
         $transportes = Transporte::find($id);
-        $dependencias = DependenciasTransporte::all();
+        $dependencias = Dependencias::all();
         $usuarios = User::all();
         $vehiculos = Vehiculos::all();
         $lugares = Lugares::all();

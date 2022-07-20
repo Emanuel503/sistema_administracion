@@ -11,7 +11,7 @@ class SolicitudesTransportes extends Model
 
     public function dependencias()
     {
-        return $this->belongsTo(DependenciasTransporte::class, 'id_dependencia');
+        return $this->belongsTo(Dependencias::class, 'id_dependencia');
     }
 
     public function autorizacion()

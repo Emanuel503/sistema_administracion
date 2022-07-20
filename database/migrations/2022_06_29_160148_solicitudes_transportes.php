@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('solicitudes_transportes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_dependencia')->constrained('dependencias_transportes', 'id');
+            $table->foreignId('id_dependencia')->constrained('dependencias', 'id');
             $table->foreignId('id_lugar')->constrained('lugares', 'id');
             $table->foreignId('id_usuario')->constrained('users', 'id');
             $table->foreignId('id_motorista')->nullable()->constrained('users', 'id');

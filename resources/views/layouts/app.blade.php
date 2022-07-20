@@ -38,7 +38,7 @@
                             <li><a class="dropdown-item" href="{{route('salas.index')}}">Salas</a></li>
                             <li><a class="dropdown-item" href="{{route('lugares.index')}}">Lugares</a></li>
                             <li><a class="dropdown-item" href="{{route('vehiculos.index')}}">Vehiculos</a></li>
-                            <li><a class="dropdown-item" href="{{route('dependencias-transporte.index')}}">Dependencias transporte</a></li>
+                            <li><a class="dropdown-item" href="{{route('dependencias.index')}}">Dependencias</a></li>
                         </ul>
                     </li>
                     @endif

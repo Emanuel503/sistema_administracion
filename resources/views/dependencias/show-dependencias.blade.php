@@ -3,7 +3,7 @@
 @section('content')
 <h3 class="my-4">Detalles de la dependencia</h3>
 
-<a class="btn btn-outline-secondary mb-4" href="{{ route('dependencias-transporte.index')}}">Regresar</a>
+<a class="btn btn-outline-secondary mb-4" href="{{ route('dependencias.index')}}">Regresar</a>
 
 <div class="mb-3">
     <label for="nombre" class="col-form-label">Nombre de la dependencia:</label>
@@ -20,10 +20,10 @@
     <input type="text" class="form-control" name="fecha_modificacion" id="fecha_modificacion" value="{{$dependencias->updated_at}}" readonly>
 </div>
 
-<form action="{{ route('dependencias-transporte.destroy' , ['dependencias_transporte' => $dependencias->id]) }}" method="POST">
+<form action="{{ route('dependencias.destroy' , ['dependencia' => $dependencias->id]) }}" method="POST">
     @method('DELETE')
     @csrf
-    <a class="btn btn-success" href="{{ route('dependencias-transporte.edit' , ['dependencias_transporte' => $dependencias->id])}}">Modificar</a>
+    <a class="btn btn-success" href="{{ route('dependencias.edit' , ['dependencia' => $dependencias->id])}}">Modificar</a>
     <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
     <button type="submit" class="btn btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
 </form>

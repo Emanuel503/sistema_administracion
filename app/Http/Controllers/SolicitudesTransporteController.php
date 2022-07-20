@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Autorizaciones;
-use App\Models\DependenciasTransporte;
+use App\Models\Dependencias;
 use App\Models\Lugares;
 use App\Models\SolicitudesTransportes;
 use App\Models\User;
@@ -17,7 +17,7 @@ class SolicitudesTransporteController extends Controller
     public function index()
     {
         $solicitudesTransportes = SolicitudesTransportes::all();
-        $dependencias = DependenciasTransporte::all();
+        $dependencias = Dependencias::all();
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
@@ -28,7 +28,7 @@ class SolicitudesTransporteController extends Controller
     public function show($id)
     {
         $solicitudesTransportes = SolicitudesTransportes::find($id);
-        $dependencias = DependenciasTransporte::all();
+        $dependencias = Dependencias::all();
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
@@ -39,7 +39,7 @@ class SolicitudesTransporteController extends Controller
     public function edit($id)
     {
         $solicitudesTransportes = SolicitudesTransportes::find($id);
-        $dependencias = DependenciasTransporte::all();
+        $dependencias = Dependencias::all();
         $lugares = Lugares::all();
         $autorizaciones = Autorizaciones::all();
         $usuarios = User::all();
