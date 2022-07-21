@@ -14,6 +14,8 @@ use App\Http\Controllers\RegistrosSalidasController;
 use App\Http\Controllers\SolicitudesTransporteController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\SolicitudCombustibleController;
+use Illuminate\Support\Facades\Auth;
+
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
