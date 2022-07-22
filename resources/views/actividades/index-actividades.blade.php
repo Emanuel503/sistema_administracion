@@ -44,13 +44,13 @@
                 <td>{{$actividad->lugar->nombre}}</td>
                 <td>{{$actividad->estado->tipo_estado}}</td>
                 <td>
-                    <div class="d-grid gap-1 d-md-flex">
-                        <a class="btn btn-info btn-sm" href="{{ route('actividades.show' , ['actividade' => $actividad->id])}}">Ver</a>
+                    <div>
+                        <a class="btn btn-info btn-sm mb-1" href="{{ route('actividades.show' , ['actividade' => $actividad->id])}}">Ver</a>
                         @if ($actividad->id_usuario == Auth::user()->id)
                         <form action="{{ route('actividades.destroy' , ['actividade' => $actividad->id]) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <a class="btn btn-success btn-sm" href="{{ route('actividades.edit' , ['actividade' => $actividad->id])}}">Modificar</a>
+                            <a class="btn btn-success btn-sm mb-1" href="{{ route('actividades.edit' , ['actividade' => $actividad->id])}}">Modificar</a>
                             <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
                             <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                         </form>
