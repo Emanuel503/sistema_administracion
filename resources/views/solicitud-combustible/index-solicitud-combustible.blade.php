@@ -32,12 +32,12 @@
                         <td>{{$solicitud->lugar_d->nombre}}</td>
                         <td>{{$solicitud->vehiculo->placa}}</td>
                         <td>
-                            <div class="d-grid gap-1 d-md-flex">
-                                <a class="btn btn-info btn-sm" href="{{ route('solicitud-combustible.show' , ['solicitud_combustible' => $solicitud->id])}}">Ver</a>
+                            <div>
+                                <a class="btn btn-info btn-sm mb-1" href="{{ route('solicitud-combustible.show' , ['solicitud_combustible' => $solicitud->id])}}">Ver</a>
                                 <form action="{{ route('solicitud-combustible.destroy' , ['solicitud_combustible' => $solicitud->id]) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a class="btn btn-success btn-sm" href="{{ route('solicitud-combustible.edit' , ['solicitud_combustible' => $solicitud->id])}}">Modificar</a>
+                                    <a class="btn btn-success btn-sm mb-1" href="{{ route('solicitud-combustible.edit' , ['solicitud_combustible' => $solicitud->id])}}">Modificar</a>
                                     <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
                                     <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                                 </form>

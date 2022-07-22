@@ -44,13 +44,13 @@
                         <td>@if ($solicitud->id_vehiculo == null) Sin asignar @else {{$solicitud->vehiculo->placa}} @endif </td>
                         <td>@if ($solicitud->id_motorista == null) Sin asignar @else {{$solicitud->motorista->nombres}} {{$solicitud->motorista->apellidos}} @endif </td>
                         <td>
-                            <div class="d-grid gap-1 d-md-flex">
-                                <a class="btn btn-info btn-sm" href="{{ route('solicitudes-transporte.show' ,['solicitudes_transporte' => $solicitud->id])}}">Ver</a>
+                            <div>
+                                <a class="btn btn-info btn-sm mb-1" href="{{ route('solicitudes-transporte.show' ,['solicitudes_transporte' => $solicitud->id])}}">Ver</a>
                                 @if (Auth::user()->rol->id == "1" || (Auth::user()->id == $solicitud->usuario->id && $solicitud->id_autorizacion == 3))
                                     <form action="{{ route('solicitudes-transporte.destroy' , ['solicitudes_transporte' => $solicitud->id]) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <a class="btn btn-success btn-sm" href="{{ route('solicitudes-transporte.edit' , ['solicitudes_transporte' => $solicitud->id])}}">Modificar</a>
+                                        <a class="btn btn-success btn-sm mb-1" href="{{ route('solicitudes-transporte.edit' , ['solicitudes_transporte' => $solicitud->id])}}">Modificar</a>
                                         <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
                                         <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                                     </form>

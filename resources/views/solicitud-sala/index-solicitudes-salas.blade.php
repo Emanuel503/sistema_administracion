@@ -38,13 +38,13 @@
                         <td>{{$solicitud->usuario->nombres}} {{$solicitud->usuario->apellidos}}</td>
                         <td>{{$solicitud->autorizacion->autorizacion}}</td>
                         <td>
-                            <div class="d-grid gap-1 d-md-flex">
-                                <a class="btn btn-info btn-sm" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Ver</a>
+                            <div>
+                                <a class="btn btn-info btn-sm mb-1" href="{{ route('solicitudes-sala.show' , ['solicitudes_sala' => $solicitud->id])}}">Ver</a>
                                 @if (Auth::user()->rol->id == "1" || ($solicitud->id_autorizacion == 3 && Auth::user()->id == $solicitud->usuario->id))
                                     <form action="{{ route('solicitudes-sala.destroy' , ['solicitudes_sala' => $solicitud->id]) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <a class="btn btn-success btn-sm" href="{{ route('solicitudes-sala.edit' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
+                                        <a class="btn btn-success btn-sm mb-1" href="{{ route('solicitudes-sala.edit' , ['solicitudes_sala' => $solicitud->id])}}">Modificar</a>
                                         <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
                                         <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                                     </form>

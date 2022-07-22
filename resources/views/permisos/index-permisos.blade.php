@@ -36,10 +36,7 @@
             @foreach ($permisos as $permiso)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>
-                    {{$permiso->usuario->nombres}}
-                    {{$permiso->usuario->nombres}}
-                </td>
+                <td>{{$permiso->usuario->nombres}} {{$permiso->usuario->apellidos}}</td>
                 <td>{{$permiso->depen->nombre}}</td>
                 <td>{{$permiso->licencia->tipo_permiso}}</td>
                 <td>{{$permiso->motiv->motivo}}</td>
@@ -51,13 +48,13 @@
                 <td>{{$permiso->hora_salida}}</td>
                 <td>{{$permiso->fecha_permiso}}</td>
                 <td>
-                    <div class="d-grid gap-1 d-md-flex">
-                        <a class="btn btn-info btn-sm" href="{{ route('permisos.show' , ['permiso' => $permiso->id])}}">Ver</a>
+                    <div>
+                        <a class="btn btn-info btn-sm mb-1" href="{{ route('permisos.show' , ['permiso' => $permiso->id])}}">Ver</a>
                         @if ($permiso->id_usuario_adiciono == Auth::user()->id || $permiso->id_usuario_autoriza == Auth::user()->id)
                         <form action="{{ route('permisos.destroy' , ['permiso' => $permiso->id]) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <a class="btn btn-success btn-sm" href="{{ route('permisos.edit' , ['permiso' => $permiso->id])}}">Modificar</a>
+                            <a class="btn btn-success btn-sm mb-1" href="{{ route('permisos.edit' , ['permiso' => $permiso->id])}}">Modificar</a>
                             <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
                             <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                         </form>

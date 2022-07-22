@@ -38,13 +38,13 @@
                 <td>{{$salida->usuario->nombres}} {{$salida->usuario->apellidos}}</td>
                 <td>{{$salida->estado->estado}}</td>
                 <td>
-                    <div class="d-grid gap-1 d-md-flex">
-                        <a class="btn btn-info btn-sm" href="{{ route('registros-salida.show' , ['registros_salida' => $salida->id])}}">Ver</a>
+                    <div>
+                        <a class="btn btn-info btn-sm mb-1" href="{{ route('registros-salida.show' , ['registros_salida' => $salida->id])}}">Ver</a>
                         @if (Auth::user()->id == $salida->id_usuario)
                         <form action="{{ route('registros-salida.destroy' , ['registros_salida' => $salida->id]) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <a class="btn btn-success btn-sm" href="{{ route('registros-salida.edit' , ['registros_salida' => $salida->id])}}">Modificar</a>
+                            <a class="btn btn-success btn-sm mb-1" href="{{ route('registros-salida.edit' , ['registros_salida' => $salida->id])}}">Modificar</a>
                             <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
                             <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                         </form>

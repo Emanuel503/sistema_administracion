@@ -38,9 +38,9 @@ die();
                     <form action="{{ route('dependencias.destroy' , ['dependencia' => $dependencia->id]) }}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <div class="d-grid gap-1 d-md-flex">
-                            <a class="btn btn-info btn-sm" href="{{ route('dependencias.show' , ['dependencia' => $dependencia->id])}}">Ver</a>
-                            <a class="btn btn-success btn-sm" href="{{ route('dependencias.edit' , ['dependencia' => $dependencia->id])}}">Modificar</a>
+                        <div>
+                            <a class="btn btn-info btn-sm mb-1" href="{{ route('dependencias.show' , ['dependencia' => $dependencia->id])}}">Ver</a>
+                            <a class="btn btn-success btn-sm mb-1" href="{{ route('dependencias.edit' , ['dependencia' => $dependencia->id])}}">Modificar</a>
                             <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
                             <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                         </div>

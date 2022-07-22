@@ -40,12 +40,12 @@
                         <td>{{$transporte->distancia_recorrida}} km</td>
                         <td>{{$transporte->combustible}} gal.</td>
                         <td>
-                            <div class="d-grid gap-1 d-md-flex">
-                                <a class="btn btn-info btn-sm" href="{{ route('transporte.show' , ['transporte' => $transporte->id])}}">Ver</a>
+                            <div>
+                                <a class="btn btn-info btn-sm mb-1" href="{{ route('transporte.show' , ['transporte' => $transporte->id])}}">Ver</a>
                                 <form action="{{ route('transporte.destroy' , ['transporte' => $transporte->id]) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a class="btn btn-success btn-sm" href="{{ route('transporte.edit' , ['transporte' => $transporte->id])}}">Modificar</a>
+                                    <a class="btn btn-success btn-sm mb-1" href="{{ route('transporte.edit' , ['transporte' => $transporte->id])}}">Modificar</a>
                                     <input name="_method" type="hidden" value="DELETE"><input name="_method" type="hidden" value="DELETE">
                                     <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Eliminar</button>
                                 </form>
